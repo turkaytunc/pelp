@@ -1,13 +1,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import { getAllRestaurants } from '../../controllers/index.js';
 
 const router = express.Router();
 dotenv.config();
 
 // Get all restaurants
-router.get('/', (_, res) => {
-  res.json('works');
-});
+router.get('/', getAllRestaurants);
 
 // Get restaurant by id
 router.get('/:id', (req, res) => {
