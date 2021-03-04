@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 
-import restaurantRoutes from './routers/v1/restaurantRoutes.js';
+import { restaurantRoutes } from './routers/v1/index.js';
 
 dotenv.config();
 const app = express();
