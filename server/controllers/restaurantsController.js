@@ -10,3 +10,15 @@ export const getAllRestaurants = async (_, res) => {
     process.exit(1);
   }
 };
+
+export const getRestaurantById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const restaurant = await pool.query('SELECT * FROM restaurants WHERE id = $1', [id]);
+
+    res.json(restaurant.rows);
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
+};

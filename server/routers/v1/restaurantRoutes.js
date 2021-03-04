@@ -1,20 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { getAllRestaurants } from '../../controllers/index.js';
+import { getAllRestaurants, getRestaurantById } from '../../controllers/index.js';
 
 const router = express.Router();
 dotenv.config();
 
-// Get all restaurants
 router.get('/', getAllRestaurants);
+router.get('/:id', getRestaurantById);
 
-// Get restaurant by id
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  res.json({ requested_id: `${id}` });
-});
-
-// Create new restaurant
 router.post('/', (req, res) => {
   const { name, location, price_range } = req.body;
 
