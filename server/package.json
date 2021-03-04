@@ -5,7 +5,9 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "Türkay Tunç",
   "license": "MIT",
