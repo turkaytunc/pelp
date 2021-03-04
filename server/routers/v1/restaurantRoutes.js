@@ -1,6 +1,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { getAllRestaurants, getRestaurantById, createRestaurant, updateRestaurant } from '../../controllers/index.js';
+import {
+  getAllRestaurants,
+  getRestaurantById,
+  createRestaurant,
+  updateRestaurantById,
+  deleteRestaurantById,
+} from '../../controllers/index.js';
 
 const router = express.Router();
 dotenv.config();
@@ -10,12 +16,8 @@ router.get('/:id', getRestaurantById);
 
 router.post('/', createRestaurant);
 
-router.put('/:id', updateRestaurant);
+router.put('/:id', updateRestaurantById);
 
-router.delete('/', (req, res) => {
-  const { name, location, price_range } = req.body;
-
-  res.status(204);
-});
+router.delete('/:id', deleteRestaurantById);
 
 export default router;

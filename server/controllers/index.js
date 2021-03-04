@@ -1,1 +1,7 @@
-export { getAllRestaurants, getRestaurantById, createRestaurant, updateRestaurant } from './restaurantsController.js';
+export {
+  getAllRestaurants,
+  getRestaurantById,
+  createRestaurant,
+  updateRestaurantById,
+  deleteRestaurantById,
+} from './restaurantsController.js';
