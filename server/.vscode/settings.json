@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "coverage": true,
+    "node_modules": true,
+    "db": true,
+    "package-lock.json": true
+  }
+}
