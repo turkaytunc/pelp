@@ -13,7 +13,7 @@ export const getRestaurantById = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    if (id < 0 || id > 100) {
+    if (id <= 0 || id > 100) {
       const error = new Error('id must be between 0-100');
       error.statusCode = 400;
       return next(error);
