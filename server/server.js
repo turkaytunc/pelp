@@ -15,6 +15,22 @@ app.use(morgan('dev'));
 // routes
 app.use('/api/v1/restaurants', restaurantRoutes);
 
+// Unhandled Endpoint Error
+app.get('/*', (req, res, next) => {
+  const error = new Error('Page Not Found');
+  error.statusCode = 404;
+  return next(error);
+});
+
+// Global Error Handler
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error);
+  }
+  res.status(error.statusCode || 500);
+  return res.json({ message: error.message || 'An unexpected error occurred!' });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
