@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { addRestaurant } from '../../util/index';
+import './add-restaurant.scss';
 
 const AddRestaurant = () => {
   const [restaurantName, setRestaurantName] = useState('');
@@ -13,8 +14,9 @@ const AddRestaurant = () => {
 
   return (
     <div>
-      <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleSubmit(event)}>
-        <label htmlFor="restaurant-name">
+      <form className="add-restaurant-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleSubmit(event)}>
+        <label className="add-restaurant-label" htmlFor="restaurant-name">
+          <p>Restaurant Name</p>
           <input
             type="text"
             name="restaurant-name"
@@ -23,7 +25,8 @@ const AddRestaurant = () => {
             onChange={(event) => setRestaurantName(event.target.value)}
           />
         </label>
-        <label htmlFor="restaurant-location">
+        <label className="add-restaurant-label" htmlFor="restaurant-location">
+          <p>Restaurant Location</p>
           <input
             type="text"
             name="restaurant-location"
@@ -32,7 +35,8 @@ const AddRestaurant = () => {
             onChange={(event) => setRestaurantLocation(event.target.value)}
           />
         </label>
-        <label htmlFor="restaurant-price">
+        <label className="add-restaurant-label" htmlFor="restaurant-price">
+          <p>Restaurant Price</p>
           <input
             type="text"
             name="restaurant-price"

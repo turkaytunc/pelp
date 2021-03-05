@@ -1,0 +1,27 @@
+.add-restaurant-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 4rem;
+
+  button {
+    height: 1.7rem;
+    font-size: 1.1rem;
+  }
+}
+
+.add-restaurant-label {
+  display: flex;
+  flex-basis: content auto;
+  justify-content: space-evenly;
+  padding: 0.5rem 0;
+  p {
+    flex: 1;
+    text-align: left;
+  }
+  input {
+    flex: 2;
+    height: 1.5rem;
+  }
+}
