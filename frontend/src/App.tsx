@@ -1,6 +1,6 @@
 import './app.scss';
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="app">
       <main>Learn React</main>
