@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import cors from 'cors';
+import helmet from 'helmet';
 
 import { restaurantRoutes } from './routers/v1/index.js';
 
@@ -9,6 +11,8 @@ const app = express();
 const { PORT = 4000 } = process.env;
 
 // middlewares
+app.use(cors());
+app.use(helmet());
 app.use(express.json());
 app.use(morgan('dev'));
 
