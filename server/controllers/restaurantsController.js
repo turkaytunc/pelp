@@ -1,44 +1,48 @@
 import pool from '../db/index.js';
 
-export const getAllRestaurants = async (_, res) => {
+export const getAllRestaurants = async (_, res, next) => {
   try {
     const restaurants = await pool.query('SELECT * FROM restaurants');
-
-    res.json(restaurants.rows);
+    return res.json(restaurants.rows);
   } catch (error) {
-    console.error(error.message);
-    process.exit(1);
+    return next(error);
   }
 };
 
-export const getRestaurantById = async (req, res) => {
+export const getRestaurantById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const restaurant = await pool.query('SELECT * FROM restaurants WHERE id = $1', [id]);
 
-    res.json(restaurant.rows);
+    if (id < 0 || id > 100) {
+      const error = new Error('id must be between 0-100');
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const restaurant = await pool.query('SELECT * FROM restaurants WHERE id = $1', [id]);
+    return res.json(restaurant.rows);
   } catch (error) {
-    console.error(error.message);
-    process.exit(1);
+    error.statusCode = 400;
+    return next(error);
   }
 };
 
-export const createRestaurant = async (req, res) => {
+export const createRestaurant = async (req, res, next) => {
   try {
     const { name, location, price_range } = req.body;
+
     const restaurant = await pool.query(
       'INSERT INTO restaurants(name, location, price_range) values($1, $2, $3) returning *',
       [name, location, price_range]
     );
-
-    res.status(201).json(restaurant.rows[0]);
+    return res.status(201).json(restaurant.rows[0]);
   } catch (error) {
-    console.error(error.message);
-    process.exit(1);
+    error.statusCode = 400;
+    return next(error);
   }
 };
 
-export const updateRestaurantById = async (req, res) => {
+export const updateRestaurantById = async (req, res, next) => {
   try {
     const { name, location, price_range } = req.body;
     const { id } = req.params;
@@ -47,21 +51,21 @@ export const updateRestaurantById = async (req, res) => {
       [name, location, price_range, id]
     );
 
-    res.status(201).json(restaurant.rows[0]);
+    return res.status(201).json(restaurant.rows[0]);
   } catch (error) {
-    console.error(error.message);
-    process.exit(1);
+    error.statusCode = 400;
+    return next(error);
   }
 };
 
-export const deleteRestaurantById = async (req, res) => {
+export const deleteRestaurantById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const restaurant = await pool.query('DELETE FROM restaurants WHERE id = $1', [id]);
 
-    res.status(204).send();
+    return res.status(204).send();
   } catch (error) {
-    console.error(error.message);
-    process.exit(1);
+    error.statusCode = 400;
+    return next(error);
   }
 };
