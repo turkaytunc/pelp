@@ -1,5 +1,5 @@
 import './app.scss';
-import { FaStarHalfAlt } from 'react-icons/fa';
+// import { FaStarHalfAlt } from 'react-icons/fa';
 import { Home, RestaurantDetails, UpdateRestaurant } from './routes/index';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
