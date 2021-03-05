@@ -1,0 +1,1 @@
+export { addRestaurant } from './addRestaurant';
