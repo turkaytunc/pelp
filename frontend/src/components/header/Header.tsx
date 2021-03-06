@@ -1,4 +1,6 @@
 import './header.scss';
+import React from 'react';
+
 const Header = () => {
   const textColor = 'hsl(200, 20%, 20%)';
 

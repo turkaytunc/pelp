@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { addRestaurant } from '../../util/index';
 import './add-restaurant.scss';
 
-const AddRestaurant = (): React.ReactNode => {
+const AddRestaurant = () => {
   const [restaurantName, setRestaurantName] = useState('');
   const [restaurantLocation, setRestaurantLocation] = useState('');
   const [restaurantPrice, setRestaurantPrice] = useState('');
