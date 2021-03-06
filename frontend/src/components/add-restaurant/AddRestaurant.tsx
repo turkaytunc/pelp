@@ -10,7 +10,7 @@ const AddRestaurant = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (restaurantPrice === '' || restaurantLocation === '' || restaurantName === '') return;
-    addRestaurant(restaurantName, restaurantLocation, parseInt(restaurantPrice), window.fetch);
+    addRestaurant(restaurantName, restaurantLocation, parseInt(restaurantPrice, 10), window.fetch);
     setRestaurantPrice('');
     setRestaurantName('');
     setRestaurantLocation('');
