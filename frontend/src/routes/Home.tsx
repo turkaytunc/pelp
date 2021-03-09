@@ -6,6 +6,7 @@ const Home = (): React.ReactElement => (
   <div>
     <Header />
     <AddRestaurant />
+    <RestaurantList />
   </div>
 );
 
