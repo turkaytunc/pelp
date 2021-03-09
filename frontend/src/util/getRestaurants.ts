@@ -1,3 +1,3 @@
-const getRestaurants = (url: string, fetch: Function) => fetch(url);
+const getRestaurants = <T>(url: string, fetch: (url: RequestInfo) => Promise<T>): Promise<T> => fetch(url);
 
 export default getRestaurants;
