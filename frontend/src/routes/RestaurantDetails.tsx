@@ -1,5 +1,5 @@
 import React from 'react';
 
-const RestaurantDetails = () => <div>Restaurant Details</div>;
+const RestaurantDetails = (): React.ReactElement => <div>Restaurant Details</div>;
 
 export default RestaurantDetails;

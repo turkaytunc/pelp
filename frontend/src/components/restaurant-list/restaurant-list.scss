@@ -1,0 +1,16 @@
+.restaurant-list-listitem::marker {
+  content: '\2764';
+  font-size: 1rem;
+  color: red;
+}
+
+.restaurant-list-listitem::before {
+  content: '';
+  padding-left: 0.5rem;
+}
+
+.restaurant-list-listitem:hover::marker {
+  content: '\2764';
+  font-size: 1.1rem;
+  color: blue;
+}

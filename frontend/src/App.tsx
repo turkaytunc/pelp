@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './app.scss';
 // import { FaStarHalfAlt } from 'react-icons/fa';
-import { Home, RestaurantDetails, UpdateRestaurant } from './routes/index';
+import { Home, RestaurantDetails, UpdateRestaurant } from './routes';
 
 function App(): JSX.Element {
   return (

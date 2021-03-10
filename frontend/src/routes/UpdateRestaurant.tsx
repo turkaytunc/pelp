@@ -1,5 +1,3 @@
-import React from 'react';
-
-const UpdateRestaurant = () => <div>Update Restaurant</div>;
+const UpdateRestaurant = (): React.ReactElement => <div>Update Restaurant</div>;
 
 export default UpdateRestaurant;

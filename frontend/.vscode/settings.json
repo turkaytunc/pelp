@@ -22,10 +22,12 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
   "prettier.printWidth": 120,
   "prettier.singleQuote": true,
   "explorer.compactFolders": false,
   "vim.vimrc.enable": true,
   "editor.lineNumbers": "relative",
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "editor.acceptSuggestionOnEnter": "off"
 }
