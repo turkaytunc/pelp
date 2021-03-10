@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './restaurant-list.scss';
 
-import { API_URL, Restaurant } from '../../type-helpers';
-import { getRestaurants } from '../../util';
+import { getRestaurants } from 'src/util';
+import { API_URL, Restaurant } from 'src/type-helpers';
+
 import ListCard from './list-card/ListCard';
 
 const RestaurantList = (): React.ReactElement => {

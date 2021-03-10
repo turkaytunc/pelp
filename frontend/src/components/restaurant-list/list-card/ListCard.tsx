@@ -1,5 +1,5 @@
 import React from 'react';
-import { Restaurant } from '../../../type-helpers';
+import { Restaurant } from 'src/type-helpers';
 
 const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElement => {
   const { id, name, location, priceRange } = restaurant;
