@@ -1,8 +1,8 @@
-@use './scss/variables';
+@use './scss';
 
 .app {
-  color: variables.$color-light;
+  color: scss.$color-light;
   text-align: center;
-  background-color: variables.$background-color-dark;
+  background-color: scss.$background-color-dark;
   height: 100vh;
 }
