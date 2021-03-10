@@ -27,6 +27,7 @@
     "test:dev": "react-scripts test --coverage --watchAll",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "commit": "sh commit.sh",
+    "squash": "sh squash.sh",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
