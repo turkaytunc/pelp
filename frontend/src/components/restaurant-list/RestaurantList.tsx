@@ -15,7 +15,8 @@ const RestaurantList = (): React.ReactElement => {
       .then((data) => setRestaurants(data));
   }, []);
 
-  const renderRestaurantList = () => restaurants?.map((restaurant) => <ListCard restaurant={restaurant} />);
+  const renderRestaurantList = () =>
+    restaurants?.map((restaurant) => <ListCard key={restaurant.id} restaurant={restaurant} />);
 
   return (
     <div className="restaurant-list">
