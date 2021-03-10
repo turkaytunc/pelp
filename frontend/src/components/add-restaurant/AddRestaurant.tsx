@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addRestaurant } from '../../util/index';
+import { addRestaurant } from 'src/util';
 import './add-restaurant.scss';
 
 const AddRestaurant = (): React.ReactElement => {

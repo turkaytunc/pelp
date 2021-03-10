@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './restaurant-list.scss';
 
-import { API_URL } from '../../constants';
-import { getRestaurants } from '../../util';
+import { getRestaurants } from 'src/util';
+import { API_URL, Restaurant } from 'src/type-helpers';
+
 import ListCard from './list-card/ListCard';
 
 const RestaurantList = (): React.ReactElement => {
-  const [restaurants, setRestaurants] = useState([]);
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
   useEffect(() => {
     getRestaurants(`${API_URL}/restaurants`, window.fetch)
@@ -14,7 +15,8 @@ const RestaurantList = (): React.ReactElement => {
       .then((data) => setRestaurants(data));
   }, []);
 
-  const renderRestaurantList = () => restaurants?.map((restaurant) => <ListCard />);
+  const renderRestaurantList = () => restaurants?.map((restaurant) => <ListCard restaurant={restaurant} />);
+
   return (
     <div className="restaurant-list">
       {restaurants && renderRestaurantList()}
