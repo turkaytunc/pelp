@@ -12,6 +12,12 @@
     border-radius: 3px;
     border: none;
     margin: 0.2rem;
+    caret-color: rgb(186, 34, 206);
+
+    &:focus {
+      border-bottom: 1px solid rgb(49, 174, 231);
+      outline: none;
+    }
   }
 
   button {
@@ -20,39 +26,13 @@
     font-size: 1.1rem;
     border: none;
     border-radius: 5px;
-    background-color: rgb(52, 151, 201);
+    background-color: rgb(49, 174, 231);
     color: #222;
-    box-shadow: -0.2px -0.2px 3px #ccc inset;
+    box-shadow: -0.2px -0.2px 1px #ccc;
 
     &:hover {
       color: aliceblue;
-      background-color: rgb(74, 164, 209);
-    }
-  }
-}
-
-.add-restaurant-label {
-  display: flex;
-  flex-basis: content auto;
-  justify-content: space-evenly;
-  padding: 0.5rem 0;
-
-  p {
-    flex: 1;
-    text-align: left;
-    color: rgb(106, 188, 230);
-  }
-  input {
-    flex: 2;
-    height: 1.5rem;
-    padding-left: 0.5rem;
-    caret-color: rgb(186, 34, 206);
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-
-    &:focus {
-      outline: none;
+      background-color: rgb(44, 158, 211);
     }
   }
 }
