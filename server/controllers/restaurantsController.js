@@ -3,7 +3,14 @@ import pool from '../db/index.js';
 export const getAllRestaurants = async (_, res, next) => {
   try {
     const restaurants = await pool.query('SELECT * FROM restaurants');
-    return res.json(restaurants.rows);
+    return res.json(
+      restaurants.rows.map((restaurant) => ({
+        id: restaurant.id,
+        name: restaurant.name,
+        location: restaurant.location,
+        priceRange: restaurant.price_range,
+      }))
+    );
   } catch (error) {
     return next(error);
   }
@@ -35,7 +42,9 @@ export const createRestaurant = async (req, res, next) => {
       'INSERT INTO restaurants(name, location, price_range) values($1, $2, $3) returning *',
       [name, location, price_range]
     );
-    return res.status(201).json(restaurant.rows[0]);
+    return res
+      .status(201)
+      .json({ id: restaurant.rows[0].id, name, location, priceRange: restaurant.rows[0].price_range });
   } catch (error) {
     error.statusCode = 400;
     return next(error);
