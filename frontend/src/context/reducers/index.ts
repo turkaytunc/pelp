@@ -1,0 +1,1 @@
+export { restaurantReducer } from './restaurantReducer';
