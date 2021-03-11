@@ -29,13 +29,13 @@
     font-size: 1.1rem;
     border: none;
     border-radius: 5px;
-    background-color: scss.$button-color-blue;
+    background-color: scss.$button-color-purple;
     color: #222;
     box-shadow: -0.2px -0.2px 1px #ccc;
 
     &:hover {
       color: aliceblue;
-      background-color: scss.$button-color-blue;
+      background-color: scss.$button-color-purple-hover;
     }
   }
 }

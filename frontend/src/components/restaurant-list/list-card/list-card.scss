@@ -1,12 +1,16 @@
+@use '/src/scss';
+
 .listcard-container {
   display: flex;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  border: 1px solid scss.$border-color-light-blue;
+  border-radius: 5px;
   margin: 0.5rem;
   padding: 0.5rem;
+  width: calc(100vw - 5%);
 
   img {
     flex: 1;
+    max-height: 80px;
   }
 }
 .listcard-details {
@@ -17,4 +21,7 @@
 .listcard-button-container {
   margin: 0 0.5rem;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
