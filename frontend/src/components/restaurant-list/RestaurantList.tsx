@@ -21,8 +21,8 @@ const RestaurantList = (): React.ReactElement => {
     <div className="restaurant-list-container">
       {state.restaurants.length > 0 && (
         <div className="restaurant-list">
-          {state.restaurants.map((rest) => (
-            <ListCard key={rest.id} restaurant={rest} />
+          {state.restaurants?.map((restaurant) => (
+            <ListCard key={restaurant?.id} restaurant={restaurant} />
           ))}
         </div>
       )}

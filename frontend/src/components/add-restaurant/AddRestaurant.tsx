@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { ActionType } from 'src/constants';
+import { Store } from 'src/context/Store';
+import { Restaurant } from 'src/interfaces';
 import { addRestaurant, convertFirstLetterToUpperCase, isInputEmpty } from 'src/util';
 import './add-restaurant.scss';
 
@@ -7,6 +10,7 @@ const AddRestaurant = (): React.ReactElement => {
   const [restaurantLocation, setRestaurantLocation] = useState('');
   const [restaurantPrice, setRestaurantPrice] = useState('');
   const [inputError, setInputError] = useState('');
+  const { state, dispatch } = useContext(Store);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,7 +25,21 @@ const AddRestaurant = (): React.ReactElement => {
       convertFirstLetterToUpperCase(restaurantLocation),
       parseInt(restaurantPrice, 10),
       window.fetch
-    );
+    )
+      .then((res) => {
+        if (res.status === 201) {
+          return res.json();
+        }
+        return null;
+      })
+      .then((res) => {
+        dispatch({
+          type: ActionType.ADD_RESTAURANT,
+          payload: {
+            ...res,
+          },
+        });
+      });
 
     setRestaurantPrice('');
     setRestaurantName('');
