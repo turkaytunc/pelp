@@ -2,7 +2,7 @@ import React from 'react';
 import './list-card.scss';
 
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import { Restaurant } from 'src/type-helpers';
+import { Restaurant } from 'src/interfaces';
 
 const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElement => {
   const { id, name, location, priceRange } = restaurant;
