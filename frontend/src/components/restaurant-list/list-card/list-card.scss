@@ -4,10 +4,17 @@
   border-radius: 3px;
   margin: 0.5rem;
   padding: 0.5rem;
+
+  img {
+    flex: 1;
+  }
 }
 .listcard-details {
   margin: 0 1rem;
+  text-align: left;
+  flex: 2;
 }
 .listcard-button-container {
   margin: 0 0.5rem;
+  flex: 1;
 }
