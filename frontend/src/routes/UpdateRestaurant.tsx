@@ -1,3 +1,3 @@
-const UpdateRestaurant = (): React.ReactElement => <div>Update Restaurant</div>;
+const UpdateRestaurant = (): React.ReactElement => <>Update Restaurant</>;
 
 export default UpdateRestaurant;

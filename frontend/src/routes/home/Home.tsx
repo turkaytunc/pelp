@@ -1,9 +1,9 @@
 import React from 'react';
-
-import { Header, AddRestaurant, RestaurantList } from '../components';
+import './home.scss';
+import { Header, AddRestaurant, RestaurantList } from '../../components';
 
 const Home = (): React.ReactElement => (
-  <div>
+  <div className="home-screen">
     <Header />
     <AddRestaurant />
     <RestaurantList />

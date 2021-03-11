@@ -1,57 +1,85 @@
-import React, { useState } from 'react';
-import { addRestaurant } from 'src/util';
+import React, { useContext, useState } from 'react';
+import { ActionType } from 'src/constants';
+import { Store } from 'src/context/Store';
+import { Restaurant } from 'src/interfaces';
+import { addRestaurant, convertFirstLetterToUpperCase, isInputEmpty } from 'src/util';
 import './add-restaurant.scss';
 
 const AddRestaurant = (): React.ReactElement => {
   const [restaurantName, setRestaurantName] = useState('');
   const [restaurantLocation, setRestaurantLocation] = useState('');
   const [restaurantPrice, setRestaurantPrice] = useState('');
+  const [inputError, setInputError] = useState('');
+  const { state, dispatch } = useContext(Store);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (restaurantPrice === '' || restaurantLocation === '' || restaurantName === '') return;
-    addRestaurant(restaurantName, restaurantLocation, parseInt(restaurantPrice, 10), window.fetch);
+
+    if (isInputEmpty(restaurantName, restaurantPrice, restaurantLocation)) {
+      setInputError("Please don't left input fields blank!");
+      return;
+    }
+
+    addRestaurant(
+      convertFirstLetterToUpperCase(restaurantName),
+      convertFirstLetterToUpperCase(restaurantLocation),
+      parseInt(restaurantPrice, 10),
+      window.fetch
+    )
+      .then((res) => {
+        if (res.status === 201) {
+          return res.json();
+        }
+        return null;
+      })
+      .then((res) => {
+        dispatch({
+          type: ActionType.ADD_RESTAURANT,
+          payload: {
+            ...res,
+          },
+        });
+      });
+
     setRestaurantPrice('');
     setRestaurantName('');
     setRestaurantLocation('');
   };
 
   return (
-    <div>
+    <>
       <form className="add-restaurant-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleSubmit(event)}>
-        <label className="add-restaurant-label" htmlFor="restaurant-name">
-          <p>Restaurant Name</p>
-          <input
-            type="text"
-            name="restaurant-name"
-            id="restaurant-name"
-            value={restaurantName}
-            onChange={(event) => setRestaurantName(event.target.value)}
-          />
-        </label>
-        <label className="add-restaurant-label" htmlFor="restaurant-location">
-          <p>Restaurant Location</p>
-          <input
-            type="text"
-            name="restaurant-location"
-            id="restaurant-location"
-            value={restaurantLocation}
-            onChange={(event) => setRestaurantLocation(event.target.value)}
-          />
-        </label>
-        <label className="add-restaurant-label" htmlFor="restaurant-price">
-          <p>Restaurant Price</p>
-          <input
-            type="text"
-            name="restaurant-price"
-            id="restaurant-price"
-            value={restaurantPrice}
-            onChange={(event) => setRestaurantPrice(event.target.value)}
-          />
-        </label>
+        <input
+          type="text"
+          name="restaurant-name"
+          id="restaurant-name"
+          value={restaurantName}
+          onChange={(event) => setRestaurantName(event.target.value)}
+          onFocus={() => setInputError('')}
+          placeholder="Name"
+        />
+        <input
+          type="text"
+          name="restaurant-location"
+          id="restaurant-location"
+          value={restaurantLocation}
+          onChange={(event) => setRestaurantLocation(event.target.value)}
+          onFocus={() => setInputError('')}
+          placeholder="Location"
+        />
+        <input
+          type="text"
+          name="restaurant-price"
+          id="restaurant-price"
+          value={restaurantPrice}
+          onChange={(event) => setRestaurantPrice(event.target.value)}
+          onFocus={() => setInputError('')}
+          placeholder="Price"
+        />
+        {inputError}
         <button type="submit">Add Restaurant</button>
       </form>
-    </div>
+    </>
   );
 };
 
