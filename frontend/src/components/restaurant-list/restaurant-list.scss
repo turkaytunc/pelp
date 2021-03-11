@@ -1,3 +1,13 @@
+.restaurant-list-container {
+  width: 100%;
+}
+.restaurant-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin: 0 auto;
+}
 .restaurant-list-listitem::marker {
   content: '\2764';
   font-size: 1rem;

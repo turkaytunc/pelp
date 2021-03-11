@@ -19,8 +19,8 @@ const RestaurantList = (): React.ReactElement => {
     restaurants?.map((restaurant) => <ListCard key={restaurant.id} restaurant={restaurant} />);
 
   return (
-    <div className="restaurant-list">
-      {restaurants && renderRestaurantList()}
+    <div className="restaurant-list-container">
+      {restaurants && <div className="restaurant-list">{renderRestaurantList()}</div>}
       <li className="restaurant-list-listitem">list item 1</li>
       <li className="restaurant-list-listitem">list item 2</li>
       <li className="restaurant-list-listitem">list item 3</li>
