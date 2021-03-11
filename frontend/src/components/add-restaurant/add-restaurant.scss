@@ -1,3 +1,5 @@
+@use '/src/scss';
+
 .add-restaurant-form {
   display: flex;
   flex-direction: column;
@@ -12,10 +14,11 @@
     border-radius: 3px;
     border: none;
     margin: 0.2rem;
-    caret-color: rgb(186, 34, 206);
+    caret-color: rgb(49, 174, 231);
+    color: scss.$color-dark;
 
     &:focus {
-      border-bottom: 1px solid rgb(49, 174, 231);
+      border-bottom: 1px solid scss.$border-color-blue;
       outline: none;
     }
   }
@@ -26,13 +29,13 @@
     font-size: 1.1rem;
     border: none;
     border-radius: 5px;
-    background-color: rgb(49, 174, 231);
+    background-color: scss.$button-color-blue;
     color: #222;
     box-shadow: -0.2px -0.2px 1px #ccc;
 
     &:hover {
       color: aliceblue;
-      background-color: rgb(44, 158, 211);
+      background-color: scss.$button-color-blue;
     }
   }
 }
