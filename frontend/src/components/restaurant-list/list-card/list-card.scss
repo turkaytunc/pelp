@@ -34,6 +34,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: flex-end;
+  margin-left: auto;
+  max-width: 30%;
 }
 
 .card-button {
@@ -46,6 +49,7 @@
   border-radius: 5px;
   border-bottom: 2px solid #444;
   color: scss.$color-light;
+  width: 100%;
 }
 
 .delete-button {
