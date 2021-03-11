@@ -13,10 +13,9 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         alt="restaurant placeholder"
       />
       <div className="listcard-details">
-        <div className="details-item">name: {name}</div>
-        <div className="details-item">id: {id}</div>
-        <div className="details-item">location: {location}</div>
-        <div className="details-item">pricerange: {priceRange}</div>
+        <div className="details-item"> {name}</div>
+        <div className="details-item"> {location}</div>
+        <div className="details-item"> {'$'.repeat(priceRange)}</div>
         <div className="details-item">Ratings</div>
       </div>
       <div className="listcard-button-container">

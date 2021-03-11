@@ -3,7 +3,6 @@ import './restaurant-list.scss';
 
 import { getRestaurants } from 'src/util';
 import { ActionType, API_URL } from 'src/constants';
-import { Restaurant } from 'src/interfaces';
 import { Store } from 'src/context/Store';
 
 import ListCard from './list-card/ListCard';
