@@ -1,6 +1,7 @@
 import React from 'react';
 import './list-card.scss';
 
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Restaurant } from 'src/type-helpers';
 
 const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElement => {
@@ -18,11 +19,11 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         <div className="details-item">Ratings</div>
       </div>
       <div className="listcard-button-container">
-        <button type="button" className="edit-button">
-          Edit
+        <button type="button" className="card-button edit-button">
+          <FaEdit fill="#e0b90c" /> Edit
         </button>
-        <button type="button" className="delete-button">
-          Delete
+        <button type="button" className="card-button delete-button">
+          <FaTrash fill="#e00c0c" /> Delete
         </button>
       </div>
     </div>

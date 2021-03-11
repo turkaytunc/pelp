@@ -2,26 +2,61 @@
 
 .listcard-container {
   display: flex;
-  border: 1px solid scss.$border-color-light-blue;
+  border: 1px solid scss.$card-border-color;
   border-radius: 5px;
   margin: 0.5rem;
   padding: 0.5rem;
-  width: calc(100vw - 5%);
+  height: 80px;
+  width: calc(100vw - 1rem);
 
   img {
     flex: 1;
     max-height: 80px;
+    max-width: 80px;
   }
 }
+
 .listcard-details {
   margin: 0 1rem;
   text-align: left;
-  flex: 2;
+  flex: 3;
+  max-width: 50%;
+
+  div {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 .listcard-button-container {
-  margin: 0 0.5rem;
+  margin-left: 0.5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  justify-self: right;
+}
+
+.card-button {
+  height: 1.7rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem;
+  align-items: center;
+  background-color: #222;
+  border-radius: 5px;
+  border-bottom: 2px solid #444;
+  color: scss.$color-light;
+}
+
+.delete-button {
+  &:hover {
+    color: #e00c0c;
+  }
+}
+
+.edit-button {
+  &:hover {
+    color: #e0b90c;
+  }
 }
