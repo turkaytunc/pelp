@@ -29,7 +29,7 @@ const AddRestaurant = (): React.ReactElement => {
   };
 
   return (
-    <div>
+    <>
       <form className="add-restaurant-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleSubmit(event)}>
         <input
           type="text"
@@ -61,7 +61,7 @@ const AddRestaurant = (): React.ReactElement => {
         {inputError}
         <button type="submit">Add Restaurant</button>
       </form>
-    </div>
+    </>
   );
 };
 
