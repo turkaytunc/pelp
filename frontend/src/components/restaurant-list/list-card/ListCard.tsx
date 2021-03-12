@@ -15,7 +15,7 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
   const { state, dispatch } = useContext(Store);
 
   const handleDelete = (restaurantId: number) => {
-    deleteRestaurantById(`${API_URL}/restaurants`, window.fetch, restaurantId)
+    deleteRestaurantById(API_URL, window.fetch, restaurantId)
       .then((res) => {
         if (res.status === 204) {
           dispatch({ type: ActionType.REMOVE_RESTAURANT, payload: restaurantId });
