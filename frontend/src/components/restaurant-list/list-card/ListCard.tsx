@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './list-card.scss';
+import { useHistory } from 'react-router-dom';
 
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Restaurant } from 'src/interfaces';
+import { Store } from 'src/context/Store';
+import { ActionType, API_URL } from 'src/constants';
+import { deleteRestaurantById } from 'src/util/deleteRestaurantById';
 
 const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElement => {
   const { id, name, location, priceRange } = restaurant;
+  const history = useHistory();
+
+  const { state, dispatch } = useContext(Store);
+
+  const handleDelete = (restaurantId: number) => {
+    deleteRestaurantById(`${API_URL}/restaurants`, window.fetch, restaurantId)
+      .then((res) => {
+        if (res.status === 204) {
+          dispatch({ type: ActionType.REMOVE_RESTAURANT, payload: restaurantId });
+        }
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
   return (
     <div className="listcard-container">
       <img
@@ -22,7 +41,7 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         <button type="button" className="card-button edit-button">
           <FaEdit fill="#e0b90c" /> Edit
         </button>
-        <button type="button" className="card-button delete-button">
+        <button onClick={() => handleDelete(id)} type="button" className="card-button delete-button">
           <FaTrash fill="#e00c0c" /> Delete
         </button>
       </div>
