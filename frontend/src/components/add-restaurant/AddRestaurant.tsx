@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { ActionType } from 'src/constants';
 import { Store } from 'src/context/Store';
-import { Restaurant } from 'src/interfaces';
 import { addRestaurant, convertFirstLetterToUpperCase, isInputEmpty } from 'src/util';
 import './add-restaurant.scss';
 
@@ -33,12 +32,14 @@ const AddRestaurant = (): React.ReactElement => {
         return null;
       })
       .then((res) => {
-        dispatch({
-          type: ActionType.ADD_RESTAURANT,
-          payload: {
-            ...res,
-          },
-        });
+        if (res !== null) {
+          dispatch({
+            type: ActionType.ADD_RESTAURANT,
+            payload: {
+              ...res,
+            },
+          });
+        }
       });
 
     setRestaurantPrice('');
