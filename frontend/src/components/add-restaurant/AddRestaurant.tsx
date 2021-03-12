@@ -31,12 +31,12 @@ const AddRestaurant = (): React.ReactElement => {
         }
         return null;
       })
-      .then((res) => {
-        if (res !== null) {
+      .then((data) => {
+        if (data !== null) {
           dispatch({
             type: ActionType.ADD_RESTAURANT,
             payload: {
-              ...res,
+              ...data,
             },
           });
         }
