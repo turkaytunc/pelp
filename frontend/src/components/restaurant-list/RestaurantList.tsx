@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './restaurant-list.scss';
 
 import { getRestaurants } from 'src/util';
@@ -11,7 +11,7 @@ const RestaurantList = (): React.ReactElement => {
   const { state, dispatch } = useContext(Store);
 
   useEffect(() => {
-    getRestaurants(`${API_URL}/restaurants`, window.fetch)
+    getRestaurants(API_URL, window.fetch)
       .then((data) => data.json())
       .then((data) => dispatch({ type: ActionType.FETCH_RESTAURANTS, payload: data }));
   }, []);

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { ActionType } from 'src/constants';
+import { ActionType, API_URL } from 'src/constants';
 import { Store } from 'src/context/Store';
-import { Restaurant } from 'src/interfaces';
 import { addRestaurant, convertFirstLetterToUpperCase, isInputEmpty } from 'src/util';
 import './add-restaurant.scss';
 
@@ -24,7 +23,8 @@ const AddRestaurant = (): React.ReactElement => {
       convertFirstLetterToUpperCase(restaurantName),
       convertFirstLetterToUpperCase(restaurantLocation),
       parseInt(restaurantPrice, 10),
-      window.fetch
+      window.fetch,
+      API_URL
     )
       .then((res) => {
         if (res.status === 201) {
@@ -32,13 +32,15 @@ const AddRestaurant = (): React.ReactElement => {
         }
         return null;
       })
-      .then((res) => {
-        dispatch({
-          type: ActionType.ADD_RESTAURANT,
-          payload: {
-            ...res,
-          },
-        });
+      .then((data) => {
+        if (data !== null) {
+          dispatch({
+            type: ActionType.ADD_RESTAURANT,
+            payload: {
+              ...data,
+            },
+          });
+        }
       });
 
     setRestaurantPrice('');

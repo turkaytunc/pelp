@@ -1,5 +1,3 @@
-import { Restaurant } from 'src/interfaces';
-
 const addRestaurant = <T>(
   name: string,
   location: string,
