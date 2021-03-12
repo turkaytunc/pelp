@@ -1,5 +1,6 @@
 import pool from '../db/index.js';
 
+// GET /api/v1/restaurants/
 export const getAllRestaurants = async (_, res, next) => {
   try {
     const restaurants = await pool.query('SELECT * FROM restaurants');
@@ -16,6 +17,7 @@ export const getAllRestaurants = async (_, res, next) => {
   }
 };
 
+// GET /api/v1/restaurants/:id
 export const getRestaurantById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -34,6 +36,7 @@ export const getRestaurantById = async (req, res, next) => {
   }
 };
 
+// POST /api/v1/restaurants/
 export const createRestaurant = async (req, res, next) => {
   try {
     const { name, location, price_range } = req.body;
@@ -51,6 +54,7 @@ export const createRestaurant = async (req, res, next) => {
   }
 };
 
+// PUT /api/v1/restaurants/:id
 export const updateRestaurantById = async (req, res, next) => {
   try {
     const { name, location, price_range } = req.body;
@@ -67,6 +71,7 @@ export const updateRestaurantById = async (req, res, next) => {
   }
 };
 
+// DELETE /api/v1/restaurants/:id
 export const deleteRestaurantById = async (req, res, next) => {
   try {
     const { id } = req.params;
