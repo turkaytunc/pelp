@@ -1,3 +1,3 @@
-export { default as Home } from './home/Home';
-export { default as RestaurantDetails } from './RestaurantDetails';
-export { default as UpdateRestaurant } from './UpdateRestaurant';
+export { default as HomeScreen } from './home/HomeScreen';
+export { default as DetailsScreen } from './DetailsScreen';
+export { default as UpdateScreen } from './UpdateScreen';

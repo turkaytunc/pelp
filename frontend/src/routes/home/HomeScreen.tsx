@@ -1,8 +1,8 @@
 import React from 'react';
-import './home.scss';
+import './home-screen.scss';
 import { Header, AddRestaurant, RestaurantList } from '../../components';
 
-const Home = (): React.ReactElement => (
+const HomeScreen = (): React.ReactElement => (
   <div className="home-screen">
     <Header />
     <AddRestaurant />
@@ -10,4 +10,4 @@ const Home = (): React.ReactElement => (
   </div>
 );
 
-export default Home;
+export default HomeScreen;
