@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API_URL } from 'src/constants';
+import { isInputEmpty, updateRestaurantById } from 'src/util';
 import './update-restaurant.scss';
 
 const UpdateRestaurant = (): React.ReactElement => {
@@ -9,8 +11,15 @@ const UpdateRestaurant = (): React.ReactElement => {
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState(1);
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (isInputEmpty(name, location)) return;
+    updateRestaurantById(id, API_URL, name, location, price);
+  };
+
   return (
-    <form className="update-restaurant-container">
+    <form className="update-restaurant-container" onSubmit={(event) => handleSubmit(event)}>
       <input onChange={(event) => setName(event.target.value)} type="text" placeholder="Restaurant Name" value={name} />
       <input
         onChange={(event) => setLocation(event.target.value)}
