@@ -50,8 +50,13 @@ const AddRestaurant = (): React.ReactElement => {
 
   return (
     <>
-      <form className="add-restaurant-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleSubmit(event)}>
+      <form
+        data-testid="res-add-form"
+        className="add-restaurant-form"
+        onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleSubmit(event)}
+      >
         <input
+          data-testid="res-name-input"
           type="text"
           name="restaurant-name"
           id="restaurant-name"
@@ -61,6 +66,7 @@ const AddRestaurant = (): React.ReactElement => {
           placeholder="Name"
         />
         <input
+          data-testid="res-location-input"
           type="text"
           name="restaurant-location"
           id="restaurant-location"
@@ -70,6 +76,7 @@ const AddRestaurant = (): React.ReactElement => {
           placeholder="Location"
         />
         <input
+          data-testid="res-price-input"
           type="text"
           name="restaurant-price"
           id="restaurant-price"
