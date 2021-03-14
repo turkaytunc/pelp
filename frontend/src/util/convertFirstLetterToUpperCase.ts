@@ -1,6 +1,9 @@
 export const convertFirstLetterToUpperCase = (word: string): string => {
-  if (word.length < 2) return word.toUpperCase();
-  const firstLetter = word[0];
-  const newWord = `${firstLetter.toUpperCase()}${word.trim().slice(1)}`;
+  const trimmedWord = word.trim();
+  const firstLetter = trimmedWord[0];
+
+  if (trimmedWord.length < 2) return trimmedWord.toUpperCase();
+
+  const newWord = `${firstLetter.toUpperCase()}${trimmedWord.slice(1)}`;
   return newWord;
 };
