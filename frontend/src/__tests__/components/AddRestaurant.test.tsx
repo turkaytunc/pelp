@@ -1,6 +1,9 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { AddRestaurant } from 'src/components';
+
+beforeAll(() => jest.spyOn(window, 'fetch'));
+afterEach(jest.clearAllMocks);
 
 describe('<AddRestaurants/>', () => {
   it('should render without crash', () => {
@@ -50,7 +53,7 @@ describe('<AddRestaurants/>', () => {
     });
 
     it('should have clear error on focus event', () => {
-      const { debug, getByTestId } = render(<AddRestaurant />);
+      const { getByTestId } = render(<AddRestaurant />);
       const priceInput = getByTestId('res-price-input');
 
       fireEvent.focus(priceInput);
@@ -60,11 +63,60 @@ describe('<AddRestaurants/>', () => {
   });
 
   describe('add restaurant form', () => {
-    it('should handle empty input box submit', () => {
-      const { getByTestId } = render(<AddRestaurant />);
-      const formElement = getByTestId('res-add-form');
+    describe('failed submit', () => {
+      it('should be in document', () => {
+        const { getByTestId } = render(<AddRestaurant />);
+        const formElement = getByTestId('res-add-form');
 
-      expect(formElement).toBeInTheDocument();
+        expect(formElement).toBeInTheDocument();
+      });
+
+      it('should handle empty input box submit', async () => {
+        render(<AddRestaurant />);
+        const submitButton = await screen.findByText('Add Restaurant');
+
+        fireEvent.click(submitButton);
+
+        expect(screen.getByText("Please don't left input fields blank!")).toBeInTheDocument();
+      });
+    });
+
+    describe('succesful submit', () => {
+      it('should get successful response', async () => {
+        (window.fetch as jest.Mock).mockResolvedValue({ status: 201, json: jest.fn });
+        const { getByTestId } = render(<AddRestaurant />);
+
+        const nameInput = getByTestId('res-name-input');
+        const locationInput = getByTestId('res-location-input');
+        const priceInput = getByTestId('res-price-input');
+        const submitButton = await screen.findByText('Add Restaurant');
+
+        fireEvent.change(nameInput, { target: { value: 'Metin Doner' } });
+        fireEvent.change(locationInput, { target: { value: ' edirne' } });
+        fireEvent.change(priceInput, { target: { value: '4' } });
+        fireEvent.click(submitButton);
+        await act(() => new Promise((resolve) => setTimeout(resolve, 500)));
+
+        expect(nameInput).toHaveValue('');
+      });
+
+      it('should get unsuccessful response', async () => {
+        (window.fetch as jest.Mock).mockResolvedValue({ status: 400, json: jest.fn });
+        const { getByTestId } = render(<AddRestaurant />);
+
+        const nameInput = getByTestId('res-name-input');
+        const locationInput = getByTestId('res-location-input');
+        const priceInput = getByTestId('res-price-input');
+        const submitButton = await screen.findByText('Add Restaurant');
+
+        fireEvent.change(nameInput, { target: { value: 'Metin Doner' } });
+        fireEvent.change(locationInput, { target: { value: ' edirne' } });
+        fireEvent.change(priceInput, { target: { value: '4' } });
+        fireEvent.click(submitButton);
+        await act(() => new Promise((resolve) => setTimeout(resolve, 500)));
+
+        expect(nameInput).toHaveValue('');
+      });
     });
   });
 });

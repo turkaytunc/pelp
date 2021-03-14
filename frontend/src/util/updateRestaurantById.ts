@@ -1,6 +1,8 @@
+import { API_URL } from 'src/constants';
+
 export const updateRestaurantById = (
   id: string,
-  url: string,
+  url = API_URL,
   name: string,
   location: string,
   price: number
