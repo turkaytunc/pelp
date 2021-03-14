@@ -25,6 +25,10 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         throw error;
       });
   };
+  const handleUpdate = (restaurantId: number) => {
+    history.push(`/restaurant/${restaurantId}/update`);
+  };
+
   return (
     <div className="listcard-container">
       <img
@@ -38,7 +42,7 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         <div className="details-item">Ratings</div>
       </div>
       <div className="listcard-button-container">
-        <button type="button" className="card-button edit-button">
+        <button onClick={() => handleUpdate(id)} type="button" className="card-button edit-button">
           <FaEdit fill="#e0b90c" /> Edit
         </button>
         <button onClick={() => handleDelete(id)} type="button" className="card-button delete-button">
