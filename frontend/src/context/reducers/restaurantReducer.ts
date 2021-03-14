@@ -13,7 +13,7 @@ export const restaurantReducer = (state: Restaurant[], action: RestaurantAction)
     }
     case ActionType.FETCH_RESTAURANTS: {
       const restaurants = action.payload;
-      return [...state, ...restaurants];
+      return restaurants;
     }
     default:
       return state;

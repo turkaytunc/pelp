@@ -1,0 +1,15 @@
+@use '/src/scss';
+
+.update-screen {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0.2rem;
+  width: 100%;
+  align-items: stretch;
+
+  header {
+    color: scss.$header-color;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}
