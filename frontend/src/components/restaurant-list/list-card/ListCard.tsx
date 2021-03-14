@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import './list-card.scss';
 import { useHistory } from 'react-router-dom';
 
-import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Restaurant } from 'src/interfaces';
-import { Store } from 'src/context/Store';
 import { ActionType, API_URL } from 'src/constants';
-import { deleteRestaurantById } from 'src/util/deleteRestaurantById';
+
+import { FaEdit, FaTrash } from 'react-icons/fa';
+import { Store } from 'src/context/Store';
+import { deleteRestaurantById } from 'src/util';
 
 const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElement => {
   const { id, name, location, priceRange } = restaurant;
