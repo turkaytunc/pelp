@@ -1,13 +1,12 @@
 import './update-screen.scss';
-import { useParams } from 'react-router-dom';
 import { UpdateRestaurant } from 'src/components';
 
 const UpdateScreen = (): React.ReactElement => {
   return (
-    <>
-      Update Restaurant
+    <div className="update-screen">
+      <header>Update Restaurant</header>
       <UpdateRestaurant />
-    </>
+    </div>
   );
 };
 
