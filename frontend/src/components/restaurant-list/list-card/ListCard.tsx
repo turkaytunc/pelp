@@ -28,9 +28,21 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
   const handleUpdate = (restaurantId: number) => {
     history.push(`/restaurant/${restaurantId}/update`);
   };
+  const handleDetails = (restaurantId: number) => {
+    history.push(`/restaurant/${restaurantId}`);
+  };
 
   return (
-    <div className="listcard-container">
+    <div
+      onClick={() => handleDetails(id)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter') return handleDetails(id);
+        return null;
+      }}
+      className="listcard-container"
+    >
       <img
         src="https://camo.githubusercontent.com/d9b5643af3d25bd3d6842a691030fc4898d6a80a83ae6c6ef6d5e4f6de6ea8fb/68747470733a2f2f69636f6e67722e616d2f64657669636f6e2f6a6176617363726970742d6f726967696e616c2e7376673f73697a653d363026636f6c6f723d63757272656e74436f6c6f72"
         alt="restaurant placeholder"
