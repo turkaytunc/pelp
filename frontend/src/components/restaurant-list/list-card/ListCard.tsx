@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './list-card.scss';
 import { useHistory } from 'react-router-dom';
 
@@ -14,17 +14,17 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
   const history = useHistory();
 
   const { state, dispatch } = useContext(Store);
+  const [deleteError, setDeleteError] = useState('');
 
-  const handleDelete = (restaurantId: number) => {
-    deleteRestaurantById(API_URL, window.fetch, restaurantId)
-      .then((res) => {
-        if (res.status === 204) {
-          dispatch({ type: ActionType.REMOVE_RESTAURANT, payload: restaurantId });
-        }
-      })
-      .catch((error) => {
-        throw error;
-      });
+  const handleDelete = async (restaurantId: number) => {
+    try {
+      const response = await deleteRestaurantById(API_URL, window.fetch, restaurantId);
+      if (response.status === 204) {
+        dispatch({ type: ActionType.REMOVE_RESTAURANT, payload: restaurantId });
+      }
+    } catch (error) {
+      setDeleteError(error.message);
+    }
   };
   const handleUpdate = (restaurantId: number) => {
     history.push(`/restaurant/${restaurantId}/update`);
@@ -36,6 +36,7 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
   return (
     <div className="listcard-container">
       <div
+        data-testid="listcard-details"
         className="listcard-image-container"
         role="button"
         onClick={() => handleDetails(id)}
@@ -58,13 +59,24 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         <div className="details-item">Ratings</div>
       </div>
       <div className="listcard-button-container">
-        <button onClick={() => handleUpdate(id)} type="button" className="card-button edit-button">
+        <button
+          data-testid="listcard-edit"
+          onClick={() => handleUpdate(id)}
+          type="button"
+          className="card-button edit-button"
+        >
           <FaEdit fill="#e0b90c" /> Edit
         </button>
-        <button onClick={() => handleDelete(id)} type="button" className="card-button delete-button">
+        <button
+          data-testid="listcard-delete"
+          onClick={() => handleDelete(id)}
+          type="button"
+          className="card-button delete-button"
+        >
           <FaTrash fill="#e00c0c" /> Delete
         </button>
       </div>
+      <div>{deleteError}</div>
     </div>
   );
 };

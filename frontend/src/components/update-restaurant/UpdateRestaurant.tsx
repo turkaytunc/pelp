@@ -32,13 +32,27 @@ const UpdateRestaurant = (): React.ReactElement => {
 
     if (isInputEmpty(name, location)) return;
     updateRestaurantById(id, API_URL, name, location, price);
+    setLocation('');
+    setName('');
+    setPrice(3);
     history.push('/');
   };
 
   return (
-    <form className="update-restaurant-container" onSubmit={(event) => handleSubmit(event)}>
-      <input onChange={(event) => setName(event.target.value)} type="text" placeholder="Restaurant Name" value={name} />
+    <form
+      data-testid="update-res-form"
+      className="update-restaurant-container"
+      onSubmit={(event) => handleSubmit(event)}
+    >
       <input
+        data-testid="update-res-name"
+        onChange={(event) => setName(event.target.value)}
+        type="text"
+        placeholder="Restaurant Name"
+        value={name}
+      />
+      <input
+        data-testid="update-res-location"
         onChange={(event) => setLocation(event.target.value)}
         type="text"
         placeholder="Restaurant Location"
@@ -47,6 +61,7 @@ const UpdateRestaurant = (): React.ReactElement => {
       <label htmlFor="restaurant-price">
         Restaurant Price
         <input
+          data-testid="update-res-price"
           onChange={(event) => setPrice(parseInt(event.target.value, 10))}
           id="restaurant-price"
           type="range"
