@@ -32,6 +32,9 @@ const UpdateRestaurant = (): React.ReactElement => {
 
     if (isInputEmpty(name, location)) return;
     updateRestaurantById(id, API_URL, name, location, price);
+    setLocation('');
+    setName('');
+    setPrice(3);
     history.push('/');
   };
 
