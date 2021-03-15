@@ -2,7 +2,6 @@ import { render, fireEvent, screen, act } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { UpdateRestaurant } from 'src/components';
-import { StoreProvider } from 'src/context/Store';
 
 describe('<UpdateRestaurant/>', () => {
   it('should render without crash', () => {
