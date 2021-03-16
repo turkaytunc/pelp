@@ -2,15 +2,18 @@ import { render, fireEvent, screen, act } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { UpdateRestaurant } from 'src/components';
+import { StoreProvider } from 'src/context/Store';
 
 describe('<UpdateRestaurant/>', () => {
   it('should render without crash', () => {
     const history = createBrowserHistory();
 
     const { getByTestId } = render(
-      <Router history={history}>
-        <UpdateRestaurant />
-      </Router>
+      <StoreProvider>
+        <Router history={history}>
+          <UpdateRestaurant />
+        </Router>
+      </StoreProvider>
     );
 
     expect(getByTestId('update-res-form')).not.toBeFalsy();
@@ -22,9 +25,11 @@ describe('<UpdateRestaurant/>', () => {
       history.push('/restaurant/3/update');
 
       const { getByTestId } = render(
-        <Router history={history}>
-          <UpdateRestaurant />
-        </Router>
+        <StoreProvider>
+          <Router history={history}>
+            <UpdateRestaurant />
+          </Router>
+        </StoreProvider>
       );
       const nameInput = getByTestId('update-res-name');
 
@@ -38,9 +43,11 @@ describe('<UpdateRestaurant/>', () => {
       history.push('/restaurant/5/update');
 
       const { getByTestId } = render(
-        <Router history={history}>
-          <UpdateRestaurant />
-        </Router>
+        <StoreProvider>
+          <Router history={history}>
+            <UpdateRestaurant />
+          </Router>
+        </StoreProvider>
       );
       const locationInput = getByTestId('update-res-location');
 
@@ -54,9 +61,11 @@ describe('<UpdateRestaurant/>', () => {
       history.push('/restaurant/8/update');
 
       const { getByTestId } = render(
-        <Router history={history}>
-          <UpdateRestaurant />
-        </Router>
+        <StoreProvider>
+          <Router history={history}>
+            <UpdateRestaurant />
+          </Router>
+        </StoreProvider>
       );
       const priceInput = getByTestId('update-res-price');
 
@@ -71,9 +80,11 @@ describe('<UpdateRestaurant/>', () => {
       const history = createBrowserHistory();
 
       render(
-        <Router history={history}>
-          <UpdateRestaurant />
-        </Router>
+        <StoreProvider>
+          <Router history={history}>
+            <UpdateRestaurant />
+          </Router>
+        </StoreProvider>
       );
 
       const submitButton = await screen.findByText('Update');
@@ -85,9 +96,11 @@ describe('<UpdateRestaurant/>', () => {
       const history = createBrowserHistory();
 
       const { getByTestId } = render(
-        <Router history={history}>
-          <UpdateRestaurant />
-        </Router>
+        <StoreProvider>
+          <Router history={history}>
+            <UpdateRestaurant />
+          </Router>
+        </StoreProvider>
       );
 
       const submitButton = await screen.findByText('Update');
