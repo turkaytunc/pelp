@@ -1,25 +1,29 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { API_URL } from 'src/constants';
-import { Store } from 'src/context/Store';
 import { isInputEmpty, updateRestaurantById } from 'src/util';
+import { getRestaurantById } from 'src/util/getRestaurantById';
 import './update-restaurant.scss';
 
 const UpdateRestaurant = (): React.ReactElement => {
   const { id }: { id: string } = useParams();
   const history = useHistory();
-  const { state, dispatch } = useContext(Store);
 
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState(1);
+  const [responseError, setResponseError] = useState('');
 
-  const setInitialInputs = () => {
-    const restaurant = state.restaurants.filter((item) => item.id === parseInt(id, 10));
-    if (restaurant[0]) {
-      setName(restaurant[0].name);
-      setLocation(restaurant[0].location);
-      setPrice(restaurant[0].priceRange);
+  const setInitialInputs = async () => {
+    try {
+      const response = await getRestaurantById(API_URL, window.fetch, id);
+      const data = await response.json();
+
+      setName(data[0].name);
+      setLocation(data[0].location);
+      setPrice(data[0].price_range);
+    } catch (error) {
+      setResponseError(error.message);
     }
   };
 
@@ -73,6 +77,7 @@ const UpdateRestaurant = (): React.ReactElement => {
         {price}
       </label>
       <button type="submit">Update</button>
+      <div>{responseError}</div>
     </form>
   );
 };
