@@ -13,4 +13,8 @@ export type RestaurantAction =
   | {
       type: ActionType.FETCH_RESTAURANTS;
       payload: Restaurant[];
+    }
+  | {
+      type: ActionType.NULL_RESTAURANT;
+      payload: '';
     };

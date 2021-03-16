@@ -49,8 +49,21 @@ describe('<ListCard />', () => {
       fireEvent.click(deleteButton);
     });
 
+    it('should fire click event and get 400 error', async () => {
+      (window.fetch as jest.Mock).mockResolvedValue({ status: 400 });
+      const history = createBrowserHistory();
+      const { getByTestId } = render(
+        <Router history={history}>
+          <ListCard restaurant={rest} />
+        </Router>
+      );
+      const deleteButton = getByTestId('listcard-delete');
+
+      fireEvent.click(deleteButton);
+    });
+
     it('should fire click event', async () => {
-      const asyncFunc = (window.fetch as jest.Mock).mockRejectedValue(new Error('fetch error'));
+      (window.fetch as jest.Mock).mockRejectedValue(new Error('fetch error'));
 
       const history = createBrowserHistory();
       const { getByTestId } = render(
@@ -64,6 +77,58 @@ describe('<ListCard />', () => {
       await act(() => new Promise((resolve) => setTimeout(resolve, 1000)));
 
       expect(await screen.findByText('fetch error')).toBeInTheDocument();
+    });
+  });
+
+  describe('Details', () => {
+    it('should fire click event', () => {
+      const history = createBrowserHistory();
+
+      const { getByTestId } = render(
+        <Router history={history}>
+          <ListCard restaurant={rest} />
+        </Router>
+      );
+
+      const detailsDiv = getByTestId('listcard-details');
+
+      fireEvent.click(detailsDiv);
+
+      expect(window.location.pathname).toBe('/restaurant/9');
+    });
+
+    describe('onKeyDown event', () => {
+      it('should fire onKeyDown event if key is Enter', () => {
+        const history = createBrowserHistory();
+
+        const { getByTestId } = render(
+          <Router history={history}>
+            <ListCard restaurant={rest} />
+          </Router>
+        );
+
+        const detailsDiv = getByTestId('listcard-details');
+
+        fireEvent.keyDown(detailsDiv, { key: 'Enter', code: 'Enter' });
+
+        expect(window.location.pathname).toBe('/restaurant/9');
+      });
+
+      it('should fire onKeyDown event if key is Enter', () => {
+        const history = createBrowserHistory();
+
+        const { getByTestId } = render(
+          <Router history={history}>
+            <ListCard restaurant={rest} />
+          </Router>
+        );
+
+        const detailsDiv = getByTestId('listcard-details');
+
+        fireEvent.keyDown(detailsDiv, { key: '8', code: 'key8' });
+
+        expect(window.location.pathname).toBe('/restaurant/9');
+      });
     });
   });
 });
