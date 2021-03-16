@@ -54,11 +54,7 @@
         "lines": 85,
         "statements": 85
       }
-    },
-    "coverageReporters": [
-      "html",
-      "text"
-    ]
+    }
   },
   "eslintConfig": {
     "extends": [

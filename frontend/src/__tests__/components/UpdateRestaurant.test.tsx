@@ -4,8 +4,14 @@ import { createBrowserHistory } from 'history';
 import { UpdateRestaurant } from 'src/components';
 import { StoreProvider } from 'src/context/Store';
 
+jest.spyOn(window, 'fetch');
+
 describe('<UpdateRestaurant/>', () => {
-  it('should render without crash', () => {
+  it('should render without crash', async () => {
+    (window.fetch as jest.Mock).mockResolvedValue({
+      status: 200,
+      json: jest.fn(() => [{ id: 2, name: '', location: '', price_range: 3 }]),
+    });
     const history = createBrowserHistory();
 
     const { getByTestId } = render(
@@ -15,12 +21,12 @@ describe('<UpdateRestaurant/>', () => {
         </Router>
       </StoreProvider>
     );
-
+    await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
     expect(getByTestId('update-res-form')).not.toBeFalsy();
   });
 
   describe('Input Fields', () => {
-    it('should fire name input change event', () => {
+    it('should fire name input change event', async () => {
       const history = createBrowserHistory();
       history.push('/restaurant/3/update');
 
@@ -34,11 +40,12 @@ describe('<UpdateRestaurant/>', () => {
       const nameInput = getByTestId('update-res-name');
 
       fireEvent.change(nameInput, { target: { value: 'Paşa Dürüm' } });
+      await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
 
       expect(nameInput).toHaveValue('Paşa Dürüm');
     });
 
-    it('should fire location input change event', () => {
+    it('should fire location input change event', async () => {
       const history = createBrowserHistory();
       history.push('/restaurant/5/update');
 
@@ -52,11 +59,11 @@ describe('<UpdateRestaurant/>', () => {
       const locationInput = getByTestId('update-res-location');
 
       fireEvent.change(locationInput, { target: { value: ' edirne' } });
-
+      await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
       expect(locationInput).toHaveValue(' edirne');
     });
 
-    it('should fire price input change event', (): void => {
+    it('should fire price input change event', async () => {
       const history = createBrowserHistory();
       history.push('/restaurant/8/update');
 
@@ -70,7 +77,7 @@ describe('<UpdateRestaurant/>', () => {
       const priceInput = getByTestId('update-res-price');
 
       fireEvent.change(priceInput, { target: { value: 5 } });
-
+      await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
       expect(priceInput).toHaveValue('5');
     });
   });
