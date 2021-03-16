@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './restaurant-list.scss';
 
 import { getRestaurants } from 'src/util';
@@ -9,15 +9,23 @@ import ListCard from './list-card/ListCard';
 
 const RestaurantList = (): React.ReactElement => {
   const { state, dispatch } = useContext(Store);
+  const [responseError, setResponseError] = useState('');
 
   useEffect(() => {
-    getRestaurants(API_URL, window.fetch)
-      .then((data) => data.json())
-      .then((data) => dispatch({ type: ActionType.FETCH_RESTAURANTS, payload: data }));
+    const fetchRestaurants = async () => {
+      try {
+        const response = await getRestaurants(API_URL, window.fetch);
+        const data = await response.json();
+        dispatch({ type: ActionType.FETCH_RESTAURANTS, payload: data });
+      } catch (error) {
+        setResponseError(error.message);
+      }
+    };
+    fetchRestaurants();
   }, []);
 
   return (
-    <div className="restaurant-list-container">
+    <div className="restaurant-list-container" data-testid="restaurant-list">
       {state.restaurants.length > 0 && (
         <div className="restaurant-list">
           {state.restaurants?.map((restaurant) => (
@@ -25,6 +33,7 @@ const RestaurantList = (): React.ReactElement => {
           ))}
         </div>
       )}
+      <div>{responseError}</div>
       <li className="restaurant-list-listitem">list item 1</li>
       <li className="restaurant-list-listitem">list item 2</li>
       <li className="restaurant-list-listitem">list item 3</li>
