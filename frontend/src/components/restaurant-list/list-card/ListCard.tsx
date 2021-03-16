@@ -21,7 +21,7 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
       const response = await deleteRestaurantById(API_URL, window.fetch, restaurantId);
       if (response.status === 204) {
         dispatch({ type: ActionType.REMOVE_RESTAURANT, payload: restaurantId });
-      }
+      } else return;
     } catch (error) {
       setDeleteError(error.message);
     }
