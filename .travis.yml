@@ -7,6 +7,8 @@ cache:
 branches:
   only:
     - main
+before_install:
+  - cd frontend
 script:
   - npm install -g codecov
   - npm test -- --clearCache
