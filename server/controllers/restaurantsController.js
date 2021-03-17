@@ -29,7 +29,7 @@ export const getRestaurantById = async (req, res, next) => {
     }
 
     const restaurant = await pool.query('SELECT * FROM restaurants WHERE id = $1', [id]);
-    return res.json(restaurant.rows[0]);
+    return res.json(restaurant.rows);
   } catch (error) {
     error.statusCode = 400;
     return next(error);
