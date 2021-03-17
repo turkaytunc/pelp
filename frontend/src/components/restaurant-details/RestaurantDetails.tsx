@@ -5,7 +5,7 @@ import './restaurant-details.scss';
 const RestaurantDetails = (): React.ReactElement => {
   return (
     <div className="restaurant-details-container">
-      <StarRate rating={5} />
+      <StarRate rating={1} />
     </div>
   );
 };
