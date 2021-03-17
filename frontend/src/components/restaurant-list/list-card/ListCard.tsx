@@ -10,7 +10,7 @@ import { Store } from 'src/context/Store';
 import { deleteRestaurantById } from 'src/util';
 
 const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElement => {
-  const { id, name, location, priceRange } = restaurant;
+  const { id, name, location, priceRange, reviews } = restaurant;
   const history = useHistory();
 
   const { state, dispatch } = useContext(Store);
@@ -18,6 +18,7 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
 
   const handleDelete = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, restaurantId: number) => {
     event.stopPropagation();
+
     try {
       const response = await deleteRestaurantById(API_URL, window.fetch, restaurantId);
       if (response.status === 204) {
@@ -27,10 +28,12 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
       setDeleteError(error.message);
     }
   };
+
   const handleUpdate = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, restaurantId: number) => {
     event.stopPropagation();
     history.push(`/restaurant/${restaurantId}/update`);
   };
+
   const handleDetails = (restaurantId: number) => {
     history.push(`/restaurant/${restaurantId}`);
   };
@@ -58,7 +61,7 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         <div className="details-item"> {name}</div>
         <div className="details-item"> {location}</div>
         <div className="details-item"> {'$'.repeat(priceRange)}</div>
-        <div className="details-item">Ratings</div>
+        <div className="details-item">reviews</div>
       </div>
       <div className="listcard-button-container">
         <button

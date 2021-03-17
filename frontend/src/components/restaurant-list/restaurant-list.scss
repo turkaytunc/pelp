@@ -1,4 +1,5 @@
 .restaurant-list-container {
+  display: block;
   width: 100%;
   margin-top: 1rem;
 }
@@ -7,7 +8,6 @@
   grid-template-columns: repeat(auto-fill, minmax(calc(100vw - 3rem), 1fr));
   gap: 0.5rem;
   width: 100%;
-  margin: 0 auto;
 }
 .restaurant-list-listitem::marker {
   content: '\2764';
