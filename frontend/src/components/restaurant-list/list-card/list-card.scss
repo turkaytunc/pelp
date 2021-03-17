@@ -4,7 +4,7 @@
   display: flex;
   border: 1px solid scss.$card-border-color;
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.6rem;
   height: 110px;
   align-items: stretch;
   width: 100%;
@@ -15,15 +15,15 @@
   display: flex;
   img {
     max-height: 100px;
-    max-width: 100px;
+    max-width: 90px;
   }
 }
 
 .listcard-details {
-  margin: 0 1rem;
+  padding: 0 1rem;
   text-align: left;
   flex: 3;
-  width: 100px;
+  width: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
