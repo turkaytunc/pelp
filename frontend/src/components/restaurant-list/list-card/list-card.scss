@@ -5,18 +5,12 @@
   border: 1px solid scss.$card-border-color;
   border-radius: 5px;
   padding: 0.6rem;
-  height: 110px;
+  height: 150px;
   align-items: stretch;
   width: 100%;
-}
-
-.listcard-image-container {
-  flex: 1;
-  display: flex;
-  img {
-    max-height: 100px;
-    max-width: 90px;
-  }
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 300px;
 }
 
 .listcard-details {
@@ -27,6 +21,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: scss.$color-light;
+  font-size: 1.2rem;
 
   div {
     overflow: hidden;
@@ -46,15 +42,15 @@
 }
 
 .card-button {
-  height: 1.8rem;
+  height: 1.7rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0.2rem;
   align-items: center;
-  background-color: #222;
-  border-radius: 5px;
+  background-color: rgba(221, 221, 221, 0.7);
+  border-radius: 25px;
   border-bottom: 2px solid #444;
-  color: scss.$color-light;
+  color: scss.$color-dark;
   width: 100%;
 }
 
