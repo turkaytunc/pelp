@@ -16,13 +16,17 @@
 .listcard-details {
   padding: 0 1rem;
   text-align: left;
+  line-height: 1.6rem;
   flex: 3;
   width: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: scss.$color-light;
+  color: rgb(255, 0, 119);
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
   font-size: 1.2rem;
+  font-weight: bold;
+  z-index: 2;
 
   div {
     overflow: hidden;
@@ -44,13 +48,14 @@
 .card-button {
   height: 1.7rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   padding: 0.2rem;
   align-items: center;
-  background-color: rgba(221, 221, 221, 0.7);
+  background-color: rgba(24, 24, 24, 0.7);
   border-radius: 25px;
-  border-bottom: 2px solid #444;
-  color: scss.$color-dark;
+  border-top: 1px solid rgb(70, 70, 70);
+  border-bottom: 2px solid rgb(70, 70, 70);
+  color: scss.$color-light;
   width: 100%;
 }
 
