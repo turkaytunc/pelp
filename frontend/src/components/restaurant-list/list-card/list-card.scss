@@ -5,28 +5,28 @@
   border: 1px solid scss.$card-border-color;
   border-radius: 5px;
   padding: 0.6rem;
-  height: 110px;
+  height: 150px;
   align-items: stretch;
   width: 100%;
-}
-
-.listcard-image-container {
-  flex: 1;
-  display: flex;
-  img {
-    max-height: 100px;
-    max-width: 90px;
-  }
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 300px;
 }
 
 .listcard-details {
   padding: 0 1rem;
   text-align: left;
+  line-height: 1.6rem;
   flex: 3;
   width: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: rgb(255, 0, 119);
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+  font-size: 1.2rem;
+  font-weight: bold;
+  z-index: 2;
 
   div {
     overflow: hidden;
@@ -46,14 +46,15 @@
 }
 
 .card-button {
-  height: 1.8rem;
+  height: 1.7rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0.2rem;
   align-items: center;
-  background-color: #222;
-  border-radius: 5px;
-  border-bottom: 2px solid #444;
+  background-color: rgba(24, 24, 24, 0.7);
+  border-radius: 25px;
+  border-top: 1px solid rgb(70, 70, 70);
+  border-bottom: 2px solid rgb(70, 70, 70);
   color: scss.$color-light;
   width: 100%;
 }
