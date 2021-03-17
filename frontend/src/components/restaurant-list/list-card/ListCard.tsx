@@ -16,7 +16,8 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
   const { state, dispatch } = useContext(Store);
   const [deleteError, setDeleteError] = useState('');
 
-  const handleDelete = async (restaurantId: number) => {
+  const handleDelete = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, restaurantId: number) => {
+    event.stopPropagation();
     try {
       const response = await deleteRestaurantById(API_URL, window.fetch, restaurantId);
       if (response.status === 204) {
@@ -26,7 +27,8 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
       setDeleteError(error.message);
     }
   };
-  const handleUpdate = (restaurantId: number) => {
+  const handleUpdate = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, restaurantId: number) => {
+    event.stopPropagation();
     history.push(`/restaurant/${restaurantId}/update`);
   };
   const handleDetails = (restaurantId: number) => {
@@ -61,7 +63,7 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
       <div className="listcard-button-container">
         <button
           data-testid="listcard-edit"
-          onClick={() => handleUpdate(id)}
+          onClick={(event) => handleUpdate(event, id)}
           type="button"
           className="card-button edit-button"
         >
@@ -69,14 +71,14 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         </button>
         <button
           data-testid="listcard-delete"
-          onClick={() => handleDelete(id)}
+          onClick={(event) => handleDelete(event, id)}
           type="button"
           className="card-button delete-button"
         >
           <FaTrash fill="#e00c0c" /> Delete
         </button>
+        <div>{deleteError}</div>
       </div>
-      <div>{deleteError}</div>
     </div>
   );
 };
