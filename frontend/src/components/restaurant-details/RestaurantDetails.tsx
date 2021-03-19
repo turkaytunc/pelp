@@ -1,6 +1,6 @@
 import React from 'react';
 import './restaurant-details.scss';
-import { ReviewCard, StarRate } from 'src/components';
+import { AddReview, ReviewCard, StarRate } from 'src/components';
 
 const RestaurantDetails = (): React.ReactElement => {
   return (
@@ -14,6 +14,7 @@ const RestaurantDetails = (): React.ReactElement => {
         <ReviewCard rating={3} />
         <ReviewCard rating={5} />
       </div>
+      <AddReview />
     </div>
   );
 };

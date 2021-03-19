@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './add-reviews.scss';
 
 const AddReview = (): React.ReactElement => {
+  const [username, setUsername] = useState('');
+  const [comment, setComment] = useState('');
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    console.table({ username, comment });
+  };
   return (
-    <form>
-      <label htmlFor="review-name-input">
-        <input type="text" id="review-name-input" placeholder="Name" />
+    <form onSubmit={(event) => handleSubmit(event)} className="add-review-form">
+      <h3>Add Your Review</h3>
+      <label htmlFor="review-username-input">
+        <input
+          className="add-review-username"
+          onChange={(event) => setUsername(event.target.value)}
+          type="text"
+          id="review-username-input"
+          placeholder="Your Name"
+          value={username}
+        />
       </label>
-      <label htmlFor="review-comment-input">
-        <textarea id="review-comment-input" />
-      </label>
-      <label htmlFor="review-rating">
-        <select name="review-rating" id="review-rating">
+      <label className="add-review-label" htmlFor="review-rating">
+        <p>Rating</p>
+        <select className="add-review-rating" name="review-rating" id="review-rating" value="5">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -19,6 +32,19 @@ const AddReview = (): React.ReactElement => {
           <option value="5">5</option>
         </select>
       </label>
+      <label htmlFor="review-comment-input">
+        <textarea
+          onChange={(event) => setComment(event.target.value)}
+          className="add-review-textarea"
+          id="review-comment-input"
+          placeholder="Comment Here"
+          maxLength={20}
+          cols={20}
+          rows={5}
+          value={comment}
+        />
+      </label>
+      <button type="submit">submit</button>
     </form>
   );
 };
