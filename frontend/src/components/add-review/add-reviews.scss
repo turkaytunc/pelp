@@ -1,0 +1,35 @@
+.add-review-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.add-review-label {
+  display: flex;
+  p {
+    flex: 1;
+    text-align: left;
+    vertical-align: baseline;
+    margin-right: 1rem;
+  }
+}
+
+.add-review-username {
+  width: 100%;
+  padding: 0.3rem 0;
+}
+
+.add-review-rating {
+  flex: 2;
+  padding: 0.2rem 0 0.2rem 0.2rem;
+}
+
+.add-review-textarea {
+  width: 100%;
+  resize: none;
+}

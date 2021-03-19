@@ -15,7 +15,7 @@ const StarRate = ({ rating, color }: { rating: number; color?: string }): React.
     }
   }
 
-  return <>{stars}</>;
+  return <div>{stars}</div>;
 };
 
 export default StarRate;
