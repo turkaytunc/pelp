@@ -4,6 +4,7 @@ import './add-reviews.scss';
 const AddReview = (): React.ReactElement => {
   const [username, setUsername] = useState('');
   const [comment, setComment] = useState('');
+  const [userRating, setUserRating] = useState('5');
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -24,7 +25,13 @@ const AddReview = (): React.ReactElement => {
       </label>
       <label className="add-review-label" htmlFor="review-rating">
         <p>Rating</p>
-        <select className="add-review-rating" name="review-rating" id="review-rating" value="5">
+        <select
+          onChange={(event) => setUserRating(event.target.value)}
+          className="add-review-rating"
+          name="review-rating"
+          id="review-rating"
+          value={userRating}
+        >
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
