@@ -75,7 +75,9 @@ export const updateRestaurantById = async (req, res, next) => {
 export const deleteRestaurantById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const restaurant = await pool.query('DELETE FROM restaurants WHERE id = $1', [id]);
+    const reviews = await pool.query('DELETE FROM reviews WHERE reviews.fk_restaurants = $1', [id]);
+
+    const restaurant = await pool.query('DELETE FROM restaurants WHERE restaurants.id = $1', [id]);
 
     return res.status(204).send();
   } catch (error) {

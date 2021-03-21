@@ -30,11 +30,15 @@ const UpdateRestaurant = (): React.ReactElement => {
     setInitialInputs();
   }, []);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (isInputEmpty(name, location)) return;
-    updateRestaurantById(id, name, location, price);
+    try {
+      await updateRestaurantById(id, name, location, price);
+    } catch (error) {
+      setResponseError(error.message);
+    }
     setLocation('');
     setName('');
     setPrice(3);

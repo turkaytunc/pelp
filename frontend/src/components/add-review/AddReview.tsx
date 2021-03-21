@@ -8,6 +8,7 @@ const AddReview = (): React.ReactElement => {
   const [username, setUsername] = useState('');
   const [comment, setComment] = useState('');
   const [userRating, setUserRating] = useState('5');
+  const [fetchError, setFetchError] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -15,8 +16,12 @@ const AddReview = (): React.ReactElement => {
 
     try {
       const response = await addRestaurantReview(id, username, userRating, comment);
+      if (response.status === 400) {
+        setFetchError('fetchError');
+      }
+      window.location.href = `/restaurant/${id}`;
     } catch (error) {
-      console.log(error);
+      setFetchError(error.message);
     }
   };
 
@@ -64,6 +69,7 @@ const AddReview = (): React.ReactElement => {
       <button className="add-review-button" type="submit">
         Add Review
       </button>
+      {fetchError}
     </form>
   );
 };
