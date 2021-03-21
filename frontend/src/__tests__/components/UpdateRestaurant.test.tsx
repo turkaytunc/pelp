@@ -100,6 +100,10 @@ describe('<UpdateRestaurant/>', () => {
     });
 
     it('should handle successful submit', async () => {
+      (window.fetch as jest.Mock).mockResolvedValue({
+        status: 200,
+        json: jest.fn(() => [{ id: 2, name: '', location: '', price_range: 3 }]),
+      });
       const history = createBrowserHistory();
 
       const { getByTestId } = render(
@@ -120,6 +124,7 @@ describe('<UpdateRestaurant/>', () => {
       fireEvent.change(priceInput, { target: { value: '2' } });
 
       fireEvent.click(submitButton);
+      await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
 
       expect(nameInput).toHaveValue('');
       expect(locationInput).toHaveValue('');
