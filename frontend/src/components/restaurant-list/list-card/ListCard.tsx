@@ -3,7 +3,7 @@ import './list-card.scss';
 import { useHistory } from 'react-router-dom';
 
 import { Restaurant } from 'src/interfaces';
-import { ActionType, API_URL } from 'src/constants';
+import { ActionType } from 'src/constants';
 
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Store } from 'src/context/Store';
@@ -21,7 +21,7 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
     event.stopPropagation();
 
     try {
-      const response = await deleteRestaurantById(API_URL, window.fetch, restaurantId);
+      const response = await deleteRestaurantById(restaurantId);
       if (response.status === 204) {
         dispatch({ type: ActionType.REMOVE_RESTAURANT, payload: restaurantId });
       } else return;
