@@ -1,3 +1,5 @@
+@use '/src/scss';
+
 .add-review-form {
   display: flex;
   flex-direction: column;
@@ -7,6 +9,11 @@
   label {
     margin-bottom: 0.5rem;
   }
+}
+
+.add-review-header {
+  color: scss.$header-color;
+  margin-bottom: 1rem;
 }
 
 .add-review-label {
@@ -21,7 +28,7 @@
 
 .add-review-username {
   width: 100%;
-  padding: 0.3rem 0;
+  padding: 0.3rem 1rem;
 }
 
 .add-review-rating {
@@ -32,4 +39,21 @@
 .add-review-textarea {
   width: 100%;
   resize: none;
+  padding-left: 1rem;
+}
+
+.add-review-button {
+  height: 1.7rem;
+  margin-top: 0.4rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: scss.$input-button-color;
+  color: #222;
+  box-shadow: -0.2px -0.2px 1px #ccc inset;
+
+  &:hover {
+    color: aliceblue;
+    background-color: scss.$input-button-color-hover;
+  }
 }

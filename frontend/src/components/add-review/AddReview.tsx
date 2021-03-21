@@ -8,11 +8,11 @@ const AddReview = (): React.ReactElement => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.table({ username, comment });
+    console.table({ username, userRating, comment });
   };
   return (
     <form onSubmit={(event) => handleSubmit(event)} className="add-review-form">
-      <h3>Add Your Review</h3>
+      <h2 className="add-review-header">Add Your Review</h2>
       <label htmlFor="review-username-input">
         <input
           className="add-review-username"
@@ -51,7 +51,9 @@ const AddReview = (): React.ReactElement => {
           value={comment}
         />
       </label>
-      <button type="submit">submit</button>
+      <button className="add-review-button" type="submit">
+        Add Review
+      </button>
     </form>
   );
 };
