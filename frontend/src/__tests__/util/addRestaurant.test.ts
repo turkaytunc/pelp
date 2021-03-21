@@ -10,7 +10,7 @@ describe('addRestaurant', () => {
       json: jest.fn(() => Promise.resolve({ id: 3, name: 'Ali Usta', location: 'Edirne', price_range: 4 })),
     });
 
-    return addRestaurant('Ali Usta', 'Edirne', 4, window.fetch)
+    return addRestaurant('Ali Usta', 'Edirne', 4)
       .then((res) => res.json())
       .then((res) => expect(res).toEqual({ id: 3, name: 'Ali Usta', location: 'Edirne', price_range: 4 }));
   });
