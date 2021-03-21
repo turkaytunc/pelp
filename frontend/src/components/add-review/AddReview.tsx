@@ -16,6 +16,7 @@ const AddReview = (): React.ReactElement => {
 
     try {
       const response = await addRestaurantReview(id, username, userRating, comment);
+      if (response.status === 400) setFetchError('fetchError');
     } catch (error) {
       setFetchError(error.message);
     }
