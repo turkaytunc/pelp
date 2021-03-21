@@ -1,4 +1,9 @@
+@use '/src/scss';
+
 .review-card-container {
-  background-color: red;
+  background-color: scss.$color-dark;
+  color: scss.$color-light;
   display: block;
+  border-radius: 5px;
+  border: 1px solid scss.$card-border-color;
 }

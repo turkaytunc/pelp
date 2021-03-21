@@ -4,6 +4,12 @@
   width: 100%;
 }
 
+.restaurant-details-header {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
 .restaurant-details-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

@@ -5,3 +5,5 @@ export {
   updateRestaurantById,
   deleteRestaurantById,
 } from './restaurantsController.js';
+
+export { getReviewsByRestaurantId, addReview } from './reviewsController.js';
