@@ -11,7 +11,7 @@ import { deleteRestaurantById } from 'src/util';
 import restJPG from 'src/images/rest.jpg';
 
 const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElement => {
-  const { id, name, location, priceRange, reviews } = restaurant;
+  const { id, name, location, priceRange } = restaurant;
   const history = useHistory();
 
   const { state, dispatch } = useContext(Store);
@@ -58,7 +58,6 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         <div className="details-item"> {name}</div>
         <div className="details-item"> {location}</div>
         <div className="details-item"> {'$'.repeat(priceRange)}</div>
-        <div className="details-item">reviews</div>
       </div>
       <div className="listcard-button-container">
         <button

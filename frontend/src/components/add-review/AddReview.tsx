@@ -16,7 +16,10 @@ const AddReview = (): React.ReactElement => {
 
     try {
       const response = await addRestaurantReview(id, username, userRating, comment);
-      if (response.status === 400) setFetchError('fetchError');
+      if (response.status === 400) {
+        setFetchError('fetchError');
+      }
+      window.location.href = `/restaurant/${id}`;
     } catch (error) {
       setFetchError(error.message);
     }

@@ -15,6 +15,7 @@ const RestaurantDetails = (): React.ReactElement => {
       try {
         const response = await getReviewsByRestaurantId(id);
         const data = await response.json();
+        console.log(data);
         if (response.status === 200) {
           setRestaurant(data);
         } else {
@@ -27,7 +28,7 @@ const RestaurantDetails = (): React.ReactElement => {
       }
     };
     fetchRestaurantReview();
-  }, []);
+  }, [useParams]);
 
   return (
     <div className="restaurant-details-container">
@@ -35,7 +36,7 @@ const RestaurantDetails = (): React.ReactElement => {
       <StarRate rating={3.3} />
       <div className="restaurant-details-card-grid">
         {restaurant.map((item) => (
-          <ReviewCard key={item.id} rating={item.rating} name={item.name} comment={item.comment} />
+          <ReviewCard key={item.id} rating={item.rating} name={item.user} comment={item.comment} />
         ))}
       </div>
       {fetchError}
