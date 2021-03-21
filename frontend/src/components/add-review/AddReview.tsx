@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { addRestaurantReview, isInputEmpty } from 'src/util';
 import './add-reviews.scss';
 
 const AddReview = (): React.ReactElement => {
+  const { id }: { id: string } = useParams();
   const [username, setUsername] = useState('');
   const [comment, setComment] = useState('');
   const [userRating, setUserRating] = useState('5');
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.table({ username, userRating, comment });
+    if (isInputEmpty(username, userRating, comment)) return;
+
+    try {
+      const response = await addRestaurantReview(id, username, userRating, comment);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <form onSubmit={(event) => handleSubmit(event)} className="add-review-form">
       <h2 className="add-review-header">Add Your Review</h2>

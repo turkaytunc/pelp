@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { API_URL } from 'src/constants';
 import { isInputEmpty, updateRestaurantById } from 'src/util';
 import { getRestaurantById } from 'src/util/getRestaurantById';
 import './update-restaurant.scss';
@@ -16,7 +15,7 @@ const UpdateRestaurant = (): React.ReactElement => {
 
   const setInitialInputs = async () => {
     try {
-      const response = await getRestaurantById(API_URL, window.fetch, id);
+      const response = await getRestaurantById(id);
       const data = await response.json();
 
       setName(data[0].name);
@@ -35,7 +34,7 @@ const UpdateRestaurant = (): React.ReactElement => {
     event.preventDefault();
 
     if (isInputEmpty(name, location)) return;
-    updateRestaurantById(id, API_URL, name, location, price);
+    updateRestaurantById(id, name, location, price);
     setLocation('');
     setName('');
     setPrice(3);

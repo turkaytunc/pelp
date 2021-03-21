@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './restaurant-list.scss';
 
 import { getRestaurants } from 'src/util';
-import { ActionType, API_URL } from 'src/constants';
+import { ActionType } from 'src/constants';
 import { Store } from 'src/context/Store';
 
 import ListCard from './list-card/ListCard';
@@ -14,7 +14,7 @@ const RestaurantList = (): React.ReactElement => {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const response = await getRestaurants(API_URL, window.fetch);
+        const response = await getRestaurants();
         const data = await response.json();
         dispatch({ type: ActionType.FETCH_RESTAURANTS, payload: data });
       } catch (error) {
