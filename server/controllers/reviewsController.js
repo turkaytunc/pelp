@@ -11,7 +11,7 @@ export const getReviewsByRestaurantId = async (req, res, next) => {
     }
 
     const restaurant = await pool.query(
-      `SELECT body AS comment,reviews.name AS user, reviews.rating AS rating
+      `SELECT reviews.id, body AS comment,reviews.name AS user, reviews.rating AS rating
        FROM restaurants, reviews
        WHERE reviews.fk_restaurants = restaurants.id and restaurants.id = $1`,
       [id]
