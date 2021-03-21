@@ -15,7 +15,6 @@ const RestaurantDetails = (): React.ReactElement => {
       try {
         const response = await getReviewsByRestaurantId(id);
         const data = await response.json();
-        console.log(data);
         if (response.status === 200) {
           setRestaurant(data);
         } else {

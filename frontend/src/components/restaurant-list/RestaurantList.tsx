@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './restaurant-list.scss';
+import { useParams } from 'react-router-dom';
 
 import { getRestaurants } from 'src/util';
 import { ActionType } from 'src/constants';
@@ -9,6 +10,7 @@ import ListCard from './list-card/ListCard';
 
 const RestaurantList = (): React.ReactElement => {
   const { state, dispatch } = useContext(Store);
+  const params = useParams();
   const [responseError, setResponseError] = useState('');
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const RestaurantList = (): React.ReactElement => {
       }
     };
     fetchRestaurants();
-  }, []);
+  }, [params]);
 
   return (
     <div className="restaurant-list-container" data-testid="restaurant-list">
