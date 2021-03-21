@@ -45,7 +45,7 @@ const AddReview = (): React.ReactElement => {
           className="add-review-textarea"
           id="review-comment-input"
           placeholder="Comment Here"
-          maxLength={20}
+          maxLength={100}
           cols={20}
           rows={5}
           value={comment}
