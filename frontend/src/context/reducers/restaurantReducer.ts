@@ -5,8 +5,8 @@ import { RestaurantAction } from '../actions';
 export const restaurantReducer = (state: Restaurant[], action: RestaurantAction): Restaurant[] => {
   switch (action.type) {
     case ActionType.ADD_RESTAURANT: {
-      const { id, location, name, priceRange, reviews } = action.payload;
-      return [...state, { id, name, location, priceRange, reviews }];
+      const { id, location, name, priceRange, average } = action.payload;
+      return [...state, { id, name, location, priceRange, average }];
     }
     case ActionType.REMOVE_RESTAURANT: {
       return [...state.filter((e) => e.id !== action.payload)];

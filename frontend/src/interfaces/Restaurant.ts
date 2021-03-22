@@ -3,5 +3,5 @@ export interface Restaurant {
   name: string;
   location: string;
   priceRange: number;
-  reviews: [{ rating: number }];
+  average: string;
 }
