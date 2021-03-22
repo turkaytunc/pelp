@@ -3,13 +3,24 @@ import pool from '../db/index.js';
 // GET /api/v1/restaurants/
 export const getAllRestaurants = async (_, res, next) => {
   try {
-    const restaurants = await pool.query('SELECT * FROM restaurants');
+    const restaurants = await pool.query(
+      `SELECT restaurants.id, restaurants.name, restaurants.location, restaurants.price_range, TRUNC(AVG(reviews.rating), 2) AS average 
+       FROM restaurants 
+       LEFT JOIN reviews 
+       ON restaurants.id = reviews.fk_restaurants 
+       GROUP BY restaurants.id 
+       ORDER BY average 
+       DESC NULLS LAST
+       `
+    );
+
     return res.json(
       restaurants.rows.map((restaurant) => ({
         id: restaurant.id,
         name: restaurant.name,
         location: restaurant.location,
         priceRange: restaurant.price_range,
+        average: restaurant.average,
       }))
     );
   } catch (error) {
