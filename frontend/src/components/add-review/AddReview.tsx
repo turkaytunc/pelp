@@ -18,6 +18,7 @@ const AddReview = (): React.ReactElement => {
       const response = await addRestaurantReview(id, username, userRating, comment);
       if (response.status === 400) {
         setFetchError('fetchError');
+        return;
       }
       window.location.href = `/restaurant/${id}`;
     } catch (error) {
@@ -26,10 +27,11 @@ const AddReview = (): React.ReactElement => {
   };
 
   return (
-    <form onSubmit={(event) => handleSubmit(event)} className="add-review-form">
+    <form onSubmit={(event) => handleSubmit(event)} className="add-review-form" data-testid="review-form">
       <h2 className="add-review-header">Add Your Review</h2>
       <label htmlFor="review-username-input">
         <input
+          data-testid="review-username-input"
           className="add-review-username"
           onChange={(event) => setUsername(event.target.value)}
           type="text"
@@ -41,6 +43,7 @@ const AddReview = (): React.ReactElement => {
       <label className="add-review-label" htmlFor="review-rating">
         <p>Rating</p>
         <select
+          data-testid="review-rating-input"
           onChange={(event) => setUserRating(event.target.value)}
           className="add-review-rating"
           name="review-rating"
@@ -56,6 +59,7 @@ const AddReview = (): React.ReactElement => {
       </label>
       <label htmlFor="review-comment-input">
         <textarea
+          data-testid="review-comment-input"
           onChange={(event) => setComment(event.target.value)}
           className="add-review-textarea"
           id="review-comment-input"

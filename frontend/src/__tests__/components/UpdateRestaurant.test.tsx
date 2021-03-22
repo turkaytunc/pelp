@@ -129,5 +129,30 @@ describe('<UpdateRestaurant/>', () => {
       expect(nameInput).toHaveValue('');
       expect(locationInput).toHaveValue('');
     });
+
+    it('should handle error response', async () => {
+      (window.fetch as jest.Mock).mockRejectedValue(new Error('fetch error occured'));
+      const history = createBrowserHistory();
+
+      const { getByTestId } = render(
+        <StoreProvider>
+          <Router history={history}>
+            <UpdateRestaurant />
+          </Router>
+        </StoreProvider>
+      );
+
+      const submitButton = await screen.findByText('Update');
+      const nameInput = getByTestId('update-res-name');
+      const locationInput = getByTestId('update-res-location');
+      const priceInput = getByTestId('update-res-price');
+
+      fireEvent.change(nameInput, { target: { value: 'Paşa Dürüm' } });
+      fireEvent.change(locationInput, { target: { value: 'edirne' } });
+      fireEvent.change(priceInput, { target: { value: '2' } });
+      fireEvent.click(submitButton);
+
+      expect(await screen.findByText('fetch error occured')).toBeTruthy();
+    });
   });
 });
