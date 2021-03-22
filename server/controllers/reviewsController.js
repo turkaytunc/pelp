@@ -16,7 +16,15 @@ export const getReviewsByRestaurantId = async (req, res, next) => {
        WHERE reviews.fk_restaurants = restaurants.id and restaurants.id = $1`,
       [id]
     );
-    return res.json(restaurant.rows);
+    const averageRating = await pool.query(
+      `SELECT trunc(AVG(rating), 2) AS average
+       FROM reviews
+       WHERE reviews.fk_restaurants = $1`,
+      [id]
+    );
+    const result = { average: averageRating.rows[0].average, reviews: [...restaurant.rows] };
+
+    return res.json(result);
   } catch (error) {
     error.statusCode = 400;
     return next(error);
