@@ -10,22 +10,21 @@ const RestaurantDetails = (): React.ReactElement => {
   const [restaurant, setRestaurant] = useState<Review[]>([]);
   const [fetchError, setFetchError] = useState('');
 
-  useEffect(() => {
-    const fetchRestaurantReview = async () => {
-      try {
-        const response = await getReviewsByRestaurantId(id);
-        const data = await response.json();
-        if (response.status === 200) {
-          setRestaurant(data);
-        } else {
-          setFetchError(data.message);
-          return;
-        }
+  const fetchRestaurantReview = async () => {
+    try {
+      const response = await getReviewsByRestaurantId(id);
+      const data = await response.json();
+      if (response.status === 200) {
         setRestaurant(data);
-      } catch (error) {
-        setFetchError(error.message);
+      } else {
+        setFetchError(data.message);
       }
-    };
+    } catch (error) {
+      setFetchError(error.message);
+    }
+  };
+
+  useEffect(() => {
     fetchRestaurantReview();
   }, [useParams]);
 
