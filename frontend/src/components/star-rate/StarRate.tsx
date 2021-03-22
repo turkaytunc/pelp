@@ -7,11 +7,11 @@ const StarRate = ({ rating, color }: { rating: number; color?: string }): React.
 
   for (let i = 1; i <= 5; i += 1) {
     if (i <= rating) {
-      stars.push(<FaStar fill={color} key={`${i}`} />);
+      stars.push(<FaStar filter="drop-shadow(1px 5px 1px #000)" fill={color} key={`${i}`} />);
     } else if (i === Math.ceil(rating) && !Number.isInteger(rating)) {
-      stars.push(<FaStarHalfAlt fill={color} key={i + 5} />);
+      stars.push(<FaStarHalfAlt filter="drop-shadow(1px 5px 1px #000)" fill={color} key={i + 5} />);
     } else {
-      stars.push(<FaRegStar key={`${i}`} />);
+      stars.push(<FaRegStar filter="drop-shadow(1px 5px 1px #000)" key={`${i}`} />);
     }
   }
 
