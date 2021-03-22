@@ -30,6 +30,7 @@ const AddReview = (): React.ReactElement => {
       <h2 className="add-review-header">Add Your Review</h2>
       <label htmlFor="review-username-input">
         <input
+          data-testid="review-username-input"
           className="add-review-username"
           onChange={(event) => setUsername(event.target.value)}
           type="text"
@@ -41,6 +42,7 @@ const AddReview = (): React.ReactElement => {
       <label className="add-review-label" htmlFor="review-rating">
         <p>Rating</p>
         <select
+          data-testid="review-rating-input"
           onChange={(event) => setUserRating(event.target.value)}
           className="add-review-rating"
           name="review-rating"
@@ -56,6 +58,7 @@ const AddReview = (): React.ReactElement => {
       </label>
       <label htmlFor="review-comment-input">
         <textarea
+          data-testid="review-comment-input"
           onChange={(event) => setComment(event.target.value)}
           className="add-review-textarea"
           id="review-comment-input"
