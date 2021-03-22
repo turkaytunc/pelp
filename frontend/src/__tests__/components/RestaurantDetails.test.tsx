@@ -10,7 +10,10 @@ describe('<RestaurantDetails />', () => {
   it('should fetch reviews successfully with 200 response code', async () => {
     (window.fetch as jest.Mock).mockResolvedValue({
       status: 200,
-      json: jest.fn(() => [{ id: '3', name: 'user', rating: '4', comment: 'This is a comment' }]),
+      json: jest.fn(() => ({
+        average: 5,
+        reviews: [{ id: '3', name: 'user', rating: '4', comment: 'This is a comment' }],
+      })),
     });
     const history = createBrowserHistory();
     history.push('/restaurant/21');
