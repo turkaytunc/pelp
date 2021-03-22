@@ -18,6 +18,7 @@ const AddReview = (): React.ReactElement => {
       const response = await addRestaurantReview(id, username, userRating, comment);
       if (response.status === 400) {
         setFetchError('fetchError');
+        return;
       }
       window.location.href = `/restaurant/${id}`;
     } catch (error) {
@@ -26,7 +27,7 @@ const AddReview = (): React.ReactElement => {
   };
 
   return (
-    <form onSubmit={(event) => handleSubmit(event)} className="add-review-form">
+    <form onSubmit={(event) => handleSubmit(event)} className="add-review-form" data-testid="review-form">
       <h2 className="add-review-header">Add Your Review</h2>
       <label htmlFor="review-username-input">
         <input

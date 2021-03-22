@@ -20,6 +20,7 @@ describe('<AddReview />', () => {
 
   describe('Input Events', () => {
     it('should fire username change event', async () => {
+      history.push('/restaurant/12');
       const { findByTestId } = render(
         <Router history={history}>
           <AddReview />
@@ -32,6 +33,7 @@ describe('<AddReview />', () => {
     });
 
     it('should fire textarea change event', async () => {
+      history.push('/restaurant/12');
       const { findByTestId } = render(
         <Router history={history}>
           <AddReview />
@@ -44,6 +46,7 @@ describe('<AddReview />', () => {
     });
 
     it('should fire rating option change event', async () => {
+      history.push('/restaurant/12');
       const { findByTestId } = render(
         <Router history={history}>
           <AddReview />
@@ -53,6 +56,87 @@ describe('<AddReview />', () => {
       fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '3' } });
 
       expect(await findByTestId('review-rating-input')).toHaveValue('3');
+    });
+  });
+
+  describe('Form Event', () => {
+    describe('Empty Inputs', () => {
+      it('should submit form successfully', async () => {
+        history.push('/restaurant/12');
+        const { findByTestId } = render(
+          <Router history={history}>
+            <AddReview />
+          </Router>
+        );
+        const reviewForm = findByTestId('review-form');
+
+        fireEvent.submit(await reviewForm);
+      });
+    });
+
+    describe('With proper inputs', () => {
+      describe('Successful fetch', () => {
+        it('should submit form successfully', async () => {
+          (window.fetch as jest.Mock).mockResolvedValue({ status: 200, json: jest.fn });
+
+          global.window = Object.create(window);
+          const url = '/restaurant/10';
+          Object.defineProperty(window, 'location', {
+            value: {
+              pathname: url,
+            },
+          });
+
+          const { findByTestId } = render(
+            <Router history={history}>
+              <AddReview />
+            </Router>
+          );
+
+          fireEvent.change(await findByTestId('review-username-input'), { target: { value: 'Hilal' } });
+          fireEvent.change(await findByTestId('review-comment-input'), { target: { value: 'This is a comment.' } });
+          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '5' } });
+          fireEvent.submit(await findByTestId('review-form'));
+
+          expect(window.location.pathname).toBe('/restaurant/10');
+        });
+      });
+
+      describe('Failed fetch', () => {
+        it('should submit form successfully', async () => {
+          history.push('/restaurant/12');
+          (window.fetch as jest.Mock).mockResolvedValue({ status: 400, json: jest.fn });
+          const { findByTestId } = render(
+            <Router history={history}>
+              <AddReview />
+            </Router>
+          );
+
+          fireEvent.change(await findByTestId('review-username-input'), { target: { value: 'Hilal' } });
+          fireEvent.change(await findByTestId('review-comment-input'), { target: { value: 'This is a comment.' } });
+          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '5' } });
+          fireEvent.submit(await findByTestId('review-form'));
+
+          expect(await screen.findByText('fetchError')).toBeTruthy();
+        });
+
+        it('should submit form successfully and get error', async () => {
+          (window.fetch as jest.Mock).mockRejectedValue(new Error('something went wrong'));
+          history.push('/restaurant/12');
+          const { findByTestId } = render(
+            <Router history={history}>
+              <AddReview />
+            </Router>
+          );
+
+          fireEvent.change(await findByTestId('review-username-input'), { target: { value: 'Hilal' } });
+          fireEvent.change(await findByTestId('review-comment-input'), { target: { value: 'This is a comment.' } });
+          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '5' } });
+          fireEvent.submit(await findByTestId('review-form'));
+
+          expect(await screen.findByText('something went wrong')).toBeTruthy();
+        });
+      });
     });
   });
 });
