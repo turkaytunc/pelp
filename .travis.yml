@@ -16,6 +16,7 @@ script:
 after_script:
   - CODECOV_TOKEN=$CODECOV_TOKEN codecov
 before_deploy:
+  - ls
   - cd frontend
 deploy:
   provider: pages
