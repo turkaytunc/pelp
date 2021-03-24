@@ -7,7 +7,7 @@ cache:
 branches:
   only:
     - main
-before_script:
+before_install:
   - cd frontend
 script:
   - npm install -g codecov
@@ -16,7 +16,7 @@ script:
 after_script:
   - CODECOV_TOKEN=$CODECOV_TOKEN codecov
 before_deploy:
-  - cd frontend
+  - cd build
 deploy:
   provider: pages
   skip_cleanup: true
