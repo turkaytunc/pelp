@@ -16,7 +16,7 @@ script:
 after_script:
   - CODECOV_TOKEN=$CODECOV_TOKEN codecov
 before_deploy:
-  - cd build
+  - cd frontend
 deploy:
   provider: pages
   skip_cleanup: true
