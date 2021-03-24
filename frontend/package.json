@@ -1,7 +1,7 @@
 {
   "name": "pern-stack-yelp",
   "version": "0.1.0",
-  "homepage": "http://turkaytunc.github.io/pern-stack-yelp",
+  "homepage": "https://turkaytunc.github.io/pern-stack-yelp",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
