@@ -16,12 +16,13 @@ script:
   - npm run build
 after_script:
   - CODECOV_TOKEN=$CODECOV_TOKEN codecov
-before_deploy:
-  - ls
 deploy:
   provider: pages
+  script: ls
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: build
   on:
     branch: main
+after_failure:
+  - ls
