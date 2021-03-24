@@ -13,11 +13,11 @@ script:
   - npm install -g codecov
   - npm test -- --clearCache
   - npm test -- --coverage
+  - npm run build
 after_script:
   - CODECOV_TOKEN=$CODECOV_TOKEN codecov
 before_deploy:
   - ls
-  - cd frontend
 deploy:
   provider: pages
   skip_cleanup: true
