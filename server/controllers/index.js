@@ -7,3 +7,5 @@ export {
 } from './restaurantsController.js';
 
 export { getReviewsByRestaurantId, addReview } from './reviewsController.js';
+
+export { createUser } from './authController.js';
