@@ -3,12 +3,9 @@ services:
   node-api:
     build: .
     ports:
-      - 4000:4000
       - 5000:5000
     restart: always
     volumes:
       - .:/usr/app/api
-    environment:
-      - NODE_ENV=production
     env_file:
       - ./.env
