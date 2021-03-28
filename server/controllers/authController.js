@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import pool from '../db/index.js';
 
 // POST /api/v1/register/
@@ -9,12 +10,15 @@ export const createUser = async (req, res, next) => {
 
     const isUserExist = user.rows.length > 0;
     if (isUserExist) {
-      return res.status(401).send();
+      const error = new Error('Email is already in use!!');
+      error.statusCode = 401;
+      return next(error);
     }
+    const passHash = await bcrypt.hash(password, 10);
 
     const createdUser = await pool.query(
-      'INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING name, password',
-      [name, password, email]
+      'INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING name, password, user_unique',
+      [name, passHash, email]
     );
 
     return res.status(200).json({ user: createdUser.rows[0] });
