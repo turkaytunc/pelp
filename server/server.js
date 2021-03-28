@@ -5,6 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 
 import { authRoutes, restaurantRoutes, reviewRoutes } from './routers/v1/index.js';
+import StatusError from './util/StatusError.js';
 
 dotenv.config();
 const app = express();
@@ -23,8 +24,8 @@ app.use('/api/v1/auth', authRoutes);
 
 // Unhandled Endpoint Error
 app.get('/*', (req, res, next) => {
-  const error = new Error('Page Not Found');
-  error.statusCode = 404;
+  const error = new StatusError('Page Not Found');
+  error.status = 404;
   return next(error);
 });
 
@@ -35,7 +36,7 @@ app.use((error, req, res, next) => {
     return next(error);
   }
 
-  res.status(error.statusCode || 500);
+  res.status(error.status || 500);
   return res.json({ message: error.message || 'An unexpected error occurred!' });
 });
 
