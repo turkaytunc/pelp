@@ -1,12 +1,12 @@
 import pool from '../db/index.js';
+import StatusError from '../util/StatusError.js';
 
 export const getReviewsByRestaurantId = async (req, res, next) => {
   try {
     const { id } = req.params;
 
     if (id <= 0 || id > 100) {
-      const error = new Error('id must be between 0-100');
-      error.statusCode = 400;
+      const error = new StatusError('id must be between 0-100', 400);
       return next(error);
     }
 
@@ -26,7 +26,7 @@ export const getReviewsByRestaurantId = async (req, res, next) => {
 
     return res.json(result);
   } catch (error) {
-    error.statusCode = 400;
+    error.status = 400;
     return next(error);
   }
 };
@@ -43,9 +43,9 @@ export const addReview = async (req, res, next) => {
       [name, rating, comment, id]
     );
 
-    res.status(201).json(restaurant.rows[0]);
+    return res.status(201).json(restaurant.rows[0]);
   } catch (error) {
-    error.statusCode = 400;
+    error.status = 400;
     return next(error);
   }
 };

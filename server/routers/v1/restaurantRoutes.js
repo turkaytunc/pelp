@@ -7,6 +7,7 @@ import {
   updateRestaurantById,
   deleteRestaurantById,
 } from '../../controllers/index.js';
+import { authorization } from '../../middlewares/index.js';
 
 const router = express.Router();
 dotenv.config();
@@ -14,7 +15,7 @@ dotenv.config();
 router.get('/', getAllRestaurants);
 router.get('/:id', getRestaurantById);
 
-router.post('/', createRestaurant);
+router.post('/', authorization, createRestaurant);
 
 router.put('/:id', updateRestaurantById);
 

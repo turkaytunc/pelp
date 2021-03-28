@@ -8,4 +8,4 @@ export {
 
 export { getReviewsByRestaurantId, addReview } from './reviewsController.js';
 
-export { createUser } from './authController.js';
+export { userRegister, userLogin } from './authController.js';

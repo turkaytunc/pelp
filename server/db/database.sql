@@ -39,3 +39,12 @@ SELECT body AS comment,
 FROM restaurants,
     reviews
 WHERE restaurants.id = reviews.fk_restaurants;
+
+
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    user_unique uuid DEFAULT uuid_generate_v4(),
+    name VARCHAR(70) NOT NULL,
+    password VARCHAR(200) NOT NULL,
+    email VARCHAR(50) NOT NULL
+);

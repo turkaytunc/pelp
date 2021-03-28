@@ -35,14 +35,14 @@ export const getRestaurantById = async (req, res, next) => {
 
     if (id <= 0 || id > 100) {
       const error = new Error('id must be between 0-100');
-      error.statusCode = 400;
+      error.status = 400;
       return next(error);
     }
 
     const restaurant = await pool.query('SELECT * FROM restaurants WHERE id = $1', [id]);
     return res.json(restaurant.rows);
   } catch (error) {
-    error.statusCode = 400;
+    error.status = 400;
     return next(error);
   }
 };
@@ -51,7 +51,6 @@ export const getRestaurantById = async (req, res, next) => {
 export const createRestaurant = async (req, res, next) => {
   try {
     const { name, location, price_range } = req.body;
-
     const restaurant = await pool.query(
       'INSERT INTO restaurants(name, location, price_range) values($1, $2, $3) returning *',
       [name, location, price_range]
@@ -60,7 +59,7 @@ export const createRestaurant = async (req, res, next) => {
       .status(201)
       .json({ id: restaurant.rows[0].id, name, location, priceRange: restaurant.rows[0].price_range });
   } catch (error) {
-    error.statusCode = 400;
+    error.status = 400;
     return next(error);
   }
 };
@@ -77,7 +76,7 @@ export const updateRestaurantById = async (req, res, next) => {
 
     return res.status(201).json(restaurant.rows[0]);
   } catch (error) {
-    error.statusCode = 400;
+    error.status = 400;
     return next(error);
   }
 };
@@ -86,13 +85,13 @@ export const updateRestaurantById = async (req, res, next) => {
 export const deleteRestaurantById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const reviews = await pool.query('DELETE FROM reviews WHERE reviews.fk_restaurants = $1', [id]);
 
-    const restaurant = await pool.query('DELETE FROM restaurants WHERE restaurants.id = $1', [id]);
+    await pool.query('DELETE FROM reviews WHERE reviews.fk_restaurants = $1', [id]);
+    await pool.query('DELETE FROM restaurants WHERE restaurants.id = $1', [id]);
 
     return res.status(204).send();
   } catch (error) {
-    error.statusCode = 400;
+    error.status = 400;
     return next(error);
   }
 };
