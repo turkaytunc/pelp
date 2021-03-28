@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import helmet from 'helmet';
 
-import { authRoutes, restaurantRoutes, reviewRoutes } from './routers/v1/index.js';
+import { authRoutes, dashboardRoutes, restaurantRoutes, reviewRoutes } from './routers/v1/index.js';
 import StatusError from './util/StatusError.js';
 
 dotenv.config();
@@ -21,6 +21,7 @@ app.use(morgan('dev'));
 app.use('/api/v1/restaurants', restaurantRoutes);
 app.use('/api/v1/reviews', reviewRoutes);
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/dashboard', dashboardRoutes);
 
 // Unhandled Endpoint Error
 app.get('/*', (req, res, next) => {
