@@ -1,23 +1,26 @@
 import React from 'react';
-import { RestaurantAction } from './actions';
-import { Restaurant } from '../interfaces';
-import { restaurantReducer } from './reducers';
+import { RestaurantAction, UserAction } from './actions';
+import { Restaurant, User } from '../interfaces';
+import { restaurantReducer, userReducer } from './reducers';
 
 type InitialStateType = {
   restaurants: Restaurant[];
+  user: User;
 };
 
 const initialState = {
   restaurants: [],
+  user: { name: '', email: '' },
 };
 
-const rootReducer = ({ restaurants }: InitialStateType, action: RestaurantAction) => ({
+const rootReducer = ({ restaurants, user }: InitialStateType, action: RestaurantAction | UserAction) => ({
   restaurants: restaurantReducer(restaurants, action as RestaurantAction),
+  user: userReducer(user, action as UserAction),
 });
 
 export const Store = React.createContext<{
   state: InitialStateType;
-  dispatch: React.Dispatch<RestaurantAction>;
+  dispatch: React.Dispatch<RestaurantAction | UserAction>;
 }>({
   state: (initialState as unknown) as InitialStateType,
   dispatch: () => null,
