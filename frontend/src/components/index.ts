@@ -6,3 +6,4 @@ export { default as ReviewCard } from './review-card/ReviewCard';
 export { default as StarRate } from './star-rate/StarRate';
 export { default as RestaurantDetails } from './restaurant-details/RestaurantDetails';
 export { default as AddReview } from './add-review/AddReview';
+export { default as Login } from './login/Login';

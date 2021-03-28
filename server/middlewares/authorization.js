@@ -10,9 +10,8 @@ export const authorization = (req, res, next) => {
     if (!authHeader) {
       return res.status(403).send();
     }
-    const verifyJwt = jwt.verify(authHeader, secret);
-    console.log(verifyJwt);
 
+    const verifyJwt = jwt.verify(authHeader, secret);
     req.user = verifyJwt.user;
     return next();
   } catch (error) {

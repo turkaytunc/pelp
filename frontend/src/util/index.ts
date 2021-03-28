@@ -6,3 +6,4 @@ export { updateRestaurantById } from './updateRestaurantById';
 export { deleteRestaurantById } from './deleteRestaurantById';
 export { getReviewsByRestaurantId } from './getReviewsByRestaurantId';
 export { addRestaurantReview } from './addRestaurantReview';
+export { createToastConfig } from './createToastConfig';

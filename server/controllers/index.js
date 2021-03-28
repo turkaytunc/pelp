@@ -9,3 +9,5 @@ export {
 export { getReviewsByRestaurantId, addReview } from './reviewsController.js';
 
 export { userRegister, userLogin } from './authController.js';
+
+export { getProfile } from './dashboardController.js';
