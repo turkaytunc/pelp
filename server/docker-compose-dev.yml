@@ -12,5 +12,6 @@ services:
     restart: always
     volumes:
       - .:/usr/app/api
+      - /usr/app/api/node_modules
     env_file:
       - ./.env
