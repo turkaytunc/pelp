@@ -17,8 +17,8 @@ router.get('/:id', getRestaurantById);
 
 router.post('/', authorization, createRestaurant);
 
-router.put('/:id', updateRestaurantById);
+router.put('/:id', authorization, updateRestaurantById);
 
-router.delete('/:id', deleteRestaurantById);
+router.delete('/:id', authorization, deleteRestaurantById);
 
 export default router;

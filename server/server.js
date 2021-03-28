@@ -31,7 +31,6 @@ app.get('/*', (req, res, next) => {
 
 // Global Error Handler
 app.use((error, req, res, next) => {
-  console.log(error); // TODO: remove error log
   if (res.headerSent) {
     return next(error);
   }

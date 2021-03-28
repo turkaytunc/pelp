@@ -27,7 +27,7 @@ export const userRegister = async (req, res, next) => {
       [name, passHash, email]
     );
 
-    const token = jwt.sign({ user: newUser.rows[0].user_unique }, secret, { expiresIn: TEN_MIN });
+    const token = jwt.sign({ user: newUser.rows[0].user_unique }, secret, { expiresIn: `${TEN_MIN}ms` });
 
     return res.status(200).json({ user: newUser.rows[0], token });
   } catch (error) {
@@ -51,7 +51,7 @@ export const userLogin = async (req, res, next) => {
 
     const isPasswordValid = await bcrypt.compare(password, user.rows[0].password);
     if (isPasswordValid) {
-      const token = jwt.sign({ user: user.rows[0].user_unique }, secret, { expiresIn: TEN_MIN });
+      const token = jwt.sign({ user: user.rows[0].user_unique }, secret, { expiresIn: `${TEN_MIN}ms` });
       return res.json({ token });
     }
 
