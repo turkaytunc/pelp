@@ -24,7 +24,7 @@ const RestaurantList = (): React.ReactElement => {
       }
     };
     fetchRestaurants();
-  }, [params]);
+  }, []);
 
   return (
     <div className="restaurant-list-container" data-testid="restaurant-list">

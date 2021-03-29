@@ -17,7 +17,7 @@ const Login = (): React.ReactElement => {
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch({ type: 'ADD_USER', payload: user });
+    // dispatch({ type: 'ADD_USER', payload: user });
 
     toast(
       'Login Successful. Redirecting to Home',
