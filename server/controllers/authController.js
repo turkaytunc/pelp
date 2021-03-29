@@ -23,7 +23,7 @@ export const userRegister = async (req, res, next) => {
 
     const passHash = await bcrypt.hash(password, 10);
     const newUser = await pool.query(
-      'INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING name, user_unique',
+      'INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING name, email',
       [name, passHash, email]
     );
 
@@ -51,8 +51,11 @@ export const userLogin = async (req, res, next) => {
 
     const isPasswordValid = await bcrypt.compare(password, user.rows[0].password);
     if (isPasswordValid) {
-      const token = jwt.sign({ user: user.rows[0].user_unique }, secret, { expiresIn: `${TEN_MIN}ms` });
-      return res.json({ token });
+      const { user_unique, name, email } = user.rows[0];
+
+      const token = jwt.sign({ user: user_unique }, secret, { expiresIn: `${TEN_MIN}ms` });
+
+      return res.json({ user: { name, email }, token });
     }
 
     return res.status(403).send();
