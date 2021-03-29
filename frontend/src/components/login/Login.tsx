@@ -4,7 +4,7 @@ import { Store } from 'src/context/Store';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createToastConfig } from 'src/util/';
+import { createToastConfig, loginUser } from 'src/util/';
 
 const Login = (): React.ReactElement => {
   const [email, setEmail] = useState('');
@@ -13,11 +13,22 @@ const Login = (): React.ReactElement => {
   const { state, dispatch } = useContext(Store);
 
   const history = useHistory();
-  const user = { name: 'random name', email: 'user@user.com', isAuth: true };
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // dispatch({ type: 'ADD_USER', payload: user });
+
+    const response = await loginUser(email, password);
+    const data = await response.json();
+
+    const { token, user } = data;
+    if (token) {
+      window.localStorage.setItem('token', token);
+      dispatch({ type: 'ADD_USER', payload: { ...user, isAuth: true } });
+      history.push('/');
+    } else {
+      dispatch({ type: 'ADD_USER', payload: { ...state.user, isAuth: false } });
+      history.push('/');
+    }
 
     toast(
       'Login Successful. Redirecting to Home',
