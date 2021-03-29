@@ -17,23 +17,27 @@ const Login = (): React.ReactElement => {
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const response = await loginUser(email, password);
-    const data = await response.json();
+    try {
+      const response = await loginUser(email, password);
+      const data = await response.json();
 
-    const { token, user } = data;
-    if (token) {
-      window.localStorage.setItem('token', token);
-      dispatch({ type: 'ADD_USER', payload: { ...user, isAuth: true } });
-      history.push('/');
-    } else {
-      dispatch({ type: 'ADD_USER', payload: { ...state.user, isAuth: false } });
-      history.push('/');
+      const { token, user } = data;
+      if (token) {
+        window.localStorage.setItem('token', token);
+        dispatch({ type: 'ADD_USER', payload: { ...user, isAuth: true } });
+
+        toast(
+          'Login Successful. Redirecting to Home',
+          createToastConfig(() => history.push('/'))
+        );
+      } else {
+        window.localStorage.removeItem('token');
+        dispatch({ type: 'ADD_USER', payload: { ...state.user, isAuth: false } });
+        history.push('/');
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    toast(
-      'Login Successful. Redirecting to Home',
-      createToastConfig(() => history.push('/'))
-    );
   };
 
   return (

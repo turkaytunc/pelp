@@ -3,3 +3,11 @@
   flex-direction: column;
   width: 90%;
 }
+
+.home-screen-link {
+  color: white;
+  &:visited,
+  :active {
+    color: white;
+  }
+}

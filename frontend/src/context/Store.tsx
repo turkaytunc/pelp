@@ -10,7 +10,7 @@ type InitialStateType = {
 
 const initialState = {
   restaurants: [],
-  user: { name: '', email: '' },
+  user: { name: '', email: '', isAuth: false },
 };
 
 const rootReducer = ({ restaurants, user }: InitialStateType, action: RestaurantAction | UserAction) => ({

@@ -1,23 +1,14 @@
-import { useContext, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './app.scss';
-import { Store } from './context/Store';
-import { HomeScreen, DetailsScreen, UpdateScreen, RegisterScreen, LoginScreen } from './routes';
+import { HomeScreen, DetailsScreen, UpdateScreen, RegisterScreen, LoginScreen, DashboardScreen } from './routes';
 
 function App(): JSX.Element {
-  const { state, dispatch } = useContext(Store);
-
-  useEffect(() => {
-    const token = window.localStorage.getItem('token');
-    if (token) {
-      dispatch({ type: 'ADD_USER', payload: { ...state.user, isAuth: true } });
-    }
-  }, []);
   return (
     <BrowserRouter basename="/pern-stack-yelp">
       <div className="app">
         <Switch>
           <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/dashboard" component={DashboardScreen} />
           <Route exact path="/restaurant/:id/update" component={UpdateScreen} />
           <Route exact path="/restaurant/:id" component={DetailsScreen} />
           <Route exact path="/auth/register" component={RegisterScreen} />

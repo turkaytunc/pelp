@@ -8,3 +8,4 @@ export { default as RestaurantDetails } from './restaurant-details/RestaurantDet
 export { default as AddReview } from './add-review/AddReview';
 export { default as Login } from './login/Login';
 export { default as Register } from './register/Register';
+export { default as Dashboard } from './dashboard/Dashboard';
