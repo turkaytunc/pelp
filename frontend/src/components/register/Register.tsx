@@ -1,23 +1,23 @@
 import React, { useContext, useState } from 'react';
-import './login.scss';
+import './register.scss';
 import { Store } from 'src/context/Store';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createToastConfig, loginUser } from 'src/util/';
+import { createToastConfig, registerUser } from 'src/util/';
 
-const Login = (): React.ReactElement => {
+const Register = (): React.ReactElement => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [inputError, setInputError] = useState('');
   const { state, dispatch } = useContext(Store);
 
   const history = useHistory();
 
-  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const response = await loginUser(email, password);
+    const response = await registerUser(name, email, password);
     const data = await response.json();
 
     const { token, user } = data;
@@ -25,20 +25,20 @@ const Login = (): React.ReactElement => {
       window.localStorage.setItem('token', token);
       dispatch({ type: 'ADD_USER', payload: { ...user, isAuth: true } });
       history.push('/');
-    } else {
-      dispatch({ type: 'ADD_USER', payload: { ...state.user, isAuth: false } });
-      history.push('/');
     }
-
-    toast(
-      'Login Successful. Redirecting to Home',
-      createToastConfig(() => history.push('/'))
-    );
   };
 
   return (
     <>
-      <form className="login-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleLogin(event)}>
+      <form className="register-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleRegister(event)}>
+        <input
+          className="name-input"
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          onFocus={() => setInputError('')}
+          placeholder="Name"
+        />
         <input
           className="email-input"
           type="text"
@@ -56,7 +56,7 @@ const Login = (): React.ReactElement => {
           placeholder="Password"
         />
         {inputError}
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
       </form>
 
       <ToastContainer transition={Zoom} />
@@ -64,4 +64,4 @@ const Login = (): React.ReactElement => {
   );
 };
 
-export default Login;
+export default Register;

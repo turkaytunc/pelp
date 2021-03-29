@@ -1,8 +1,18 @@
+import { useContext, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './app.scss';
+import { Store } from './context/Store';
 import { HomeScreen, DetailsScreen, UpdateScreen, RegisterScreen, LoginScreen } from './routes';
 
 function App(): JSX.Element {
+  const { state, dispatch } = useContext(Store);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      dispatch({ type: 'ADD_USER', payload: { ...state.user, isAuth: true } });
+    }
+  }, []);
   return (
     <BrowserRouter basename="/pern-stack-yelp">
       <div className="app">

@@ -1,16 +1,16 @@
 import { API_URL } from 'src/constants';
 
-const addRestaurant = (name: string, location: string, priceRange: number): Promise<Response> => {
+const loginUser = (email: string, password: string): Promise<Response> => {
   const token = window.localStorage.getItem('token');
 
-  return fetch(`${API_URL}/restaurants`, {
+  return fetch(`${API_URL}/auth/login`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json;charset=UTF-8',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, location, price_range: priceRange }),
+    body: JSON.stringify({ email, password }),
   });
 };
-export default addRestaurant;
+export default loginUser;
