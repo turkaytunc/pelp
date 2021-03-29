@@ -20,9 +20,14 @@ const Register = (): React.ReactElement => {
     event.preventDefault();
     console.table({ name, email, password });
     const response = await registerUser(name, email, password);
-    const data = response.json();
+    const data = await response.json();
 
-    console.log(data);
+    const { token, user } = data;
+    if (token) {
+      window.localStorage.setItem('token', token);
+      dispatch({ type: 'ADD_USER', payload: { ...user, isAuth: true } });
+      history.push('/');
+    }
   };
 
   return (
