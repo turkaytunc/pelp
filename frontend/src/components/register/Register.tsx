@@ -4,8 +4,7 @@ import { Store } from 'src/context/Store';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createToastConfig } from 'src/util/';
-import registerUser from 'src/util/registerUser';
+import { createToastConfig, registerUser } from 'src/util/';
 
 const Register = (): React.ReactElement => {
   const [email, setEmail] = useState('');
@@ -18,7 +17,6 @@ const Register = (): React.ReactElement => {
 
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.table({ name, email, password });
     const response = await registerUser(name, email, password);
     const data = await response.json();
 
