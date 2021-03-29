@@ -36,7 +36,7 @@ const Login = (): React.ReactElement => {
         history.push('/');
       }
     } catch (error) {
-      console.log(error);
+      setInputError(error.message);
     }
   };
 

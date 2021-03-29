@@ -3,6 +3,6 @@
 
 # pern-stack-yelp
 
-Nodejs, react, postgres, typescript, travisCI, jest => fullstack yelp clone
+Nodejs, react, postgres, typescript, travisCI, jest, docker => fullstack yelp clone
 
 [Take me to site](https://turkaytunc.github.io/pern-stack-yelp/)
