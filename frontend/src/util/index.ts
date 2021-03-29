@@ -9,3 +9,4 @@ export { addRestaurantReview } from './addRestaurantReview';
 export { createToastConfig } from './createToastConfig';
 export { default as registerUser } from './registerUser';
 export { default as loginUser } from './loginUser';
+export { default as validateUser } from './validateUser';
