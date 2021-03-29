@@ -10,7 +10,6 @@ import ListCard from './list-card/ListCard';
 
 const RestaurantList = (): React.ReactElement => {
   const { state, dispatch } = useContext(Store);
-  const params = useParams();
   const [responseError, setResponseError] = useState('');
 
   useEffect(() => {
