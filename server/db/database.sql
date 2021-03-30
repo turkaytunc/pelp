@@ -33,6 +33,9 @@ VALUES(
         20
     );
 
+ALTER TABLE reviews drop constraint reviews_fk_restaurants_fkey,
+    add constraint fk_rest FOREIGN KEY (fk_restaurants) REFERENCES restaurants(id) ON DELETE CASCADE;
+
 SELECT body AS comment,
     reviews.name AS user,
     restaurants.name AS restaurant_name
