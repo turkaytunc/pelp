@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './login.scss';
 import { Store } from 'src/context/Store';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createToastConfig, loginUser } from 'src/util/';
+import { createToastConfig, loginUser, validateUser } from 'src/util/';
 
 const Login = (): React.ReactElement => {
   const [email, setEmail] = useState('');
@@ -13,6 +13,21 @@ const Login = (): React.ReactElement => {
   const { state, dispatch } = useContext(Store);
 
   const history = useHistory();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await validateUser();
+      const data = await response.json();
+
+      if (response.status === 200) {
+        dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: true } });
+        history.push('/dashboard');
+      } else {
+        dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: false } });
+      }
+    };
+    fetchUser();
+  }, []);
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
