@@ -1,12 +1,7 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import pool from '../db/index.js';
-import StatusError from '../util/StatusError.js';
-
-dotenv.config();
-const secret = process.env.JWT_SECRET;
-const TEN_MIN = 1000 * 60 * 10;
+import { generateToken } from '../util/index.js';
+import { StatusError } from '../util/index.js';
 
 // POST /api/v1/auth/register
 export const userRegister = async (req, res, next) => {
@@ -27,9 +22,9 @@ export const userRegister = async (req, res, next) => {
       [name, passHash, email]
     );
 
-    const token = jwt.sign({ user: newUser.rows[0].user_unique }, secret, { expiresIn: `${TEN_MIN}ms` });
-
-    return res.status(200).json({ user: { name: newUser.rows[0].name, email: newUser.rows[0].email }, token });
+    const { user_unique: unique, name: username, email: userMail } = newUser.rows[0];
+    const token = generateToken(unique);
+    return res.status(200).json({ user: { name: username, email: userMail }, token });
   } catch (error) {
     error.status = 400;
     return next(error);
@@ -53,7 +48,7 @@ export const userLogin = async (req, res, next) => {
     if (isPasswordValid) {
       const { user_unique, name, email } = user.rows[0];
 
-      const token = jwt.sign({ user: user_unique }, secret, { expiresIn: `${TEN_MIN}ms` });
+      const token = generateToken(user_unique);
 
       return res.json({ user: { name, email }, token });
     }

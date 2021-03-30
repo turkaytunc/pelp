@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { addReview, getReviewsByRestaurantId } from '../../controllers/index.js';
+import { reviewsController } from '../../controllers/index.js';
+
+const { addReview, getReviewsByRestaurantId } = reviewsController;
 
 const router = express.Router();
 dotenv.config();

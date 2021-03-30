@@ -1,13 +1,4 @@
-export {
-  getAllRestaurants,
-  getRestaurantById,
-  createRestaurant,
-  updateRestaurantById,
-  deleteRestaurantById,
-} from './restaurantsController.js';
-
-export { getReviewsByRestaurantId, addReview } from './reviewsController.js';
-
-export { userRegister, userLogin } from './authController.js';
-
-export { getProfile } from './dashboardController.js';
+export * as restaurantController from './restaurantsController.js';
+export * as reviewsController from './reviewsController.js';
+export * as authController from './authController.js';
+export * as dashboardController from './dashboardController.js';
