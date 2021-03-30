@@ -12,6 +12,7 @@ const AddReview = (): React.ReactElement => {
   const history = useHistory();
 
   const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (isInputEmpty(username, userRating, comment)) return;
 
     try {
@@ -20,7 +21,7 @@ const AddReview = (): React.ReactElement => {
         setFetchError('fetchError');
         return;
       }
-      history.push(`/restaurant/${id}`);
+      history.push(`/`);
     } catch (error) {
       setFetchError(error.message);
     }
