@@ -23,13 +23,13 @@ export const userRegister = async (req, res, next) => {
 
     const passHash = await bcrypt.hash(password, 10);
     const newUser = await pool.query(
-      'INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING name, email',
+      'INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING name, email, user_unique',
       [name, passHash, email]
     );
 
     const token = jwt.sign({ user: newUser.rows[0].user_unique }, secret, { expiresIn: `${TEN_MIN}ms` });
 
-    return res.status(200).json({ user: newUser.rows[0], token });
+    return res.status(200).json({ user: { name: newUser.rows[0].name, email: newUser.rows[0].email }, token });
   } catch (error) {
     error.status = 400;
     return next(error);

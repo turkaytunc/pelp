@@ -17,8 +17,7 @@ const HomeScreen = (): React.ReactElement => {
 
       if (response.status === 200) {
         dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: true } });
-      }
-      if (response.status === 403) {
+      } else {
         dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: false } });
       }
     };
