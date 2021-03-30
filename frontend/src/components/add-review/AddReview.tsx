@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { addRestaurantReview, isInputEmpty } from 'src/util';
 import './add-reviews.scss';
 
@@ -12,7 +12,6 @@ const AddReview = (): React.ReactElement => {
   const history = useHistory();
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
     if (isInputEmpty(username, userRating, comment)) return;
 
     try {
@@ -21,7 +20,7 @@ const AddReview = (): React.ReactElement => {
         setFetchError('fetchError');
         return;
       }
-      window.location.reload();
+      history.push(`/restaurant/${id}`);
     } catch (error) {
       setFetchError(error.message);
     }
