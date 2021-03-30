@@ -10,6 +10,17 @@
   vertical-align: baseline;
 }
 
+a {
+  text-decoration: none;
+  &:visited,
+  :active {
+    color: white;
+  }
+  &:hover {
+    color: red;
+  }
+}
+
 body {
   margin: 0;
   background-color: scss.$background-color-dark;

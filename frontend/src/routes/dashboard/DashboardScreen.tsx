@@ -12,11 +12,9 @@ const DashboardScreen = (): React.ReactElement => {
     const fetchUser = async () => {
       const response = await validateUser();
       const data = await response.json();
-
       if (response.status === 200) {
         dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: true } });
-      }
-      if (response.status === 403) {
+      } else {
         history.push('/auth/login');
       }
     };
