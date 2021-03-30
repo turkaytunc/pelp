@@ -1,5 +1,5 @@
 import pool from '../db/index.js';
-import StatusError from '../util/StatusError.js';
+import { StatusError } from '../util/index.js';
 
 export const getReviewsByRestaurantId = async (req, res, next) => {
   try {
