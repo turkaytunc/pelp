@@ -21,7 +21,7 @@ const AddReview = (): React.ReactElement => {
         setFetchError('fetchError');
         return;
       }
-      history.go(0);
+      window.location.reload();
     } catch (error) {
       setFetchError(error.message);
     }
