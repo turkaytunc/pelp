@@ -5,8 +5,8 @@ export const getReviewsByRestaurantId = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    if (id <= 0 || id > 100) {
-      const error = new StatusError('id must be between 0-100', 400);
+    if (!Number.isInteger(parseInt(id))) {
+      const error = new StatusError('id must be number', 400);
       return next(error);
     }
 
