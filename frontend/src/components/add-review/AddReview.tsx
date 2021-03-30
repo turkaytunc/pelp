@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { addRestaurantReview, isInputEmpty } from 'src/util';
 import './add-reviews.scss';
 
@@ -9,6 +9,7 @@ const AddReview = (): React.ReactElement => {
   const [comment, setComment] = useState('');
   const [userRating, setUserRating] = useState('5');
   const [fetchError, setFetchError] = useState('');
+  const history = useHistory();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -20,7 +21,7 @@ const AddReview = (): React.ReactElement => {
         setFetchError('fetchError');
         return;
       }
-      window.location.href = `/restaurant/${id}`;
+      history.go(0);
     } catch (error) {
       setFetchError(error.message);
     }
