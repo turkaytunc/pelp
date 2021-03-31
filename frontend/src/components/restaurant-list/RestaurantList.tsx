@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './restaurant-list.scss';
 
-import { getRestaurants } from 'src/util';
+import { getRestaurants, validateUser } from 'src/util';
 import { ActionType } from 'src/constants';
 import { Store } from 'src/context/Store';
 
@@ -25,12 +25,26 @@ const RestaurantList = (): React.ReactElement => {
     fetchRestaurants();
   }, []);
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await validateUser();
+      const data = await response.json();
+
+      if (response.status === 200) {
+        dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: true } });
+      } else {
+        dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: false } });
+      }
+    };
+    fetchUser();
+  }, []);
+
   return (
     <div className="restaurant-list-container" data-testid="restaurant-list">
       {state.restaurants.length > 0 ? (
         <div className="restaurant-list">
           {state.restaurants?.map((restaurant) => (
-            <ListCard key={restaurant?.id} restaurant={restaurant} />
+            <ListCard key={restaurant?.id} restaurant={restaurant} isAuth={state.user.isAuth} />
           ))}
         </div>
       ) : (
