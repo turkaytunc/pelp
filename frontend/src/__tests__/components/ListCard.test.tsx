@@ -6,7 +6,7 @@ import { createBrowserHistory } from 'history';
 afterEach(jest.clearAllMocks);
 jest.spyOn(window, 'fetch');
 
-const rest = { id: 9, location: 'Edirne', name: 'Ali Ustanın Yeri', priceRange: 5 };
+const rest = { id: 9, location: 'Edirne', name: 'Ali Ustanın Yeri', priceRange: 5, average: '3' };
 
 describe('<ListCard />', () => {
   it('should render without crash', () => {
@@ -14,7 +14,7 @@ describe('<ListCard />', () => {
 
     render(
       <Router history={history}>
-        <ListCard restaurant={rest} />
+        <ListCard restaurant={rest} isAuth />
       </Router>
     );
   });
@@ -24,7 +24,7 @@ describe('<ListCard />', () => {
       const history = createBrowserHistory();
       const { getByTestId } = render(
         <Router history={history}>
-          <ListCard restaurant={rest} />
+          <ListCard restaurant={rest} isAuth />
         </Router>
       );
       const editButton = getByTestId('listcard-edit');
@@ -41,7 +41,7 @@ describe('<ListCard />', () => {
       const history = createBrowserHistory();
       const { getByTestId } = render(
         <Router history={history}>
-          <ListCard restaurant={rest} />
+          <ListCard restaurant={rest} isAuth />
         </Router>
       );
       const deleteButton = getByTestId('listcard-delete');
@@ -54,7 +54,7 @@ describe('<ListCard />', () => {
       const history = createBrowserHistory();
       const { getByTestId } = render(
         <Router history={history}>
-          <ListCard restaurant={rest} />
+          <ListCard restaurant={rest} isAuth />
         </Router>
       );
       const deleteButton = getByTestId('listcard-delete');
@@ -68,7 +68,7 @@ describe('<ListCard />', () => {
       const history = createBrowserHistory();
       const { getByTestId } = render(
         <Router history={history}>
-          <ListCard restaurant={rest} />
+          <ListCard restaurant={rest} isAuth />
         </Router>
       );
       const deleteButton = getByTestId('listcard-delete');
@@ -86,7 +86,7 @@ describe('<ListCard />', () => {
 
       const { getByTestId } = render(
         <Router history={history}>
-          <ListCard restaurant={rest} />
+          <ListCard restaurant={rest} isAuth />
         </Router>
       );
 
@@ -103,7 +103,7 @@ describe('<ListCard />', () => {
 
         const { getByTestId } = render(
           <Router history={history}>
-            <ListCard restaurant={rest} />
+            <ListCard restaurant={rest} isAuth />
           </Router>
         );
 
@@ -119,7 +119,7 @@ describe('<ListCard />', () => {
 
         const { getByTestId } = render(
           <Router history={history}>
-            <ListCard restaurant={rest} />
+            <ListCard restaurant={rest} isAuth />
           </Router>
         );
 
