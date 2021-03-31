@@ -5,9 +5,13 @@
 }
 
 .restaurant-details-header {
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
+  font-size: 2.2rem;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 0.5rem;
-  font-size: 2rem;
 }
 
 .restaurant-details-card-grid {

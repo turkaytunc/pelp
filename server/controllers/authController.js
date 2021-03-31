@@ -41,7 +41,7 @@ export const userLogin = async (req, res, next) => {
 
     const isUserExist = user.rows.length > 0;
     if (!isUserExist) {
-      return res.status(401).send();
+      return res.status(401).json({ message: 'Wrong email or password!' });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.rows[0].password);
@@ -52,8 +52,7 @@ export const userLogin = async (req, res, next) => {
 
       return res.json({ user: { name, email }, token });
     }
-
-    return res.status(403).send();
+    return res.status(403).json({ message: 'Wrong email or password!' });
   } catch (error) {
     return next(error);
   }

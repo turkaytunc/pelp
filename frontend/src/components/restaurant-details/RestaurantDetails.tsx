@@ -10,6 +10,7 @@ const RestaurantDetails = (): React.ReactElement => {
   const [restaurant, setRestaurant] = useState<Review[]>([]);
   const [fetchError, setFetchError] = useState('');
   const [averageRating, setAverageRating] = useState('');
+  const [details, setDetails] = useState({ name: '', location: '' });
 
   const fetchRestaurantReview = async () => {
     try {
@@ -18,6 +19,7 @@ const RestaurantDetails = (): React.ReactElement => {
       if (response.status === 200) {
         setRestaurant(data.reviews);
         setAverageRating(data.average);
+        setDetails(data.details);
       } else {
         setFetchError(data.message);
       }
@@ -32,7 +34,10 @@ const RestaurantDetails = (): React.ReactElement => {
 
   return (
     <div className="restaurant-details-container">
-      <header className="restaurant-details-header">Restaurant Details</header>
+      <header className="restaurant-details-header">
+        {details?.name ? details.name : 'Restaurant Name'}{' '}
+        <span style={{ fontSize: '0.75rem' }}>({details?.location ? details.location : 'Location'})</span>
+      </header>
       {averageRating ? <StarRate rating={parseInt(averageRating, 10)} /> : <StarRate rating={0} />}
       <div className="restaurant-details-card-grid">
         {restaurant.map((item) => (
