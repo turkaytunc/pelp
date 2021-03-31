@@ -21,7 +21,7 @@ export const getReviewsByRestaurantId = async (req, res, next) => {
        WHERE reviews.fk_restaurants = $1`,
       [id]
     );
-    const result = { average: averageRating.rows[0].average, reviews: [...review.rows], name: restaurant };
+    const result = { average: averageRating.rows[0].average, reviews: [...review.rows], details: restaurant.rows[0] };
 
     return res.json(result);
   } catch (error) {
