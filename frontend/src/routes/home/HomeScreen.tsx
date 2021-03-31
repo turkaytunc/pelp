@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import './home-screen.scss';
 import { Store } from 'src/context/Store';
-import { Link } from 'react-router-dom';
 import { validateUser } from 'src/util';
 import { Header, AddRestaurant, RestaurantList } from '../../components';
 
@@ -25,11 +24,6 @@ const HomeScreen = (): React.ReactElement => {
   return (
     <div className="home-screen">
       <Header />
-
-      <Link className="home-screen-link" to="/dashboard">
-        dashboard
-      </Link>
-
       {state.user.isAuth && <AddRestaurant />}
       <RestaurantList />
     </div>

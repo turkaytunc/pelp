@@ -1,0 +1,50 @@
+@use '/src/scss';
+
+.navigation-bar-container {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+  background-color: #353535;
+  box-shadow: 0px 1px 10px scss.$nav-background-color;
+  opacity: 0.95;
+  padding: 0.5rem;
+}
+.nav-section-logo {
+  padding-left: 1rem;
+  flex: 1;
+  img {
+    height: 2rem;
+  }
+}
+
+.nav-section-links {
+  flex: 3;
+
+  display: flex;
+  justify-content: flex-end;
+
+  a {
+    color: #eee;
+
+    &:nth-child(n):not(:first-child) {
+      padding-left: 0.5rem;
+    }
+    &:hover {
+      color: scss.$input-button-color;
+    }
+  }
+  button {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    border: none;
+    background-color: transparent;
+    color: #eee;
+
+    &:hover {
+      color: scss.$input-button-color;
+    }
+  }
+}
