@@ -1,5 +1,9 @@
 @use './scss';
 
+.app {
+  position: relative;
+}
+
 .main {
   display: flex;
   color: scss.$color-light;
