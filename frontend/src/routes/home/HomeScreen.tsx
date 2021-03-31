@@ -1,14 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import './home-screen.scss';
 import { Store } from 'src/context/Store';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { validateUser } from 'src/util';
 import { Header, AddRestaurant, RestaurantList } from '../../components';
 
 const HomeScreen = (): React.ReactElement => {
   const { state, dispatch } = useContext(Store);
-
-  const history = useHistory();
 
   useEffect(() => {
     const fetchUser = async () => {

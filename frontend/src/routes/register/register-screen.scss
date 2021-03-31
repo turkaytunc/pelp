@@ -1,3 +1,21 @@
+@use '/src/scss';
+
 .register-screen {
   width: 90%;
+}
+
+.login-link-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: left;
+
+  span {
+    padding: 0 0.5rem;
+  }
+  a {
+    color: scss.$input-button-color;
+    &:hover {
+      color: #ddd;
+    }
+  }
 }

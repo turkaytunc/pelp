@@ -11,7 +11,7 @@ import { deleteRestaurantById } from 'src/util';
 import restJPG from 'src/images/rest.jpg';
 import { StarRate } from 'src/components';
 
-const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElement => {
+const ListCard = ({ restaurant, isAuth }: { restaurant: Restaurant; isAuth: boolean }): React.ReactElement => {
   const { id, name, location, priceRange, average } = restaurant;
   const history = useHistory();
 
@@ -61,25 +61,27 @@ const ListCard = ({ restaurant }: { restaurant: Restaurant }): React.ReactElemen
         <div className="details-item"> {'$'.repeat(priceRange)}</div>
         <StarRate rating={parseFloat(average)} color="#ddd" />
       </div>
-      <div className="listcard-button-container">
-        <button
-          data-testid="listcard-edit"
-          onClick={(event) => handleUpdate(event, id)}
-          type="button"
-          className="card-button edit-button"
-        >
-          <FaEdit fill="#e0b90c" /> Edit
-        </button>
-        <button
-          data-testid="listcard-delete"
-          onClick={(event) => handleDelete(event, id)}
-          type="button"
-          className="card-button delete-button"
-        >
-          <FaTrash fill="#e00c0c" /> Delete
-        </button>
-        <div>{deleteError}</div>
-      </div>
+      {isAuth ? (
+        <div className="listcard-button-container">
+          <button
+            data-testid="listcard-edit"
+            onClick={(event) => handleUpdate(event, id)}
+            type="button"
+            className="card-button edit-button"
+          >
+            <FaEdit fill="#e0b90c" /> Edit
+          </button>
+          <button
+            data-testid="listcard-delete"
+            onClick={(event) => handleDelete(event, id)}
+            type="button"
+            className="card-button delete-button"
+          >
+            <FaTrash fill="#e00c0c" /> Delete
+          </button>
+          <div>{deleteError}</div>
+        </div>
+      ) : null}
     </div>
   );
 };
