@@ -1,11 +1,11 @@
 @use './scss';
 
-.app {
+.main {
   display: flex;
   color: scss.$color-light;
   text-align: center;
   background-color: scss.$background-color-dark;
   height: 100vh;
   justify-content: center;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
