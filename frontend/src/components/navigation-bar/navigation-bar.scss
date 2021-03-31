@@ -1,5 +1,10 @@
+@use '/src/scss';
+
 .navigation-bar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 5;
+  background-color: scss.$color-dark;
+  box-shadow: 0px 1px 10px 1px scss.$nav-background-color;
 }

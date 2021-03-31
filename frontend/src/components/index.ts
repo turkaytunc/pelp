@@ -11,3 +11,4 @@ export { default as Register } from './register/Register';
 export { default as Dashboard } from './dashboard/Dashboard';
 export { default as Loading } from './loading/Loading';
 export { default as NavigationBar } from './navigation-bar/NavigationBar';
+export { default as Footer } from './footer/Footer';
