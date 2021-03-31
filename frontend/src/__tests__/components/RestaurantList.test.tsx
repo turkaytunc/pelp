@@ -39,7 +39,6 @@ describe('<RestaurantList />', () => {
         </StoreProvider>
       </Router>
     );
-    await act(() => new Promise((resolve) => setTimeout(resolve, 500)));
 
     expect(await screen.findByText('cannot fetch')).toBeTruthy();
   });
