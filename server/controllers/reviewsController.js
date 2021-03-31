@@ -8,19 +8,20 @@ export const getReviewsByRestaurantId = async (req, res, next) => {
       const error = new StatusError('id must be number', 400);
       return next(error);
     }
-    const restaurant = await pool.query(
+    const review = await pool.query(
       `SELECT reviews.id, body AS comment,reviews.name AS user, reviews.rating AS rating
        FROM restaurants, reviews
        WHERE reviews.fk_restaurants = restaurants.id and restaurants.id = $1`,
       [id]
     );
+    const restaurant = await pool.query(`SELECT name, location FROM restaurants where restaurants.id = $1`, [id]);
     const averageRating = await pool.query(
       `SELECT trunc(AVG(rating), 2) AS average
        FROM reviews
        WHERE reviews.fk_restaurants = $1`,
       [id]
     );
-    const result = { average: averageRating.rows[0].average, reviews: [...restaurant.rows] };
+    const result = { average: averageRating.rows[0].average, reviews: [...review.rows], name: restaurant };
 
     return res.json(result);
   } catch (error) {
