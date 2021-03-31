@@ -27,13 +27,17 @@ const RestaurantList = (): React.ReactElement => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await validateUser();
-      const data = await response.json();
+      try {
+        const response = await validateUser();
+        const data = await response.json();
 
-      if (response.status === 200) {
-        dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: true } });
-      } else {
-        dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: false } });
+        if (response.status === 200) {
+          dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: true } });
+        } else {
+          dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: false } });
+        }
+      } catch (error) {
+        setResponseError(error.message);
       }
     };
     fetchUser();
