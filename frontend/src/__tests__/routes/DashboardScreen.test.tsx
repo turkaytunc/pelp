@@ -7,10 +7,13 @@ import { StoreProvider } from 'src/context/Store';
 jest.spyOn(window, 'fetch');
 
 describe('<DashboardScreen/>', () => {
-  it('should fetch and validate user without crash', () => {
+  it('should fetch and validate user without crash', async () => {
     const history = createBrowserHistory();
     history.push('/dashboard');
-    (window.fetch as jest.Mock).mockResolvedValue({ status: 200, json: jest.fn(() => ({ name: '', email: '' })) });
+    (window.fetch as jest.Mock).mockResolvedValue({
+      status: 200,
+      json: jest.fn(() => ({ name: 'turkay', email: 'usermail@example.com' })),
+    });
     render(
       <Router history={history}>
         <StoreProvider>
@@ -18,6 +21,8 @@ describe('<DashboardScreen/>', () => {
         </StoreProvider>
       </Router>
     );
+
+    expect(await screen.findByText('Welcome turkay')).toBeTruthy();
   });
 
   it('should fetch and reject jwt', async () => {
