@@ -7,7 +7,10 @@ const LoginScreen = (): React.ReactElement => {
     <div className="login-screen">
       Login Screen
       <Login />
-      <Link to="/auth/register">Register</Link>
+      <div className="register-link-container">
+        <span>No account?</span>
+        <Link to="/auth/register">Create one</Link>
+      </div>
     </div>
   );
 };

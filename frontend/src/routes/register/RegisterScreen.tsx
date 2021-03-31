@@ -8,7 +8,10 @@ const RegisterScreen = (): React.ReactElement => {
     <div className="register-screen">
       Register Screen
       <Register />
-      <Link to="/auth/login">Login</Link>
+      <div className="login-link-container">
+        <span>Already have an account?</span>
+        <Link to="/auth/login">Sign in</Link>
+      </div>
     </div>
   );
 };
