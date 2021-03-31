@@ -4,7 +4,7 @@ import { Store } from 'src/context/Store';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createToastConfig, loginUser, validateUser } from 'src/util/';
+import { createToastConfig, isInputEmpty, loginUser, validateUser } from 'src/util/';
 
 const Login = (): React.ReactElement => {
   const [email, setEmail] = useState('');
@@ -33,6 +33,10 @@ const Login = (): React.ReactElement => {
     event.preventDefault();
 
     try {
+      if (isInputEmpty(email, password)) {
+        setInputError("Please don't left inputs empty!");
+        return;
+      }
       const response = await loginUser(email, password);
       const data = await response.json();
 
@@ -46,12 +50,13 @@ const Login = (): React.ReactElement => {
           createToastConfig(() => history.push('/'))
         );
       } else {
-        window.localStorage.removeItem('token');
-        dispatch({ type: 'ADD_USER', payload: { ...state.user, isAuth: false } });
-        history.push('/');
+        setInputError(data.message);
       }
     } catch (error) {
       setInputError(error.message);
+    } finally {
+      setEmail('');
+      setPassword('');
     }
   };
 

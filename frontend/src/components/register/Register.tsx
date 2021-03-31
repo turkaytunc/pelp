@@ -4,7 +4,7 @@ import { Store } from 'src/context/Store';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createToastConfig, registerUser } from 'src/util/';
+import { createToastConfig, isInputEmpty, registerUser } from 'src/util/';
 
 const Register = (): React.ReactElement => {
   const [email, setEmail] = useState('');
@@ -17,14 +17,29 @@ const Register = (): React.ReactElement => {
 
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const response = await registerUser(name, email, password);
-    const data = await response.json();
 
-    const { token, user } = data;
-    if (token) {
-      window.localStorage.setItem('token', token);
-      dispatch({ type: 'ADD_USER', payload: { ...user, isAuth: true } });
-      history.push('/');
+    try {
+      if (isInputEmpty(name, email, password)) {
+        setInputError("Please don't left inputs empty!");
+        return;
+      }
+      const response = await registerUser(name, email, password);
+      const data = await response.json();
+
+      const { token, user } = data;
+      if (token) {
+        window.localStorage.setItem('token', token);
+        dispatch({ type: 'ADD_USER', payload: { ...user, isAuth: true } });
+        history.push('/');
+      } else {
+        setInputError(data.message);
+      }
+    } catch (error) {
+      setInputError(error.message);
+    } finally {
+      setName('');
+      setEmail('');
+      setPassword('');
     }
   };
 
