@@ -1,6 +1,8 @@
 import pool from '../db/index.js';
 
-// GET /api/v1/restaurants/
+/**
+ * GET /api/v1/restaurants/
+ */
 export const getAllRestaurants = async (_, res, next) => {
   try {
     const restaurants = await pool.query(

@@ -4,12 +4,10 @@ import { StatusError } from '../util/index.js';
 export const getReviewsByRestaurantId = async (req, res, next) => {
   try {
     const { id } = req.params;
-
     if (!Number.isInteger(parseInt(id))) {
       const error = new StatusError('id must be number', 400);
       return next(error);
     }
-
     const restaurant = await pool.query(
       `SELECT reviews.id, body AS comment,reviews.name AS user, reviews.rating AS rating
        FROM restaurants, reviews

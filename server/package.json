@@ -8,7 +8,7 @@
     "test": "jest",
     "test:dev": "jest --coverage --watchAll",
     "start": "node server.js",
-    "dev": "nodemon server.js",
+    "dev": "nodemon -L server.js",
     "compose:up": "sh server-dev.sh",
     "compose:down": "docker-compose -f docker-compose-dev.yml down",
     "compose:rmv": "docker-compose -f docker-compose-dev.yml rm -v"
