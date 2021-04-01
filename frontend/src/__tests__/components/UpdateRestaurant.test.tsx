@@ -14,15 +14,15 @@ describe('<UpdateRestaurant/>', () => {
     });
     const history = createBrowserHistory();
 
-    const { getByTestId } = render(
+    render(
       <StoreProvider>
         <Router history={history}>
           <UpdateRestaurant />
         </Router>
       </StoreProvider>
     );
-    await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
-    expect(getByTestId('update-res-form')).not.toBeFalsy();
+
+    expect(await screen.findByTestId('update-res-form')).not.toBeFalsy();
   });
 
   describe('Input Fields', () => {
@@ -40,9 +40,8 @@ describe('<UpdateRestaurant/>', () => {
       const nameInput = getByTestId('update-res-name');
 
       fireEvent.change(nameInput, { target: { value: 'Paşa Dürüm' } });
-      await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
 
-      expect(nameInput).toHaveValue('Paşa Dürüm');
+      expect(await screen.findByTestId('update-res-name')).toHaveValue('Paşa Dürüm');
     });
 
     it('should fire location input change event', async () => {
@@ -59,8 +58,8 @@ describe('<UpdateRestaurant/>', () => {
       const locationInput = getByTestId('update-res-location');
 
       fireEvent.change(locationInput, { target: { value: ' edirne' } });
-      await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
-      expect(locationInput).toHaveValue(' edirne');
+
+      expect(await screen.findByTestId('update-res-location')).toHaveValue(' edirne');
     });
 
     it('should fire price input change event', async () => {
@@ -77,8 +76,8 @@ describe('<UpdateRestaurant/>', () => {
       const priceInput = getByTestId('update-res-price');
 
       fireEvent.change(priceInput, { target: { value: 5 } });
-      await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
-      expect(priceInput).toHaveValue('5');
+
+      expect(await screen.findByTestId('update-res-price')).toHaveValue('5');
     });
   });
 
@@ -124,10 +123,9 @@ describe('<UpdateRestaurant/>', () => {
       fireEvent.change(priceInput, { target: { value: '2' } });
 
       fireEvent.click(submitButton);
-      await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
 
-      expect(nameInput).toHaveValue('');
-      expect(locationInput).toHaveValue('');
+      expect(await screen.findByTestId('update-res-name')).toHaveValue('');
+      expect(await screen.findByTestId('update-res-location')).toHaveValue('');
     });
 
     it('should handle error response', async () => {

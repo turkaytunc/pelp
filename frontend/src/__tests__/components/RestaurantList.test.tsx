@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { RestaurantList } from 'src/components';
 import { StoreProvider } from 'src/context/Store';
 import { createBrowserHistory } from 'history';
@@ -16,16 +16,15 @@ describe('<RestaurantList />', () => {
     });
     const history = createBrowserHistory();
 
-    const { getByTestId } = render(
+    render(
       <Router history={history}>
         <StoreProvider>
           <RestaurantList />
         </StoreProvider>
       </Router>
     );
-    await act(() => new Promise((resolve) => setTimeout(resolve, 500)));
 
-    expect(getByTestId('restaurant-list')).toBeInTheDocument();
+    expect(await screen.findByTestId('restaurant-list')).toBeInTheDocument();
   });
 
   it('should throw error message', async () => {
