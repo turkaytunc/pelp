@@ -46,4 +46,34 @@ describe('<Register />', () => {
       expect(await screen.findByTestId('register-password')).toHaveValue('weakpassword');
     });
   });
+
+  describe('submit events', () => {
+    it('should handle empty submit ops', async () => {
+      render(
+        <StoreProvider>
+          <Register />
+        </StoreProvider>
+      );
+
+      fireEvent.submit(await screen.findByText('Sign Up'));
+
+      expect(await screen.findByText("Please don't left inputs empty!")).toBeTruthy();
+    });
+
+    describe('focus events after empty submit event', () => {
+      it('should fire focus events', async () => {
+        render(
+          <StoreProvider>
+            <Register />
+          </StoreProvider>
+        );
+        fireEvent.submit(await screen.findByText('Sign Up'));
+        expect(await screen.findByText("Please don't left inputs empty!")).toBeInTheDocument();
+
+        fireEvent.focus(await screen.findByTestId('register-name'));
+        fireEvent.focus(await screen.findByTestId('register-email'));
+        fireEvent.focus(await screen.findByTestId('register-password'));
+      });
+    });
+  });
 });
