@@ -36,7 +36,7 @@ describe('<DashboardScreen/>', () => {
       </Router>
     );
 
-    await act(() => new Promise((resolve) => setTimeout(resolve, 500)));
+    await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
     expect(window.location.pathname).toBe('/auth/login');
   });
   it('should not fetch and throw error', async () => {
