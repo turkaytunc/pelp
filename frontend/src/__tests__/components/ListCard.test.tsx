@@ -74,7 +74,6 @@ describe('<ListCard />', () => {
       const deleteButton = getByTestId('listcard-delete');
 
       fireEvent.click(deleteButton);
-      await act(() => new Promise((resolve) => setTimeout(resolve, 1000)));
 
       expect(await screen.findByText('fetch error')).toBeInTheDocument();
     });

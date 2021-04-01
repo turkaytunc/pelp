@@ -95,9 +95,10 @@ describe('<AddRestaurants/>', () => {
         fireEvent.change(locationInput, { target: { value: ' edirne' } });
         fireEvent.change(priceInput, { target: { value: '4' } });
         fireEvent.click(submitButton);
-        await act(() => new Promise((resolve) => setTimeout(resolve, 500)));
 
-        expect(nameInput).toHaveValue('');
+        // await act(() => new Promise((resolve) => setTimeout(resolve, 500)));
+
+        expect(await screen.findByTestId('res-name-input')).toHaveValue('');
       });
 
       it('should get unsuccessful response', async () => {
@@ -113,9 +114,8 @@ describe('<AddRestaurants/>', () => {
         fireEvent.change(locationInput, { target: { value: ' edirne' } });
         fireEvent.change(priceInput, { target: { value: '4' } });
         fireEvent.click(submitButton);
-        await act(() => new Promise((resolve) => setTimeout(resolve, 500)));
 
-        expect(nameInput).toHaveValue('');
+        expect(await screen.findByTestId('res-name-input')).toHaveValue('');
       });
     });
   });

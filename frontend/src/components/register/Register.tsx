@@ -48,6 +48,7 @@ const Register = (): React.ReactElement => {
       <form className="register-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleRegister(event)}>
         <input
           className="name-input"
+          data-testid="register-name"
           type="text"
           value={name}
           onChange={(event) => setName(event.target.value)}
@@ -56,6 +57,7 @@ const Register = (): React.ReactElement => {
         />
         <input
           className="email-input"
+          data-testid="register-email"
           type="text"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
@@ -64,6 +66,7 @@ const Register = (): React.ReactElement => {
         />
         <input
           className="password-input"
+          data-testid="register-password"
           type="text"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
