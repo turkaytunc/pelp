@@ -5,7 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 
 import { authRoutes, dashboardRoutes, restaurantRoutes, reviewRoutes } from './routers/v1/index.js';
-import StatusError from './util/StatusError.js';
+import { ErrorWithStatusCode } from './util/index.js';
 
 dotenv.config();
 const app = express();
@@ -25,7 +25,7 @@ app.use('/api/v1/dashboard', dashboardRoutes);
 
 // Unhandled Endpoint Error
 app.get('/*', (req, res, next) => {
-  const error = new StatusError('Page Not Found');
+  const error = new ErrorWithStatusCode('Page Not Found');
   error.status = 404;
   return next(error);
 });
