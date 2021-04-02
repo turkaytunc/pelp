@@ -1,13 +1,15 @@
 import bcrypt from 'bcrypt';
 import pool from '../db/index.js';
-import { generateToken } from '../util/index.js';
-import { StatusError } from '../util/index.js';
+import { generateToken, StatusError, joiValidators } from '../util/index.js';
+
+const { registerValidation } = joiValidators;
 
 // POST /api/v1/auth/register
 export const userRegister = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
+    await registerValidation.validateAsync({ name, email, password });
     const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
 
     const isUserExist = user.rows.length > 0;
