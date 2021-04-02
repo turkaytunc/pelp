@@ -1,15 +1,16 @@
 import { render, screen } from '@testing-library/react';
-import { LoginScreen } from 'src/routes';
+import { SigninScreen } from 'src/routes';
 import { createBrowserHistory } from 'history';
 import { Router } from 'react-router-dom';
 
-describe('<LoginScreen />', () => {
-  it('should render without crash', () => {
+describe('<SigninScreen />', () => {
+  it('should render without crash', async () => {
     const history = createBrowserHistory();
     render(
       <Router history={history}>
-        <LoginScreen />
+        <SigninScreen />
       </Router>
     );
+    expect(await screen.findByText('Sign In')).toBeTruthy();
   });
 });

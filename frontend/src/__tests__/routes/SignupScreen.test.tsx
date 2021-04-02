@@ -1,17 +1,17 @@
 import { screen, render } from '@testing-library/react';
-import { RegisterScreen } from 'src/routes';
+import { SignupScreen } from 'src/routes';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-describe('<RegisterScreen/>', () => {
+describe('<SignupScreen/>', () => {
   it('should render without crash', async () => {
     const history = createBrowserHistory();
     render(
       <Router history={history}>
-        <RegisterScreen />
+        <SignupScreen />
       </Router>
     );
 
-    expect(await screen.findByText('Register Screen')).toBeTruthy();
+    expect(await screen.findByText('Sign Up')).toBeTruthy();
   });
 });

@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './app.scss';
 import { Footer, NavigationBar } from './components';
-import { HomeScreen, DetailsScreen, UpdateScreen, RegisterScreen, LoginScreen, DashboardScreen } from './routes';
+import { HomeScreen, DetailsScreen, UpdateScreen, SignupScreen, SigninScreen, DashboardScreen } from './routes';
 
 function App(): JSX.Element {
   return (
@@ -14,8 +14,8 @@ function App(): JSX.Element {
             <Route exact path="/dashboard" component={DashboardScreen} />
             <Route exact path="/restaurant/:id/update" component={UpdateScreen} />
             <Route exact path="/restaurant/:id" component={DetailsScreen} />
-            <Route exact path="/auth/register" component={RegisterScreen} />
-            <Route exact path="/auth/login" component={LoginScreen} />
+            <Route exact path="/auth/signup" component={SignupScreen} />
+            <Route exact path="/auth/signin" component={SigninScreen} />
           </Switch>
         </div>
         <Footer />

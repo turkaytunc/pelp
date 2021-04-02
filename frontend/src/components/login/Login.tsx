@@ -73,14 +73,14 @@ const Login = (): React.ReactElement => {
         />
         <input
           className="password-input"
-          type="text"
+          type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           onFocus={() => setInputError('')}
           placeholder="Password"
         />
         {inputError}
-        <button type="submit">Login</button>
+        <button type="submit">Sign In</button>
       </form>
 
       <ToastContainer transition={Zoom} />

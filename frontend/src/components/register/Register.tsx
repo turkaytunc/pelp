@@ -33,10 +33,12 @@ const Register = (): React.ReactElement => {
         history.push('/');
       } else {
         setInputError(data.message);
+        setName('');
+        setEmail('');
+        setPassword('');
       }
     } catch (error) {
       setInputError(error.message);
-    } finally {
       setName('');
       setEmail('');
       setPassword('');
@@ -67,7 +69,7 @@ const Register = (): React.ReactElement => {
         <input
           className="password-input"
           data-testid="register-password"
-          type="text"
+          type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           onFocus={() => setInputError('')}
