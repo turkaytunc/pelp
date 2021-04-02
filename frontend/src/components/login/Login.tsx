@@ -73,7 +73,7 @@ const Login = (): React.ReactElement => {
         />
         <input
           className="password-input"
-          type="text"
+          type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           onFocus={() => setInputError('')}

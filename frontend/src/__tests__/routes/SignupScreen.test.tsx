@@ -3,7 +3,7 @@ import { SignupScreen } from 'src/routes';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-describe('<RegisterScreen/>', () => {
+describe('<SignupScreen/>', () => {
   it('should render without crash', async () => {
     const history = createBrowserHistory();
     render(

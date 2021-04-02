@@ -3,7 +3,7 @@ import { SigninScreen } from 'src/routes';
 import { createBrowserHistory } from 'history';
 import { Router } from 'react-router-dom';
 
-describe('<LoginScreen />', () => {
+describe('<SigninScreen />', () => {
   it('should render without crash', async () => {
     const history = createBrowserHistory();
     render(

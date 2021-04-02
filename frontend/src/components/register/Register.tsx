@@ -69,7 +69,7 @@ const Register = (): React.ReactElement => {
         <input
           className="password-input"
           data-testid="register-password"
-          type="text"
+          type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           onFocus={() => setInputError('')}
