@@ -5,7 +5,7 @@ import { generateToken, StatusError, joiValidators } from '../util/index.js';
 const { registerValidation } = joiValidators;
 
 // POST /api/v1/auth/register
-export const userRegister = async (req, res, next) => {
+export const register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
@@ -14,19 +14,17 @@ export const userRegister = async (req, res, next) => {
 
     const isUserExist = user.rows.length > 0;
     if (isUserExist) {
-      const error = new StatusError('Email is already in use!!', 401);
-      return next(error);
+      throw new StatusError('Email is already in use!!', 401);
     }
 
-    const passHash = await bcrypt.hash(password, 10);
+    const passwordHash = await bcrypt.hash(password, 10);
     const newUser = await pool.query(
       'INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING name, email, user_unique',
-      [name, passHash, email]
+      [name, passwordHash, email]
     );
 
-    const { user_unique: unique, name: username, email: userMail } = newUser.rows[0];
-    const token = generateToken(unique);
-    return res.status(200).json({ user: { name: username, email: userMail }, token });
+    const token = generateToken(newUser.rows[0].user_unique);
+    return res.status(200).json({ user: { name: newUser.rows[0].name, email: newUser.rows[0].email }, token });
   } catch (error) {
     error.status = 400;
     return next(error);
@@ -35,7 +33,7 @@ export const userRegister = async (req, res, next) => {
 
 // POST /api/v1/auth/login
 
-export const userLogin = async (req, res, next) => {
+export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
