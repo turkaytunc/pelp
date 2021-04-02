@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import pool from '../db/index.js';
-import { generateToken, StatusError, joiValidators } from '../util/index.js';
+import { generateToken, ErrorWithStatusCode, joiValidators } from '../util/index.js';
 
 const { registerValidation } = joiValidators;
 
@@ -14,7 +14,7 @@ export const register = async (req, res, next) => {
 
     const isUserExist = user.rows.length > 0;
     if (isUserExist) {
-      throw new StatusError('Email is already in use!!', 401);
+      throw new ErrorWithStatusCode('Email is already in use!!', 401);
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
@@ -32,7 +32,6 @@ export const register = async (req, res, next) => {
 };
 
 // POST /api/v1/auth/login
-
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;

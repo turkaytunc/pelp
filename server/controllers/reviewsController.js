@@ -1,11 +1,11 @@
 import pool from '../db/index.js';
-import { StatusError } from '../util/index.js';
+import { ErrorWithStatusCode } from '../util/index.js';
 
 export const getReviewsByRestaurantId = async (req, res, next) => {
   try {
     const { id } = req.params;
     if (!Number.isInteger(parseInt(id))) {
-      const error = new StatusError('id must be number', 400);
+      const error = new ErrorWithStatusCode('id must be number', 400);
       return next(error);
     }
     const review = await pool.query(
