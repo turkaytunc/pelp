@@ -33,10 +33,12 @@ const Register = (): React.ReactElement => {
         history.push('/');
       } else {
         setInputError(data.message);
+        setName('');
+        setEmail('');
+        setPassword('');
       }
     } catch (error) {
       setInputError(error.message);
-    } finally {
       setName('');
       setEmail('');
       setPassword('');
