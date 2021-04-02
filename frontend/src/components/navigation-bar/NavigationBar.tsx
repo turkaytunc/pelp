@@ -29,7 +29,7 @@ const NavigationBar = (): React.ReactElement => {
             </button>
           </>
         ) : (
-          <Link to="/auth/login">Sign in</Link>
+          <Link to="/auth/signin">Sign in</Link>
         )}
       </section>
     </div>

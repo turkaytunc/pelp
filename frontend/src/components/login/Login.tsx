@@ -80,7 +80,7 @@ const Login = (): React.ReactElement => {
           placeholder="Password"
         />
         {inputError}
-        <button type="submit">Login</button>
+        <button type="submit">Sign In</button>
       </form>
 
       <ToastContainer transition={Zoom} />
