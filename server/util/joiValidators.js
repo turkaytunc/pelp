@@ -26,3 +26,10 @@ export const restaurantValidation = Joi.object({
 export const restaurantIdValidation = Joi.object({
   id: Joi.number().min(1).max(100000).required(),
 });
+
+export const reviewValidation = Joi.object({
+  id: Joi.string().trim().max(10000).required(),
+  name: Joi.string().trim().min(3).max(40).required(),
+  rating: Joi.string().trim().max(1).required(),
+  comment: Joi.string().trim().min(10).max(100).required(),
+});
