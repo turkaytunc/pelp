@@ -27,14 +27,13 @@
 
   button {
     height: 1.7rem;
-    margin-top: 0.4rem;
+    margin-top: 1rem;
     font-size: 1.1rem;
     border: none;
     border-radius: 5px;
     background-color: scss.$input-button-color;
     color: #222;
     box-shadow: -0.2px -0.2px 1px #ccc inset;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
 
     &:hover {
       color: aliceblue;

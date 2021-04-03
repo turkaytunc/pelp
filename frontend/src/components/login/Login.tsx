@@ -27,7 +27,9 @@ const Login = (): React.ReactElement => {
         dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: false } });
       }
     };
-    fetchUser();
+    if (localStorage.getItem('token')) {
+      fetchUser();
+    }
   }, []);
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
