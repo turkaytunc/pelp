@@ -8,7 +8,7 @@ const UpdateRestaurant = (): React.ReactElement => {
   const { id }: { id: string } = useParams();
   const history = useHistory();
 
-  const [name, setName] = useState('');
+  const [restaurantName, setRestaurantName] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState(1);
   const [responseError, setResponseError] = useState('');
@@ -18,9 +18,9 @@ const UpdateRestaurant = (): React.ReactElement => {
       const response = await getRestaurantById(id);
       const data = await response.json();
 
-      setName(data[0].name);
-      setLocation(data[0].location);
-      setPrice(data[0].price_range);
+      setRestaurantName(data?.name);
+      setLocation(data?.location);
+      setPrice(data?.price_range);
     } catch (error) {
       setResponseError(error.message);
     }
@@ -33,16 +33,25 @@ const UpdateRestaurant = (): React.ReactElement => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (isInputEmpty(name, location)) return;
     try {
-      await updateRestaurantById(id, name, location, price);
+      if (isInputEmpty(restaurantName, location)) return;
+
+      const response = await updateRestaurantById(id, restaurantName, location, price);
+      setLocation('');
+      setRestaurantName('');
+      setPrice(3);
+      if (response.status === 201) {
+        history.push('/');
+        return;
+      }
+      const data = await response.json();
+      setResponseError(data.message);
     } catch (error) {
       setResponseError(error.message);
+      setLocation('');
+      setRestaurantName('');
+      setPrice(3);
     }
-    setLocation('');
-    setName('');
-    setPrice(3);
-    history.push('/');
   };
 
   return (
@@ -53,10 +62,10 @@ const UpdateRestaurant = (): React.ReactElement => {
     >
       <input
         data-testid="update-res-name"
-        onChange={(event) => setName(event.target.value)}
+        onChange={(event) => setRestaurantName(event.target.value)}
         type="text"
         placeholder="Restaurant Name"
-        value={name}
+        value={restaurantName}
       />
       <input
         data-testid="update-res-location"
@@ -80,7 +89,7 @@ const UpdateRestaurant = (): React.ReactElement => {
         {price}
       </label>
       <button type="submit">Update</button>
-      <div>{responseError}</div>
+      {responseError}
     </form>
   );
 };
