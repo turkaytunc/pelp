@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { addRestaurantReview, isInputEmpty } from 'src/util';
-import { DisplayError } from '..';
+import { DisplayError } from 'src/components';
 import './add-reviews.scss';
 
 const AddReview = (): React.ReactElement => {
