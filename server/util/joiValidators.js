@@ -11,3 +11,8 @@ export const registerValidation = Joi.object({
   email: Joi.string().trim().email().required(),
   password: Joi.string().trim().min(8).max(20).required(),
 });
+
+export const loginValidation = Joi.object({
+  email: Joi.string().trim().email().required(),
+  password: Joi.string().trim().min(8).max(20).required(),
+});

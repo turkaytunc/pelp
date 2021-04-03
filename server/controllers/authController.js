@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import pool from '../db/index.js';
 import { generateToken, ErrorWithStatusCode, joiValidators } from '../util/index.js';
+import { loginValidation } from '../util/joiValidators.js';
 
 const { registerValidation } = joiValidators;
 
@@ -36,11 +37,12 @@ export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
+    await loginValidation.validateAsync({ email, password });
     const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
 
     const isUserExist = user.rows.length > 0;
     if (!isUserExist) {
-      return res.status(401).json({ message: 'Wrong email or password!' });
+      throw new ErrorWithStatusCode('Wrong email or password!', 401);
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.rows[0].password);
@@ -51,7 +53,7 @@ export const login = async (req, res, next) => {
 
       return res.json({ user: { name, email }, token });
     }
-    return res.status(403).json({ message: 'Wrong email or password!' });
+    throw new ErrorWithStatusCode('Wrong email or password!', 403);
   } catch (error) {
     return next(error);
   }
