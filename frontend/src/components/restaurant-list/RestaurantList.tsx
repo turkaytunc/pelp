@@ -25,24 +25,6 @@ const RestaurantList = (): React.ReactElement => {
     fetchRestaurants();
   }, []);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await validateUser();
-        const data = await response.json();
-
-        if (response.status === 200) {
-          dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: true } });
-        } else {
-          dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: false } });
-        }
-      } catch (error) {
-        setResponseError(error.message);
-      }
-    };
-    fetchUser();
-  }, []);
-
   return (
     <div className="restaurant-list-container" data-testid="restaurant-list">
       {state.restaurants.length > 0 ? (

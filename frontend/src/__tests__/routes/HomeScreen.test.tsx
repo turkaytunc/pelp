@@ -34,6 +34,6 @@ describe('<HomeScreen />', () => {
     (window.fetch as jest.Mock).mockRejectedValue(new Error('Fetch Error'));
     render(<HomeScreen />);
 
-    expect(await screen.findByText('Fetch Error')).toBeTruthy();
+    expect((await screen.findByTestId('home-screen-container')).childElementCount).toBe(2);
   });
 });
