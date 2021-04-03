@@ -16,14 +16,17 @@ const DashboardScreen = (): React.ReactElement => {
         const data = await response.json();
         if (response.status === 200) {
           dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: true } });
-        } else {
-          history.push('/auth/login');
+          return;
         }
       } catch (error) {
         setFetchError(error.message);
       }
     };
-    fetchUser();
+    if (localStorage.getItem('token')) {
+      fetchUser();
+      return;
+    }
+    history.push('/auth/signin');
   }, []);
 
   return (
