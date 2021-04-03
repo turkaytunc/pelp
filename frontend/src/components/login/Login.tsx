@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createToastConfig, isInputEmpty, loginUser, validateUser } from 'src/util/';
+import { DisplayError } from 'src/components';
 
 const Login = (): React.ReactElement => {
   const [email, setEmail] = useState('');
@@ -79,7 +80,7 @@ const Login = (): React.ReactElement => {
           onFocus={() => setInputError('')}
           placeholder="Password"
         />
-        {inputError}
+        {inputError && <DisplayError message={inputError} />}
         <button type="submit">Sign In</button>
       </form>
 

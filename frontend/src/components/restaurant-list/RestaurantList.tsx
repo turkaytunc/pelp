@@ -5,7 +5,7 @@ import { getRestaurants, validateUser } from 'src/util';
 import { ActionType } from 'src/constants';
 import { Store } from 'src/context/Store';
 
-import { Loading } from 'src/components';
+import { Loading, DisplayError } from 'src/components';
 import ListCard from './list-card/ListCard';
 
 const RestaurantList = (): React.ReactElement => {
@@ -36,7 +36,7 @@ const RestaurantList = (): React.ReactElement => {
       ) : (
         <Loading message="Loading Restaurants" />
       )}
-      <div>{responseError}</div>
+      {responseError && <DisplayError message={responseError} />}
     </div>
   );
 };

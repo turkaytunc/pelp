@@ -34,6 +34,7 @@
     background-color: scss.$input-button-color;
     color: #222;
     box-shadow: -0.2px -0.2px 1px #ccc inset;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
 
     &:hover {
       color: aliceblue;
