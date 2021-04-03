@@ -9,6 +9,7 @@ jest.spyOn(window, 'fetch');
 describe('<DashboardScreen/>', () => {
   it('should fetch and validate user without crash', async () => {
     const history = createBrowserHistory();
+    localStorage.setItem('token', 'Mock token');
     history.push('/dashboard');
     (window.fetch as jest.Mock).mockResolvedValue({
       status: 200,
@@ -27,6 +28,7 @@ describe('<DashboardScreen/>', () => {
 
   it('should fetch and reject jwt', async () => {
     const history = createBrowserHistory();
+    localStorage.setItem('token', 'Mock token');
     history.push('/dashboard');
     (window.fetch as jest.Mock).mockResolvedValue({ status: 403, json: jest.fn(() => ({ message: 'Unauthorized' })) });
 
@@ -37,11 +39,13 @@ describe('<DashboardScreen/>', () => {
     );
 
     await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
-    expect(window.location.pathname).toBe('/auth/login');
+    expect(window.location.pathname).toBe('/auth/signin');
   });
   it('should not fetch and throw error', async () => {
     const history = createBrowserHistory();
+    localStorage.setItem('token', 'Mock token');
     history.push('/dashboard');
+
     (window.fetch as jest.Mock).mockRejectedValue(new Error('Validation error'));
 
     render(
