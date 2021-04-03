@@ -77,7 +77,7 @@ describe('<AddReview />', () => {
     describe('With proper inputs', () => {
       describe('Successful fetch', () => {
         it('should submit form successfully', async () => {
-          (window.fetch as jest.Mock).mockResolvedValue({ status: 200, json: jest.fn });
+          (window.fetch as jest.Mock).mockResolvedValue({ status: 201, json: jest.fn });
 
           global.window = Object.create(window);
           const url = '/restaurant/10';
@@ -105,7 +105,10 @@ describe('<AddReview />', () => {
       describe('Failed fetch', () => {
         it('should submit form successfully', async () => {
           history.push('/restaurant/12');
-          (window.fetch as jest.Mock).mockResolvedValue({ status: 400, json: jest.fn });
+          (window.fetch as jest.Mock).mockResolvedValue({
+            status: 400,
+            json: jest.fn(() => ({ message: 'Cannot get restaurant' })),
+          });
           const { findByTestId } = render(
             <Router history={history}>
               <AddReview />
@@ -117,7 +120,7 @@ describe('<AddReview />', () => {
           fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '5' } });
           fireEvent.submit(await findByTestId('review-form'));
 
-          expect(await screen.findByText('fetchError')).toBeTruthy();
+          expect(await screen.findByText('Cannot get restaurant')).toBeTruthy();
         });
 
         it('should submit form successfully and get error', async () => {

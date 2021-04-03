@@ -10,7 +10,7 @@ describe('<UpdateRestaurant/>', () => {
   it('should render without crash', async () => {
     (window.fetch as jest.Mock).mockResolvedValue({
       status: 200,
-      json: jest.fn(() => [{ id: 2, name: '', location: '', price_range: 3 }]),
+      json: jest.fn(() => ({ id: 2, name: '', location: '', price_range: 3 })),
     });
     const history = createBrowserHistory();
 
@@ -101,7 +101,7 @@ describe('<UpdateRestaurant/>', () => {
     it('should handle successful submit', async () => {
       (window.fetch as jest.Mock).mockResolvedValue({
         status: 200,
-        json: jest.fn(() => [{ id: 2, name: '', location: '', price_range: 3 }]),
+        json: jest.fn(() => ({ id: 2, name: '', location: '', price_range: 3 })),
       });
       const history = createBrowserHistory();
 
