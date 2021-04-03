@@ -20,7 +20,7 @@ const HomeScreen = (): React.ReactElement => {
         }
         dispatch({ type: 'ADD_USER', payload: { ...state.user, isAuth: false } });
       } catch (error) {
-        setFetchError(error.message);
+        setFetchError('An Error Occured');
       }
     };
     fetchUser();
@@ -31,6 +31,7 @@ const HomeScreen = (): React.ReactElement => {
       <Header />
       {state.user.isAuth && <AddRestaurant />}
       <RestaurantList />
+      {fetchError}
     </div>
   );
 };
