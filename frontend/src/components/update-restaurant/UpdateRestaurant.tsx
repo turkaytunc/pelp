@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { isInputEmpty, updateRestaurantById } from 'src/util';
-import { getRestaurantById } from 'src/util/getRestaurantById';
+import { isInputEmpty, updateRestaurantById, getRestaurantById } from 'src/util';
+import { DisplayError } from 'src/components';
 import './update-restaurant.scss';
 
 const UpdateRestaurant = (): React.ReactElement => {
@@ -88,8 +88,8 @@ const UpdateRestaurant = (): React.ReactElement => {
         />
         {price}
       </label>
+      {responseError && <DisplayError message={responseError} />}
       <button type="submit">Update</button>
-      {responseError}
     </form>
   );
 };

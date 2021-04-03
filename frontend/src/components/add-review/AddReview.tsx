@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { addRestaurantReview, isInputEmpty } from 'src/util';
+import { DisplayError } from '..';
 import './add-reviews.scss';
 
 const AddReview = (): React.ReactElement => {
@@ -77,7 +78,7 @@ const AddReview = (): React.ReactElement => {
       <button className="add-review-button" type="submit">
         Add Review
       </button>
-      {fetchError}
+      {fetchError && <DisplayError message={fetchError} />}
     </form>
   );
 };

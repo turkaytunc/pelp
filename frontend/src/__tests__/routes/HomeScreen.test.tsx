@@ -7,6 +7,7 @@ afterEach(jest.clearAllMocks);
 
 describe('<HomeScreen />', () => {
   it('should validate jwt using fetch request', async () => {
+    localStorage.setItem('token', 'Mock token');
     (window.fetch as jest.Mock).mockResolvedValue({
       status: 200,
       json: jest.fn(() => ({ name: 'user', email: 'mail@example.com' })),
@@ -34,6 +35,6 @@ describe('<HomeScreen />', () => {
     (window.fetch as jest.Mock).mockRejectedValue(new Error('Fetch Error'));
     render(<HomeScreen />);
 
-    expect((await screen.findByTestId('home-screen-container')).childElementCount).toBe(2);
+    expect((await screen.findByTestId('home-screen-container')).childElementCount).toBe(3);
   });
 });

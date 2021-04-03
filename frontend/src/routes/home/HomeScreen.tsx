@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './home-screen.scss';
 import { Store } from 'src/context/Store';
 import { validateUser } from 'src/util';
-import { Header, AddRestaurant, RestaurantList } from '../../components';
+import { Header, AddRestaurant, RestaurantList, DisplayError } from '../../components';
 
 const HomeScreen = (): React.ReactElement => {
   const { state, dispatch } = useContext(Store);
@@ -23,7 +23,9 @@ const HomeScreen = (): React.ReactElement => {
         setFetchError('An Error Occured');
       }
     };
-    fetchUser();
+    if (localStorage.getItem('token')) {
+      fetchUser();
+    }
   }, []);
 
   return (
@@ -31,7 +33,7 @@ const HomeScreen = (): React.ReactElement => {
       <Header />
       {state.user.isAuth && <AddRestaurant />}
       <RestaurantList />
-      {fetchError}
+      {fetchError && <DisplayError message={fetchError} />}
     </div>
   );
 };

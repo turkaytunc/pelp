@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './restaurant-details.scss';
-import { AddReview, ReviewCard, StarRate } from 'src/components';
+import { AddReview, ReviewCard, StarRate, DisplayError } from 'src/components';
 import { getReviewsByRestaurantId } from 'src/util';
 import { useParams } from 'react-router-dom';
 import { Review } from 'src/interfaces';
@@ -8,7 +8,7 @@ import { Review } from 'src/interfaces';
 const RestaurantDetails = (): React.ReactElement => {
   const { id }: { id: string } = useParams();
   const [restaurant, setRestaurant] = useState<Review[]>([]);
-  const [fetchError, setFetchError] = useState('');
+  const [responseError, setResponseError] = useState('');
   const [averageRating, setAverageRating] = useState('');
   const [details, setDetails] = useState({ name: '', location: '' });
 
@@ -21,10 +21,10 @@ const RestaurantDetails = (): React.ReactElement => {
         setAverageRating(data.average);
         setDetails(data.details);
       } else {
-        setFetchError(data.message);
+        setResponseError(data.message);
       }
     } catch (error) {
-      setFetchError(error.message);
+      setResponseError(error.message);
     }
   };
 
@@ -44,7 +44,7 @@ const RestaurantDetails = (): React.ReactElement => {
           <ReviewCard key={item.id} rating={item.rating} name={item.user} comment={item.comment} />
         ))}
       </div>
-      {fetchError}
+      {responseError && <DisplayError message={responseError} />}
       <AddReview />
     </div>
   );
