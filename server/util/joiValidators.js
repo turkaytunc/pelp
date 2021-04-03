@@ -11,3 +11,25 @@ export const registerValidation = Joi.object({
   email: Joi.string().trim().email().required(),
   password: Joi.string().trim().min(8).max(20).required(),
 });
+
+export const loginValidation = Joi.object({
+  email: Joi.string().trim().email().required(),
+  password: Joi.string().trim().min(8).max(20).required(),
+});
+
+export const restaurantValidation = Joi.object({
+  name: Joi.string().trim().min(3).max(40).required(),
+  location: Joi.string().trim().min(3).max(40).required(),
+  price_range: Joi.number().min(1).max(5).required(),
+});
+
+export const restaurantIdValidation = Joi.object({
+  id: Joi.number().min(1).max(100000).required(),
+});
+
+export const reviewValidation = Joi.object({
+  id: Joi.string().trim().max(10000).required(),
+  name: Joi.string().trim().min(3).max(40).required(),
+  rating: Joi.string().trim().max(1).required(),
+  comment: Joi.string().trim().min(10).max(100).required(),
+});

@@ -17,11 +17,14 @@ const AddReview = (): React.ReactElement => {
 
     try {
       const response = await addRestaurantReview(id, username, userRating, comment);
-      if (response.status === 400) {
-        setFetchError('fetchError');
+
+      if (response.status === 201) {
+        history.push(`/`);
         return;
       }
-      history.push(`/`);
+
+      const data = await response.json();
+      setFetchError(data.message);
     } catch (error) {
       setFetchError(error.message);
     }
