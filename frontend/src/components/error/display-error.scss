@@ -1,0 +1,15 @@
+@use '/src/scss';
+
+.display-error-container {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 1.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  color: scss.$input-button-color;
+  text-shadow: 1px 1px 1px black;
+  font-weight: bold;
+}
