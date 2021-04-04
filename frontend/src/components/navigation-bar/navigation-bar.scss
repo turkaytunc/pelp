@@ -33,7 +33,7 @@
       padding-left: 0.5rem;
     }
     &:hover {
-      color: scss.$input-button-color;
+      color: scss.$main-color;
     }
   }
   button {
@@ -44,7 +44,7 @@
     color: #eee;
 
     &:hover {
-      color: scss.$input-button-color;
+      color: scss.$main-color-hover;
     }
   }
 }

@@ -3,5 +3,6 @@
 .header {
   margin-top: 1rem;
   font-size: 2rem;
-  color: scss.$header-color;
+  color: scss.$main-color;
+  text-shadow: 1px 1px 1px #111;
 }

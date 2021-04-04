@@ -17,7 +17,7 @@ const NavigationBar = (): React.ReactElement => {
     <div className="navigation-bar-container">
       <section className="nav-section-logo">
         <Link to="/">
-          <FaYelp size={30} fill="rgb(200, 40, 90)" />
+          <FaYelp size={30} fill="rgb(220, 40, 80)" />
         </Link>
       </section>
       <section className="nav-section-links">
