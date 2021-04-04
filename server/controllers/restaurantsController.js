@@ -1,5 +1,5 @@
-import pool from '../db/index.js';
-import { joiValidators } from '../util/index.js';
+import pool from "../db/index.js";
+import { joiValidators } from "../util/index.js";
 
 const { restaurantValidation, restaurantIdValidation } = joiValidators;
 
@@ -44,7 +44,7 @@ export const getRestaurantById = async (req, res, next) => {
     const { id } = req.params;
 
     await restaurantIdValidation.validateAsync({ id });
-    const restaurant = await pool.query('SELECT * FROM restaurants WHERE id = $1', [id]);
+    const restaurant = await pool.query("SELECT * FROM restaurants WHERE id = $1", [id]);
     return res.json(restaurant.rows[0]);
   } catch (error) {
     if (!error.status) {
@@ -61,7 +61,7 @@ export const createRestaurant = async (req, res, next) => {
 
     await restaurantValidation.validateAsync({ name, location, price_range });
     const restaurant = await pool.query(
-      'INSERT INTO restaurants(name, location, price_range) values($1, $2, $3) returning *',
+      "INSERT INTO restaurants(name, location, price_range) values($1, $2, $3) returning *",
       [name, location, price_range]
     );
 
@@ -85,7 +85,7 @@ export const updateRestaurantById = async (req, res, next) => {
     await restaurantIdValidation.validateAsync({ id });
 
     const restaurant = await pool.query(
-      'UPDATE restaurants SET name = $1, location = $2, price_range = $3 WHERE id = $4 returning *',
+      "UPDATE restaurants SET name = $1, location = $2, price_range = $3 WHERE id = $4 returning *",
       [name, location, price_range, id]
     );
 
@@ -104,7 +104,7 @@ export const deleteRestaurantById = async (req, res, next) => {
     const { id } = req.params;
 
     await restaurantIdValidation.validateAsync({ id });
-    await pool.query('DELETE FROM restaurants WHERE restaurants.id = $1', [id]);
+    await pool.query("DELETE FROM restaurants WHERE restaurants.id = $1", [id]);
 
     return res.status(204).send();
   } catch (error) {

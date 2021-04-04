@@ -10,7 +10,6 @@
     "sourceType": "module"
   },
   "rules": {
-    "linebreak-style": ["error", "windows"],
     "import/extensions": 0,
     "import/named": 0,
     "import/prefer-default-export": "off",

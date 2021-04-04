@@ -1,1 +1,1 @@
-export { authorization } from './authorization.js';
+export { authorization } from "./authorization.js";

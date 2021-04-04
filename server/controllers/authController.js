@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
-import pool from '../db/index.js';
-import { generateToken, ErrorWithStatusCode, joiValidators } from '../util/index.js';
+import bcrypt from "bcrypt";
+import pool from "../db/index.js";
+import { generateToken, ErrorWithStatusCode, joiValidators } from "../util/index.js";
 
 const { registerValidation, loginValidation } = joiValidators;
 
@@ -12,16 +12,16 @@ export const register = async (req, res, next) => {
     const { name, email, password } = req.body;
 
     await registerValidation.validateAsync({ name, email, password });
-    const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
 
     const isUserExist = user.rows.length > 0;
     if (isUserExist) {
-      throw new ErrorWithStatusCode('Email is already in use!!', 401);
+      throw new ErrorWithStatusCode("Email is already in use!!", 401);
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
     const newUser = await pool.query(
-      'INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING name, email, user_unique',
+      "INSERT INTO users (name, password, email) VALUES ($1, $2, $3) RETURNING name, email, user_unique",
       [name, passwordHash, email]
     );
 
@@ -38,14 +38,14 @@ export const register = async (req, res, next) => {
 // POST /api/v1/auth/login
 export const login = async (req, res, next) => {
   try {
-    const { email: requestMail, password } = req.body;
+    const { email, password } = req.body;
 
-    await loginValidation.validateAsync({ requestMail, password });
-    const user = await pool.query('SELECT * FROM users WHERE email = $1', [requestMail]);
+    await loginValidation.validateAsync({ email, password });
+    const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
 
     const isUserExist = user.rows.length > 0;
     if (!isUserExist) {
-      throw new ErrorWithStatusCode('Wrong email or password!', 401);
+      throw new ErrorWithStatusCode("Wrong email or password!", 401);
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.rows[0].password);
@@ -55,7 +55,7 @@ export const login = async (req, res, next) => {
       return res.json({ user: { name, email }, token });
     }
 
-    throw new ErrorWithStatusCode('Wrong email or password!', 403);
+    throw new ErrorWithStatusCode("Wrong email or password!", 403);
   } catch (error) {
     if (!error.status) {
       error.status = 400;
