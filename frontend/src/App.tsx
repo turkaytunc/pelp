@@ -18,8 +18,8 @@ function App(): JSX.Element {
             <Route exact path="/auth/signin" component={SigninScreen} />
           </Switch>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </BrowserRouter>
   );
 }

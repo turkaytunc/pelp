@@ -1,13 +1,11 @@
-$background-color-dark: hsl(0, 0%, 20%);
-$background-color-light: hsl(0, 100%, 100%);
-$color-light: hsl(0, 50%, 100%);
-$color-dark: hsl(0, 0%, 25%);
-$header-color: rgb(223, 12, 65);
+$background-color-dark: #333;
+$background-color-light: #eee;
+$color-light: #eee;
+$color-dark: #444;
 
 $input-border-color-blue: rgb(152, 209, 235);
-$input-button-color-hover: rgba(223, 12, 65, 0.8);
-$input-button-color: rgb(223, 12, 65);
 
-$card-border-color: rgb(199, 40, 88);
+$main-color-hover: rgba(220, 40, 80, 0.9);
+$main-color: rgb(220, 40, 80);
 
-$nav-background-color: rgb(200, 40, 90);
+$nav-background-color: rgb(211, 21, 81);
