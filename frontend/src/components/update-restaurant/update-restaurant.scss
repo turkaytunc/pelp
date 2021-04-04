@@ -1,4 +1,76 @@
+@use '/src/scss';
+
 .update-restaurant-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-self: center;
+  max-width: 40rem;
+
+  input {
+    height: 1.7rem;
+    padding-left: 0.5rem;
+    border-radius: 3px;
+    border: none;
+    margin-top: 0.4rem;
+    caret-color: rgb(49, 174, 231);
+    color: scss.$color-dark;
+    &::placeholder {
+      color: rgba(197, 20, 108, 0.8);
+    }
+
+    &:focus {
+      border-bottom: 1px solid scss.$main-color;
+      outline: none;
+    }
+  }
+
+  button {
+    height: 1.7rem;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: scss.$main-color;
+    color: #222;
+    box-shadow: -0.2px -0.2px 1px #ccc inset;
+
+    &:hover {
+      color: aliceblue;
+      background-color: scss.$main-color-hover;
+    }
+  }
+
+  label {
+    margin-top: 0.5rem;
+    display: flex;
+
+    p {
+      flex: 2;
+      text-align: left;
+    }
+  }
+
+  .slider {
+    all: initial;
+    margin-left: 0.5rem;
+    background-color: scss.$main-color;
+    border-radius: 0.5rem;
+    justify-self: center;
+    align-self: center;
+    overflow: hidden;
+    flex: 2;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: 1px solid #333;
+      height: 1rem;
+      width: 1rem;
+      padding-top: 1rem;
+      border-radius: 5px;
+      background: #ddd;
+      cursor: pointer;
+      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+  }
 }
