@@ -8,6 +8,7 @@
     "test": "jest",
     "test:dev": "jest --coverage --watchAll",
     "lint": "eslint . --ext .js",
+    "prettier": "prettier --write .",
     "start": "node server.js",
     "dev": "nodemon -L server.js",
     "compose:up": "sh server-dev.sh",
@@ -50,6 +51,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.6.3",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1"
   }
 }

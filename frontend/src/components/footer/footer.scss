@@ -1,3 +1,25 @@
 .footer-container {
   min-height: 5rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: white;
+}
+
+.footer-copy {
+  text-align: right;
+  width: max-content;
+  margin-left: 0.5rem;
+}
+
+.footer-link-image {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 100%;
+
+  &:nth-child(n) {
+    margin-left: 0.5rem;
+  }
 }

@@ -75,8 +75,10 @@ const UpdateRestaurant = (): React.ReactElement => {
         value={location}
       />
       <label htmlFor="restaurant-price">
-        Restaurant Price
+        <p>Restaurant Price</p>
+        {price}
         <input
+          className="slider"
           data-testid="update-res-price"
           onChange={(event) => setPrice(parseInt(event.target.value, 10))}
           id="restaurant-price"
@@ -86,7 +88,6 @@ const UpdateRestaurant = (): React.ReactElement => {
           name="restaurant-price"
           value={price}
         />
-        {price}
       </label>
       {responseError && <DisplayError message={responseError} />}
       <button type="submit">Update</button>

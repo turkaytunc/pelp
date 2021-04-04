@@ -5,5 +5,13 @@
   color: scss.$color-light;
   display: block;
   border-radius: 5px;
+  min-height: fit-content;
   border: 1px solid scss.$main-color;
+  width: 100%;
+}
+
+.review-card-comment {
+  width: 100%;
+  min-height: 5rem;
+  overflow-wrap: break-word;
 }
