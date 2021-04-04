@@ -3,6 +3,8 @@ import { joiValidators } from '../util/index.js';
 
 const { restaurantValidation, restaurantIdValidation } = joiValidators;
 
+/* eslint camelcase: 0 */
+
 /**
  * GET /api/v1/restaurants/
  */
@@ -32,7 +34,7 @@ export const getAllRestaurants = async (_, res, next) => {
     if (!error.status) {
       error.status = 400;
     }
-    next(error);
+    return next(error);
   }
 };
 
@@ -48,7 +50,7 @@ export const getRestaurantById = async (req, res, next) => {
     if (!error.status) {
       error.status = 400;
     }
-    next(error);
+    return next(error);
   }
 };
 
@@ -69,7 +71,7 @@ export const createRestaurant = async (req, res, next) => {
     if (!error.status) {
       error.status = 400;
     }
-    next(error);
+    return next(error);
   }
 };
 
@@ -92,7 +94,7 @@ export const updateRestaurantById = async (req, res, next) => {
     if (!error.status) {
       error.status = 400;
     }
-    next(error);
+    return next(error);
   }
 };
 
@@ -109,6 +111,6 @@ export const deleteRestaurantById = async (req, res, next) => {
     if (!error.status) {
       error.status = 400;
     }
-    next(error);
+    return next(error);
   }
 };

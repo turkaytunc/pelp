@@ -7,6 +7,6 @@ export const getProfile = async (req, res, next) => {
     return res.json({ ...user.rows[0] });
   } catch (error) {
     const err = new ErrorWithStatusCode('Something went wrong ooops', 400);
-    next(err);
+    return next(err);
   }
 };

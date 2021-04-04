@@ -4,6 +4,8 @@ import { generateToken, ErrorWithStatusCode, joiValidators } from '../util/index
 
 const { registerValidation, loginValidation } = joiValidators;
 
+/* eslint camelcase: 0 */
+
 // POST /api/v1/auth/register
 export const register = async (req, res, next) => {
   try {
@@ -29,17 +31,17 @@ export const register = async (req, res, next) => {
     if (!error.status) {
       error.status = 400;
     }
-    next(error);
+    return next(error);
   }
 };
 
 // POST /api/v1/auth/login
 export const login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email: requestMail, password } = req.body;
 
-    await loginValidation.validateAsync({ email, password });
-    const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    await loginValidation.validateAsync({ requestMail, password });
+    const user = await pool.query('SELECT * FROM users WHERE email = $1', [requestMail]);
 
     const isUserExist = user.rows.length > 0;
     if (!isUserExist) {
@@ -52,11 +54,12 @@ export const login = async (req, res, next) => {
       const token = generateToken(user_unique);
       return res.json({ user: { name, email }, token });
     }
+
     throw new ErrorWithStatusCode('Wrong email or password!', 403);
   } catch (error) {
     if (!error.status) {
       error.status = 400;
     }
-    next(error);
+    return next(error);
   }
 };
