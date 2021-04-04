@@ -11,4 +11,6 @@
   background-color: scss.$background-color-dark;
   justify-content: center;
   margin: 1rem auto;
+  height: max-content;
+  min-height: 100vh;
 }

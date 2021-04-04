@@ -1,6 +1,6 @@
-import pool from '../db/index.js';
-import { joiValidators, ErrorWithStatusCode } from '../util/index.js';
-import { reviewValidation } from '../util/joiValidators.js';
+import pool from "../db/index.js";
+import { joiValidators } from "../util/index.js";
+import { reviewValidation } from "../util/joiValidators.js";
 
 const { restaurantIdValidation } = joiValidators;
 
@@ -33,7 +33,7 @@ export const getReviewsByRestaurantId = async (req, res, next) => {
     if (!error.status) {
       error.status = 400;
     }
-    next(error);
+    return next(error);
   }
 };
 
@@ -55,6 +55,6 @@ export const addReview = async (req, res, next) => {
     if (!error.status) {
       error.status = 400;
     }
-    next(error);
+    return next(error);
   }
 };

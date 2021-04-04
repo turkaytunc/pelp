@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   node-api:
     container_name: api
