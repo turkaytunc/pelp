@@ -49,6 +49,7 @@ export const getRestaurantById = async (req, res, next) => {
   } catch (error) {
     if (!error.status) {
       error.status = 400;
+      error.message = "Bad Request";
     }
     return next(error);
   }
