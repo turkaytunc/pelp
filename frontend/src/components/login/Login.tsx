@@ -4,8 +4,10 @@ import { Store } from 'src/context/Store';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createToastConfig, isInputEmpty, loginUser, validateUser } from 'src/util/';
+import { createToastConfig, isInputEmpty, loginUser, validateUser, joiValidators } from 'src/util/';
 import { DisplayError } from 'src/components';
+
+const { loginValidation } = joiValidators;
 
 const Login = (): React.ReactElement => {
   const [email, setEmail] = useState('');
@@ -23,9 +25,9 @@ const Login = (): React.ReactElement => {
       if (response.status === 200) {
         dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: true } });
         history.push('/dashboard');
-      } else {
-        dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: false } });
+        return;
       }
+      dispatch({ type: 'ADD_USER', payload: { ...data, isAuth: false } });
     };
     if (localStorage.getItem('token')) {
       fetchUser();
@@ -36,10 +38,8 @@ const Login = (): React.ReactElement => {
     event.preventDefault();
 
     try {
-      if (isInputEmpty(email, password)) {
-        setInputError("Please don't left inputs empty!");
-        return;
-      }
+      await loginValidation.validateAsync({ email, password });
+
       const response = await loginUser(email, password);
       const data = await response.json();
 
@@ -52,9 +52,9 @@ const Login = (): React.ReactElement => {
           'Login Successful. Redirecting to Home',
           createToastConfig(() => history.push('/'))
         );
-      } else {
-        setInputError(data.message);
+        return;
       }
+      setInputError(data.message);
     } catch (error) {
       setInputError(error.message);
     } finally {
