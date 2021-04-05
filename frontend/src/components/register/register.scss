@@ -33,8 +33,8 @@
     border-radius: 5px;
     background-color: scss.$main-color;
     color: #222;
-    box-shadow: -0.2px -0.2px 1px #ccc inset;
 
+    width: 50%;
     &:hover {
       color: aliceblue;
       background-color: scss.$main-color-hover;

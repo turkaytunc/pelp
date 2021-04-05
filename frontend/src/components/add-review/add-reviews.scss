@@ -5,11 +5,11 @@
   flex-direction: column;
   width: 100%;
   padding: 1rem;
-  max-width: 40rem;
   align-self: center;
-
+}
+.input-section {
   label {
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
   }
 }
 
@@ -54,7 +54,7 @@
   border-radius: 5px;
   background-color: scss.$main-color;
   color: #222;
-  box-shadow: -0.2px -0.2px 1px #ccc inset;
+  width: 50%;
 
   &:hover {
     color: aliceblue;
