@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { ActionType } from 'src/constants';
 import { Store } from 'src/context/Store';
 import { addRestaurant, convertFirstLetterToUpperCase, isInputEmpty, joiValidators } from 'src/util';
-import { DisplayError } from '..';
+import { DisplayError } from 'src/components/';
 import './add-restaurant.scss';
 
 const { restaurantValidation } = joiValidators;
