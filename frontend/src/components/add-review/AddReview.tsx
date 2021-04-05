@@ -34,47 +34,49 @@ const AddReview = (): React.ReactElement => {
   return (
     <form onSubmit={(event) => handleSubmit(event)} className="add-review-form" data-testid="review-form">
       <h2 className="add-review-header">Add Your Review</h2>
-      <label htmlFor="review-username-input">
-        <input
-          data-testid="review-username-input"
-          className="add-review-username"
-          onChange={(event) => setUsername(event.target.value)}
-          type="text"
-          id="review-username-input"
-          placeholder="Your Name"
-          value={username}
-        />
-      </label>
-      <label className="add-review-label" htmlFor="review-rating">
-        <p>Rating</p>
-        <select
-          data-testid="review-rating-input"
-          onChange={(event) => setUserRating(event.target.value)}
-          className="add-review-rating"
-          name="review-rating"
-          id="review-rating"
-          value={userRating}
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </label>
-      <label htmlFor="review-comment-input">
-        <textarea
-          data-testid="review-comment-input"
-          onChange={(event) => setComment(event.target.value)}
-          className="add-review-textarea"
-          id="review-comment-input"
-          placeholder="Comment Here"
-          maxLength={100}
-          cols={20}
-          rows={5}
-          value={comment}
-        />
-      </label>
+      <section className="input-section">
+        <label htmlFor="review-username-input">
+          <input
+            data-testid="review-username-input"
+            className="add-review-username"
+            onChange={(event) => setUsername(event.target.value)}
+            type="text"
+            id="review-username-input"
+            placeholder="Your Name"
+            value={username}
+          />
+        </label>
+        <label className="add-review-label" htmlFor="review-rating">
+          <p>Rating</p>
+          <select
+            data-testid="review-rating-input"
+            onChange={(event) => setUserRating(event.target.value)}
+            className="add-review-rating"
+            name="review-rating"
+            id="review-rating"
+            value={userRating}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <label htmlFor="review-comment-input">
+          <textarea
+            data-testid="review-comment-input"
+            onChange={(event) => setComment(event.target.value)}
+            className="add-review-textarea"
+            id="review-comment-input"
+            placeholder="Comment Here"
+            maxLength={100}
+            cols={20}
+            rows={10}
+            value={comment}
+          />
+        </label>
+      </section>
       <button className="add-review-button" type="submit">
         Add Review
       </button>
