@@ -35,7 +35,7 @@ const RestaurantDetails = (): React.ReactElement => {
   return (
     <div className="restaurant-details-container">
       <header className="restaurant-details-header">
-        {details?.name ? details.name : 'Restaurant Name'}{' '}
+        {details?.name ? details.name : 'Restaurant Name'}
         <span style={{ fontSize: '0.75rem' }}>({details?.location ? details.location : 'Location'})</span>
       </header>
       {averageRating ? <StarRate rating={parseInt(averageRating, 10)} /> : <StarRate rating={0} />}

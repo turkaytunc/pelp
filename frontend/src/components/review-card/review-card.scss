@@ -6,12 +6,25 @@
   display: block;
   border-radius: 5px;
   min-height: fit-content;
-  border: 1px solid scss.$main-color;
   width: 100%;
+  text-shadow: 1px 1px 2px black;
+}
+
+.review-card-user {
+  p {
+    margin: 0.3rem auto;
+    text-transform: capitalize;
+  }
 }
 
 .review-card-comment {
+  border-top: 1px solid #777;
+  padding-top: 0.5rem;
   width: 100%;
   min-height: 5rem;
   overflow-wrap: break-word;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }

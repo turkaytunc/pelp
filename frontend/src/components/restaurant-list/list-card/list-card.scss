@@ -34,6 +34,11 @@
     text-overflow: ellipsis;
   }
 }
+
+.details-item {
+  text-transform: capitalize;
+}
+
 .listcard-button-container {
   margin-left: 0.5rem;
   flex: 1;
