@@ -33,6 +33,7 @@ export const getAllRestaurants = async (_, res, next) => {
   } catch (error) {
     if (!error.status) {
       error.status = 400;
+      error.message = "Bad Request";
     }
     return next(error);
   }
@@ -71,6 +72,7 @@ export const createRestaurant = async (req, res, next) => {
   } catch (error) {
     if (!error.status) {
       error.status = 400;
+      error.message = "Bad Request";
     }
     return next(error);
   }
@@ -94,6 +96,7 @@ export const updateRestaurantById = async (req, res, next) => {
   } catch (error) {
     if (!error.status) {
       error.status = 400;
+      error.message = "Bad Request";
     }
     return next(error);
   }
@@ -111,6 +114,7 @@ export const deleteRestaurantById = async (req, res, next) => {
   } catch (error) {
     if (!error.status) {
       error.status = 400;
+      error.message = "Bad Request";
     }
     return next(error);
   }
