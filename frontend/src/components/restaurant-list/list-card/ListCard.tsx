@@ -69,7 +69,7 @@ const ListCard = ({ restaurant, isAuth }: { restaurant: Restaurant; isAuth: bool
             type="button"
             className="card-button edit-button"
           >
-            <FaEdit fill="#e0b90c" /> Edit
+            <FaEdit fill="#e0b90c" />
           </button>
           <button
             data-testid="listcard-delete"
@@ -77,7 +77,7 @@ const ListCard = ({ restaurant, isAuth }: { restaurant: Restaurant; isAuth: bool
             type="button"
             className="card-button delete-button"
           >
-            <FaTrash fill="#e00c0c" /> Delete
+            <FaTrash fill="#e00c0c" />
           </button>
           <div>{deleteError}</div>
         </div>

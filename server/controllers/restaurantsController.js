@@ -31,9 +31,8 @@ export const getAllRestaurants = async (_, res, next) => {
       }))
     );
   } catch (error) {
-    if (!error.status) {
-      error.status = 400;
-    }
+    error.status = 400;
+    error.message = "Bad Request";
     return next(error);
   }
 };
@@ -45,11 +44,11 @@ export const getRestaurantById = async (req, res, next) => {
 
     await restaurantIdValidation.validateAsync({ id });
     const restaurant = await pool.query("SELECT * FROM restaurants WHERE id = $1", [id]);
+
     return res.json(restaurant.rows[0]);
   } catch (error) {
-    if (!error.status) {
-      error.status = 400;
-    }
+    error.status = 400;
+    error.message = "Bad Request";
     return next(error);
   }
 };
@@ -68,9 +67,8 @@ export const createRestaurant = async (req, res, next) => {
     const { id, price_range: priceRange } = restaurant.rows[0];
     return res.status(201).json({ id, name, location, priceRange });
   } catch (error) {
-    if (!error.status) {
-      error.status = 400;
-    }
+    error.status = 400;
+    error.message = "Bad Request";
     return next(error);
   }
 };
@@ -91,9 +89,8 @@ export const updateRestaurantById = async (req, res, next) => {
 
     return res.status(201).json(restaurant.rows[0]);
   } catch (error) {
-    if (!error.status) {
-      error.status = 400;
-    }
+    error.status = 400;
+    error.message = "Bad Request";
     return next(error);
   }
 };
@@ -108,9 +105,8 @@ export const deleteRestaurantById = async (req, res, next) => {
 
     return res.status(204).send();
   } catch (error) {
-    if (!error.status) {
-      error.status = 400;
-    }
+    error.status = 400;
+    error.message = "Bad Request";
     return next(error);
   }
 };

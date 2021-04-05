@@ -1,4 +1,4 @@
-import { render, fireEvent, screen, act } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { AddRestaurant } from 'src/components';
 
@@ -73,11 +73,10 @@ describe('<AddRestaurants/>', () => {
 
       it('should handle empty input box submit', async () => {
         render(<AddRestaurant />);
-        const submitButton = await screen.findByText('Add Restaurant');
 
-        fireEvent.click(submitButton);
+        fireEvent.click(await screen.findByText('Add Restaurant'));
 
-        expect(screen.getByText("Please don't left input fields blank!")).toBeInTheDocument();
+        expect(await screen.findByText('"restaurant name" is not allowed to be empty')).toBeInTheDocument();
       });
     });
 

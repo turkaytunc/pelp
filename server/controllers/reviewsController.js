@@ -30,9 +30,8 @@ export const getReviewsByRestaurantId = async (req, res, next) => {
 
     return res.json(result);
   } catch (error) {
-    if (!error.status) {
-      error.status = 400;
-    }
+    error.status = 400;
+    error.message = "Bad Request";
     return next(error);
   }
 };
@@ -52,9 +51,8 @@ export const addReview = async (req, res, next) => {
 
     return res.status(201).json(restaurant.rows[0]);
   } catch (error) {
-    if (!error.status) {
-      error.status = 400;
-    }
+    error.status = 400;
+    error.message = "Bad Request";
     return next(error);
   }
 };

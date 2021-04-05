@@ -1,8 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { ActionType } from 'src/constants';
 import { Store } from 'src/context/Store';
-import { addRestaurant, convertFirstLetterToUpperCase, isInputEmpty } from 'src/util';
+import { addRestaurant, convertFirstLetterToUpperCase, isInputEmpty, joiValidators } from 'src/util';
+import { DisplayError } from 'src/components/';
 import './add-restaurant.scss';
+
+const { restaurantValidation } = joiValidators;
 
 const AddRestaurant = (): React.ReactElement => {
   const [restaurantName, setRestaurantName] = useState('');
@@ -11,39 +14,39 @@ const AddRestaurant = (): React.ReactElement => {
   const [inputError, setInputError] = useState('');
   const { state, dispatch } = useContext(Store);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (isInputEmpty(restaurantName, restaurantPrice, restaurantLocation)) {
-      setInputError("Please don't left input fields blank!");
-      return;
-    }
-
-    addRestaurant(
-      convertFirstLetterToUpperCase(restaurantName),
-      convertFirstLetterToUpperCase(restaurantLocation),
-      parseInt(restaurantPrice, 10)
-    )
-      .then((res) => {
-        if (res.status === 201) {
-          return res.json();
-        }
-        return null;
-      })
-      .then((data) => {
-        if (data !== null) {
-          dispatch({
-            type: ActionType.ADD_RESTAURANT,
-            payload: {
-              ...data,
-            },
-          });
-        }
+    try {
+      await restaurantValidation.validateAsync({
+        restaurantName,
+        restaurantLocation,
+        restaurantPrice,
       });
 
-    setRestaurantPrice('');
-    setRestaurantName('');
-    setRestaurantLocation('');
+      const response = await addRestaurant(
+        convertFirstLetterToUpperCase(restaurantName),
+        convertFirstLetterToUpperCase(restaurantLocation),
+        parseInt(restaurantPrice, 10)
+      );
+
+      if (response.status === 201) {
+        const data = await response.json();
+
+        dispatch({
+          type: ActionType.ADD_RESTAURANT,
+          payload: {
+            ...data,
+          },
+        });
+      }
+
+      setRestaurantPrice('');
+      setRestaurantName('');
+      setRestaurantLocation('');
+    } catch (error) {
+      setInputError(error.message);
+    }
   };
 
   return (
@@ -83,7 +86,7 @@ const AddRestaurant = (): React.ReactElement => {
           onFocus={() => setInputError('')}
           placeholder="Price"
         />
-        {inputError}
+        {inputError && <DisplayError message={inputError} />}
         <button type="submit">Add Restaurant</button>
       </form>
     </>
