@@ -34,7 +34,7 @@ const RestaurantList = (): React.ReactElement => {
           ))}
         </div>
       ) : (
-        <Loading message="Loading Restaurants" />
+        <Loading message="Warming up servers and loading restaurants..." />
       )}
       {responseError && <DisplayError message={responseError} />}
     </div>
