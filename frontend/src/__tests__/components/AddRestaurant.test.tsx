@@ -114,7 +114,7 @@ describe('<AddRestaurants/>', () => {
         fireEvent.change(priceInput, { target: { value: '4' } });
         fireEvent.click(submitButton);
 
-        expect(await screen.findByTestId('res-name-input')).toHaveValue('');
+        expect(await screen.findByTestId('res-name-input')).toHaveValue('broken');
       });
     });
   });
