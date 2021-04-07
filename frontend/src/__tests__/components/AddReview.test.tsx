@@ -53,9 +53,10 @@ describe('<AddReview />', () => {
         </Router>
       );
 
-      fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '3' } });
+      fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '1' } });
+      fireEvent.blur(await findByTestId('review-rating-input'));
 
-      expect(await findByTestId('review-rating-input')).toHaveValue('3');
+      expect(await findByTestId('review-rating-input')).toHaveValue('1');
     });
   });
 

@@ -27,7 +27,14 @@
   "prettier.singleQuote": true,
   "explorer.compactFolders": false,
   "vim.vimrc.enable": true,
-  "editor.lineNumbers": "relative",
+  "breadcrumbs.enabled": false,
   "editor.minimap.enabled": false,
-  "editor.acceptSuggestionOnEnter": "off"
+  "editor.lineNumbers": "relative",
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.suggest.localityBonus": true,
+  "editor.rulers": [],
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.wordBasedSuggestions": false,
+  "editor.acceptSuggestionOnCommitCharacter": false
 }
