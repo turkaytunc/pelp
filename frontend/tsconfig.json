@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "baseUrl": "."
   },
-  "include": ["src", "src/interfaces/interfaces.ts"]
+  "include": ["src", "src/interfaces/interfaces.ts", ".eslintrc.json"]
 }

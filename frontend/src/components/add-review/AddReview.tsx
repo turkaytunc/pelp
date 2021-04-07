@@ -50,6 +50,7 @@ const AddReview = (): React.ReactElement => {
           <p>Rating</p>
           <select
             data-testid="review-rating-input"
+            onBlur={(event) => setUserRating(event.target.value)}
             onChange={(event) => setUserRating(event.target.value)}
             className="add-review-rating"
             name="review-rating"
