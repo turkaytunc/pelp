@@ -4,11 +4,14 @@ import { Router } from 'react-router-dom';
 import { NavigationBar } from 'src/components';
 import { StoreProvider } from 'src/context/Store';
 
+jest.spyOn(window, 'fetch');
+
 describe('<NavigationBar />', () => {
   it('should render without crashing', async () => {
     const history = createBrowserHistory();
-    localStorage.setItem('token', 'somejwtfdsfdshistory.push');
     history.push('/dashboard');
+    (window.fetch as jest.Mock).mockResolvedValue({ status: 200 });
+    localStorage.setItem('token', 'mock tok');
     render(
       <Router history={history}>
         <StoreProvider>
@@ -16,14 +19,5 @@ describe('<NavigationBar />', () => {
         </StoreProvider>
       </Router>
     );
-
-    global.window = Object.create(window);
-    const url = '/restaurant/10';
-    Object.defineProperty(window, 'location', {
-      value: {
-        pathname: url,
-        localStorage: { removeItem: jest.fn },
-      },
-    });
   });
 });
