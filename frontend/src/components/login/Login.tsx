@@ -65,8 +65,12 @@ const Login = (): React.ReactElement => {
 
   return (
     <>
-      <form className="login-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleLogin(event)}>
+      <form
+        className="login-form"
+        onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleLogin(event)}
+      >
         <input
+          data-testid="login-email"
           className="email-input"
           type="text"
           value={email}
@@ -75,6 +79,7 @@ const Login = (): React.ReactElement => {
           placeholder="Email"
         />
         <input
+          data-testid="login-password"
           className="password-input"
           type="password"
           value={password}

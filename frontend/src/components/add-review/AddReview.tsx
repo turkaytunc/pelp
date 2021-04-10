@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
-import { addRestaurantReview, isInputEmpty } from 'src/util';
+import { addRestaurantReview, joiValidators } from 'src/util';
 import { DisplayError } from 'src/components';
 import './add-reviews.scss';
+
+const { reviewValidation } = joiValidators;
 
 const AddReview = (): React.ReactElement => {
   const { id }: { id: string } = useParams();
@@ -14,9 +16,9 @@ const AddReview = (): React.ReactElement => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (isInputEmpty(username, userRating, comment)) return;
 
     try {
+      await reviewValidation.validateAsync({ username, userRating, comment });
       const response = await addRestaurantReview(id, username, userRating, comment);
 
       if (response.status === 201) {
@@ -78,7 +80,7 @@ const AddReview = (): React.ReactElement => {
           />
         </label>
       </section>
-      <button className="add-review-button" type="submit">
+      <button data-testid="add-review-button" className="add-review-button" type="submit">
         Add Review
       </button>
       {fetchError && <DisplayError message={fetchError} />}

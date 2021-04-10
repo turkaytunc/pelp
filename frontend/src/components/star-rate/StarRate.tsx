@@ -9,7 +9,9 @@ const StarRate = ({ rating, color }: { rating: number; color?: string }): React.
     if (i <= rating) {
       stars.push(<FaStar className="star" fill={color} key={`${i}`} />);
     } else if (i === Math.ceil(rating) && !Number.isInteger(rating)) {
-      stars.push(<FaStarHalfAlt className="star" fill={color} key={i + 5} />);
+      stars.push(
+        <FaStarHalfAlt data-testid="half-star" className="star" fill={color} key={i + 5} />
+      );
     } else {
       stars.push(<FaRegStar className="star" key={`${i}`} />);
     }

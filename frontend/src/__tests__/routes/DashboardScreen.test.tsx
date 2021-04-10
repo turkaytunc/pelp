@@ -10,6 +10,7 @@ describe('<DashboardScreen/>', () => {
   it('should fetch and validate user without crash', async () => {
     const history = createBrowserHistory();
     localStorage.setItem('token', 'Mock token');
+
     history.push('/dashboard');
     (window.fetch as jest.Mock).mockResolvedValue({
       status: 200,
@@ -30,7 +31,10 @@ describe('<DashboardScreen/>', () => {
     const history = createBrowserHistory();
     localStorage.setItem('token', 'Mock token');
     history.push('/dashboard');
-    (window.fetch as jest.Mock).mockResolvedValue({ status: 403, json: jest.fn(() => ({ message: 'Unauthorized' })) });
+    (window.fetch as jest.Mock).mockResolvedValue({
+      status: 403,
+      json: jest.fn(() => ({ message: 'Unauthorized' })),
+    });
 
     render(
       <Router history={history}>
@@ -55,5 +59,21 @@ describe('<DashboardScreen/>', () => {
     );
 
     expect(await screen.findByText('Validation error')).toBeTruthy();
+  });
+  it('should not find any token', async () => {
+    const history = createBrowserHistory();
+    history.push('/dashboard');
+    (window.fetch as jest.Mock).mockResolvedValue({ status: 200 });
+
+    localStorage.removeItem('token');
+
+    render(
+      <Router history={history}>
+        <DashboardScreen />
+      </Router>
+    );
+
+    await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
+    expect(window.location.pathname).toBe('/auth/signin');
   });
 });
