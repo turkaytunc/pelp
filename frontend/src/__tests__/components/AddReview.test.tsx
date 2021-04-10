@@ -1,4 +1,4 @@
-import { screen, render, fireEvent } from '@testing-library/react';
+import { screen, render, fireEvent, act } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { AddReview } from 'src/components';
@@ -64,14 +64,15 @@ describe('<AddReview />', () => {
     describe('Empty Inputs', () => {
       it('should submit form successfully', async () => {
         history.push('/restaurant/12');
-        const { findByTestId } = render(
+        render(
           <Router history={history}>
             <AddReview />
           </Router>
         );
-        const reviewForm = findByTestId('review-form');
 
-        fireEvent.submit(await reviewForm);
+        fireEvent.submit(await screen.findByTestId('review-form'));
+
+        expect(await screen.findByText('"username" is not allowed to be empty')).toBeTruthy();
       });
     });
 
@@ -87,17 +88,20 @@ describe('<AddReview />', () => {
               pathname: url,
             },
           });
+          history.push('/restaurant/10');
 
-          const { findByTestId } = render(
+          render(
             <Router history={history}>
               <AddReview />
             </Router>
           );
 
-          fireEvent.change(await findByTestId('review-username-input'), { target: { value: 'Hilal' } });
-          fireEvent.change(await findByTestId('review-comment-input'), { target: { value: 'This is a comment.' } });
-          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '5' } });
-          fireEvent.submit(await findByTestId('review-form'));
+          fireEvent.change(await screen.findByTestId('review-username-input'), { target: { value: 'Hilal' } });
+          fireEvent.change(await screen.findByTestId('review-comment-input'), {
+            target: { value: 'This is a comment.' },
+          });
+          fireEvent.change(await screen.findByTestId('review-rating-input'), { target: { value: '5' } });
+          fireEvent.click(await screen.findByTestId('add-review-button'));
 
           expect(window.location.pathname).toBe('/restaurant/10');
         });

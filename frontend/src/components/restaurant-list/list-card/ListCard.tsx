@@ -58,8 +58,8 @@ const ListCard = ({ restaurant, isAuth }: { restaurant: Restaurant; isAuth: bool
       <div className="listcard-details">
         <div className="details-item"> {name}</div>
         <div className="details-item"> {location}</div>
-        <div className="details-item"> {'$'.repeat(priceRange)}</div>
-        <StarRate rating={parseFloat(average)} color="#ddd" />
+        <div className="details-item details-price-range"> {'$'.repeat(priceRange)}</div>
+        <StarRate rating={parseFloat(average)} color="#dc2850" />
       </div>
       {isAuth ? (
         <div className="listcard-button-container">

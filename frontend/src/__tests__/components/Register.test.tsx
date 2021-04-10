@@ -60,7 +60,7 @@ describe('<Register />', () => {
 
       fireEvent.submit(await screen.findByText('Sign Up'));
 
-      expect(await screen.findByText("Please don't left inputs empty!")).toBeTruthy();
+      expect(await screen.findByText('"name" is not allowed to be empty')).toBeTruthy();
     });
 
     describe('focus events after empty submit event', () => {
@@ -72,7 +72,7 @@ describe('<Register />', () => {
         );
 
         fireEvent.submit(await screen.findByText('Sign Up'));
-        expect(await screen.findByText("Please don't left inputs empty!")).toBeInTheDocument();
+        expect(await screen.findByText('"name" is not allowed to be empty')).toBeInTheDocument();
 
         fireEvent.focus(await screen.findByTestId('register-name'));
         fireEvent.focus(await screen.findByTestId('register-email'));
@@ -104,8 +104,6 @@ describe('<Register />', () => {
         fireEvent.change(await screen.findByTestId('register-password'), { target: { value: 'thisisasecurepass123' } });
         fireEvent.submit(await screen.findByText('Sign Up'));
 
-        expect(await screen.findByTestId('register-name')).toHaveValue('');
-        expect(await screen.findByTestId('register-email')).toHaveValue('');
         expect(await screen.findByTestId('register-password')).toHaveValue('');
       });
     });
@@ -131,8 +129,6 @@ describe('<Register />', () => {
 
         expect(await screen.findByText('Error Occured')).toBeTruthy();
 
-        expect(await screen.findByTestId('register-name')).toHaveValue('');
-        expect(await screen.findByTestId('register-email')).toHaveValue('');
         expect(await screen.findByTestId('register-password')).toHaveValue('');
       });
 

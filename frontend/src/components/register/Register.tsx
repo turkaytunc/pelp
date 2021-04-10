@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react';
 import './register.scss';
 import { Store } from 'src/context/Store';
 import { useHistory } from 'react-router-dom';
-import { ToastContainer, toast, Zoom } from 'react-toastify';
+import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createToastConfig, isInputEmpty, registerUser } from 'src/util/';
+import { registerUser, joiValidators } from 'src/util/';
 import { DisplayError } from 'src/components';
 
+const { registerValidation } = joiValidators;
 const Register = (): React.ReactElement => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,10 +21,7 @@ const Register = (): React.ReactElement => {
     event.preventDefault();
 
     try {
-      if (isInputEmpty(name, email, password)) {
-        setInputError("Please don't left inputs empty!");
-        return;
-      }
+      await registerValidation.validateAsync({ name, email, password });
       const response = await registerUser(name, email, password);
       const data = await response.json();
 
@@ -34,14 +32,10 @@ const Register = (): React.ReactElement => {
         history.push('/');
       } else {
         setInputError(data.message);
-        setName('');
-        setEmail('');
         setPassword('');
       }
     } catch (error) {
       setInputError(error.message);
-      setName('');
-      setEmail('');
       setPassword('');
     }
   };

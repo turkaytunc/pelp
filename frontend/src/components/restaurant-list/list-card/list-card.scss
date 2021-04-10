@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: scss.$main-color;
+  color: scss.$color-light;
   text-shadow: 2px 2px 2px rgb(0, 0, 0);
   font-size: 1.2rem;
   font-weight: bold;
@@ -37,6 +37,10 @@
 
 .details-item {
   text-transform: capitalize;
+}
+
+.details-price-range {
+  color: scss.$main-color;
 }
 
 .listcard-button-container {
