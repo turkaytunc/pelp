@@ -10,6 +10,7 @@ describe('<DashboardScreen/>', () => {
   it('should fetch and validate user without crash', async () => {
     const history = createBrowserHistory();
     localStorage.setItem('token', 'Mock token');
+
     history.push('/dashboard');
     (window.fetch as jest.Mock).mockResolvedValue({
       status: 200,
@@ -30,7 +31,10 @@ describe('<DashboardScreen/>', () => {
     const history = createBrowserHistory();
     localStorage.setItem('token', 'Mock token');
     history.push('/dashboard');
-    (window.fetch as jest.Mock).mockResolvedValue({ status: 403, json: jest.fn(() => ({ message: 'Unauthorized' })) });
+    (window.fetch as jest.Mock).mockResolvedValue({
+      status: 403,
+      json: jest.fn(() => ({ message: 'Unauthorized' })),
+    });
 
     render(
       <Router history={history}>
