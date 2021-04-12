@@ -5,4 +5,4 @@
 
 Nodejs, react, postgres, typescript, travisCI, jest, docker => fullstack yelp clone
 
-[Take me to site](https://turkaytunc.github.io/pern-stack-yelp/)
+[Take me to site](https://turkaytunc.github.io/pelp/)
