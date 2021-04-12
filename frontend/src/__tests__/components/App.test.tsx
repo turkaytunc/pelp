@@ -5,7 +5,7 @@ import App from 'src/App';
 
 test('renders learn react link', () => {
   const history = createBrowserHistory();
-  history.push('/pern-stack-yelp/');
+  history.push('/pelp/');
   render(
     <Router history={history}>
       <App />
