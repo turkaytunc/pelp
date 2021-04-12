@@ -10,7 +10,7 @@ const NavigationBar = (): React.ReactElement => {
 
   const handleLogout = () => {
     window.localStorage.removeItem('token');
-    window.location.assign('/pern-stack-yelp');
+    window.location.assign('/pelp');
   };
 
   return (

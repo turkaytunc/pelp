@@ -1,11 +1,18 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './app.scss';
 import { Footer, NavigationBar } from './components';
-import { HomeScreen, DetailsScreen, UpdateScreen, SignupScreen, SigninScreen, DashboardScreen } from './routes';
+import {
+  HomeScreen,
+  DetailsScreen,
+  UpdateScreen,
+  SignupScreen,
+  SigninScreen,
+  DashboardScreen,
+} from './routes';
 
 function App(): JSX.Element {
   return (
-    <BrowserRouter basename="/pern-stack-yelp">
+    <BrowserRouter basename="/pelp">
       <div className="app">
         <NavigationBar />
         <div className="main">
