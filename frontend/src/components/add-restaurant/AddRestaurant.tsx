@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { ActionType } from 'src/constants';
 import { Store } from 'src/context/Store';
-import { addRestaurant, convertFirstLetterToUpperCase, isInputEmpty, joiValidators } from 'src/util';
+import { addRestaurant, convertFirstLetterToUpperCase, joiValidators } from 'src/util';
 import { DisplayError } from 'src/components/';
 import './add-restaurant.scss';
 
@@ -12,7 +12,7 @@ const AddRestaurant = (): React.ReactElement => {
   const [restaurantLocation, setRestaurantLocation] = useState('');
   const [restaurantPrice, setRestaurantPrice] = useState('');
   const [inputError, setInputError] = useState('');
-  const { state, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

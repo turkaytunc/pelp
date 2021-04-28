@@ -11,14 +11,23 @@ import { deleteRestaurantById } from 'src/util';
 import restJPG from 'src/images/rest.jpg';
 import { StarRate } from 'src/components';
 
-const ListCard = ({ restaurant, isAuth }: { restaurant: Restaurant; isAuth: boolean }): React.ReactElement => {
+const ListCard = ({
+  restaurant,
+  isAuth,
+}: {
+  restaurant: Restaurant;
+  isAuth: boolean;
+}): React.ReactElement => {
   const { id, name, location, priceRange, average } = restaurant;
   const history = useHistory();
 
-  const { state, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
   const [deleteError, setDeleteError] = useState('');
 
-  const handleDelete = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, restaurantId: number) => {
+  const handleDelete = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    restaurantId: number
+  ) => {
     event.stopPropagation();
 
     try {
@@ -31,7 +40,10 @@ const ListCard = ({ restaurant, isAuth }: { restaurant: Restaurant; isAuth: bool
     }
   };
 
-  const handleUpdate = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, restaurantId: number) => {
+  const handleUpdate = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    restaurantId: number
+  ) => {
     event.stopPropagation();
     history.push(`/restaurant/${restaurantId}/update`);
   };

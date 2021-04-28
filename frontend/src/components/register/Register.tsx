@@ -13,7 +13,7 @@ const Register = (): React.ReactElement => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [inputError, setInputError] = useState('');
-  const { state, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
 
   const history = useHistory();
 
@@ -42,7 +42,10 @@ const Register = (): React.ReactElement => {
 
   return (
     <>
-      <form className="register-form" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleRegister(event)}>
+      <form
+        className="register-form"
+        onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleRegister(event)}
+      >
         <input
           className="name-input"
           data-testid="register-name"

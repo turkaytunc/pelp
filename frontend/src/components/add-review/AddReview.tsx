@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { addRestaurantReview, joiValidators } from 'src/util';
 import { DisplayError } from 'src/components';
 import './add-reviews.scss';
@@ -34,7 +34,11 @@ const AddReview = (): React.ReactElement => {
   };
 
   return (
-    <form onSubmit={(event) => handleSubmit(event)} className="add-review-form" data-testid="review-form">
+    <form
+      onSubmit={(event) => handleSubmit(event)}
+      className="add-review-form"
+      data-testid="review-form"
+    >
       <h2 className="add-review-header">Add Your Review</h2>
       <section className="input-section">
         <label htmlFor="review-username-input">

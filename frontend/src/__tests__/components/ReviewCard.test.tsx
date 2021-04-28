@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { ReviewCard } from 'src/components';
 
 const review = { name: 'Derya', rating: '3', comment: 'This is a random string' };

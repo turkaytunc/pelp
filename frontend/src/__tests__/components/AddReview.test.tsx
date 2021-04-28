@@ -1,4 +1,4 @@
-import { screen, render, fireEvent, act } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { AddReview } from 'src/components';
@@ -40,9 +40,11 @@ describe('<AddReview />', () => {
         </Router>
       );
 
-      fireEvent.change(await findByTestId('review-comment-input'), { target: { value: 'This is a comment.' } });
+      fireEvent.change(await findByTestId('review-comment-input'), {
+        target: { value: 'This is a random comment.' },
+      });
 
-      expect(await findByTestId('review-comment-input')).toHaveValue('This is a comment.');
+      expect(await findByTestId('review-comment-input')).toHaveValue('This is a random comment.');
     });
 
     it('should fire rating option change event', async () => {
@@ -96,11 +98,15 @@ describe('<AddReview />', () => {
             </Router>
           );
 
-          fireEvent.change(await screen.findByTestId('review-username-input'), { target: { value: 'Hilal' } });
-          fireEvent.change(await screen.findByTestId('review-comment-input'), {
-            target: { value: 'This is a comment.' },
+          fireEvent.change(await screen.findByTestId('review-username-input'), {
+            target: { value: 'Aysu' },
           });
-          fireEvent.change(await screen.findByTestId('review-rating-input'), { target: { value: '5' } });
+          fireEvent.change(await screen.findByTestId('review-comment-input'), {
+            target: { value: 'This contains some string.' },
+          });
+          fireEvent.change(await screen.findByTestId('review-rating-input'), {
+            target: { value: '2' },
+          });
           fireEvent.click(await screen.findByTestId('add-review-button'));
 
           expect(window.location.pathname).toBe('/restaurant/10');
@@ -120,9 +126,13 @@ describe('<AddReview />', () => {
             </Router>
           );
 
-          fireEvent.change(await findByTestId('review-username-input'), { target: { value: 'Hilal' } });
-          fireEvent.change(await findByTestId('review-comment-input'), { target: { value: 'This is a comment.' } });
-          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '5' } });
+          fireEvent.change(await findByTestId('review-username-input'), {
+            target: { value: 'Cansu' },
+          });
+          fireEvent.change(await findByTestId('review-comment-input'), {
+            target: { value: 'This is adsf comment.' },
+          });
+          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '1' } });
           fireEvent.submit(await findByTestId('review-form'));
 
           expect(await screen.findByText('Cannot get restaurant')).toBeTruthy();
@@ -137,9 +147,13 @@ describe('<AddReview />', () => {
             </Router>
           );
 
-          fireEvent.change(await findByTestId('review-username-input'), { target: { value: 'Hilal' } });
-          fireEvent.change(await findByTestId('review-comment-input'), { target: { value: 'This is a comment.' } });
-          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '5' } });
+          fireEvent.change(await findByTestId('review-username-input'), {
+            target: { value: 'Özlem' },
+          });
+          fireEvent.change(await findByTestId('review-comment-input'), {
+            target: { value: 'This is özlem.' },
+          });
+          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '2' } });
           fireEvent.submit(await findByTestId('review-form'));
 
           expect(await screen.findByText('something went wrong')).toBeTruthy();

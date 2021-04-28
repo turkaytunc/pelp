@@ -4,7 +4,7 @@ import { Store } from 'src/context/Store';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createToastConfig, isInputEmpty, loginUser, validateUser, joiValidators } from 'src/util/';
+import { createToastConfig, loginUser, validateUser, joiValidators } from 'src/util/';
 import { DisplayError } from 'src/components';
 
 const { loginValidation } = joiValidators;
@@ -13,7 +13,7 @@ const Login = (): React.ReactElement => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [inputError, setInputError] = useState('');
-  const { state, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
 
   const history = useHistory();
 
