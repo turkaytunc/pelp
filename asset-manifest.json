@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/pelp/static/css/main.52b470d0.chunk.css",
+    "main.js": "/pelp/static/js/main.c2fa0a1e.chunk.js",
+    "main.js.map": "/pelp/static/js/main.c2fa0a1e.chunk.js.map",
+    "runtime-main.js": "/pelp/static/js/runtime-main.f5d1331c.js",
+    "runtime-main.js.map": "/pelp/static/js/runtime-main.f5d1331c.js.map",
+    "static/css/2.3f6a4e7d.chunk.css": "/pelp/static/css/2.3f6a4e7d.chunk.css",
+    "static/js/2.7a29b91a.chunk.js": "/pelp/static/js/2.7a29b91a.chunk.js",
+    "static/js/2.7a29b91a.chunk.js.map": "/pelp/static/js/2.7a29b91a.chunk.js.map",
+    "index.html": "/pelp/index.html",
+    "static/css/2.3f6a4e7d.chunk.css.map": "/pelp/static/css/2.3f6a4e7d.chunk.css.map",
+    "static/css/main.52b470d0.chunk.css.map": "/pelp/static/css/main.52b470d0.chunk.css.map",
+    "static/js/2.7a29b91a.chunk.js.LICENSE.txt": "/pelp/static/js/2.7a29b91a.chunk.js.LICENSE.txt",
+    "static/media/linkedin-logo.5fe87bbd.svg": "/pelp/static/media/linkedin-logo.5fe87bbd.svg",
+    "static/media/loading.df0fb781.svg": "/pelp/static/media/loading.df0fb781.svg",
+    "static/media/rest.256d1806.jpg": "/pelp/static/media/rest.256d1806.jpg",
+    "static/media/twitter-logo.948a7997.svg": "/pelp/static/media/twitter-logo.948a7997.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f5d1331c.js",
+    "static/css/2.3f6a4e7d.chunk.css",
+    "static/js/2.7a29b91a.chunk.js",
+    "static/css/main.52b470d0.chunk.css",
+    "static/js/main.c2fa0a1e.chunk.js"
+  ]
+}
