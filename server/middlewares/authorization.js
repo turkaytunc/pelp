@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { ErrorWithStatusCode } from "../util/index.js";
+import { HttpError} from "../util/index.js";
 
 dotenv.config();
 const secret = process.env.JWT_SECRET;
@@ -18,7 +18,7 @@ export const authorization = (req, res, next) => {
     req.user = verifyJwt.user;
     return next();
   } catch (error) {
-    const err = new ErrorWithStatusCode("Unauthorized", 403);
+    const err = new HttpError("Unauthorized", 403);
     return next(err);
   }
 };

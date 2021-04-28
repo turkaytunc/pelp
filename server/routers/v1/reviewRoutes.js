@@ -1,16 +1,14 @@
 import express from "express";
-import dotenv from "dotenv";
 import { reviewsController } from "../../controllers/index.js";
 
 const { addReview, getReviewsByRestaurantId } = reviewsController;
 
-const router = express.Router();
-dotenv.config();
+const reviewRouter = express.Router();
 
 // GET /api/v1/reviews/
-router.get("/:id", getReviewsByRestaurantId);
+reviewRouter.get("/:id", getReviewsByRestaurantId);
 
 // POST /api/v1/reviews/id
-router.post("/:id", addReview);
+reviewRouter.post("/:id", addReview);
 
-export default router;
+export default reviewRouter;

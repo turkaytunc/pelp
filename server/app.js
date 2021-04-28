@@ -4,7 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 
 import { authRoutes, dashboardRoutes, restaurantRoutes, reviewRoutes } from "./routers/v1/index.js";
-import { ErrorWithStatusCode } from "./util/index.js";
+import { HttpError } from "./util/index.js";
 
 const app = express();
 
@@ -22,8 +22,7 @@ app.use("/api/v1/dashboard", dashboardRoutes);
 
 // Unhandled Endpoint Error
 app.get("/*", (req, res, next) => {
-  const error = new ErrorWithStatusCode("Page Not Found");
-  error.status = 404;
+  const error = new HttpError("Page Not Found", 404);
   return next(error);
 });
 
