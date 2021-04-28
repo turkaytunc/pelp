@@ -1,4 +1,4 @@
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { createBrowserHistory } from 'history';
 import { Router } from 'react-router-dom';
 import RestaurantDetails from 'src/components/restaurant-details/RestaurantDetails';
@@ -27,7 +27,10 @@ describe('<RestaurantDetails />', () => {
   });
 
   it('should fail to fetch reviewswith 400 response code', async () => {
-    (window.fetch as jest.Mock).mockResolvedValue({ status: 400, json: jest.fn(() => ({ message: 'an error' })) });
+    (window.fetch as jest.Mock).mockResolvedValue({
+      status: 400,
+      json: jest.fn(() => ({ message: 'an error' })),
+    });
     const history = createBrowserHistory();
     history.push('/restaurant/21');
 

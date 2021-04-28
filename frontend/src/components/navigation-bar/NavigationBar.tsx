@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { FaYelp } from 'react-icons/fa';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Store } from 'src/context/Store';
 import './navigation-bar.scss';
 
 const NavigationBar = (): React.ReactElement => {
-  const { state, dispatch } = useContext(Store);
-  const history = useHistory();
+  const { state } = useContext(Store);
 
   const handleLogout = () => {
     window.localStorage.removeItem('token');

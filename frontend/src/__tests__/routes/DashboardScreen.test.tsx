@@ -24,7 +24,7 @@ describe('<DashboardScreen/>', () => {
       </Router>
     );
 
-    expect(await screen.findByText('Welcome turkay')).toBeTruthy();
+    expect(await screen.findByText(/Welcome turkay/gi)).toBeTruthy();
   });
 
   it('should fetch and reject jwt', async () => {

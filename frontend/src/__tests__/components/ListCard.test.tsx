@@ -1,4 +1,4 @@
-import { render, fireEvent, screen, act } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import ListCard from 'src/components/restaurant-list/list-card/ListCard';
 import { createBrowserHistory } from 'history';

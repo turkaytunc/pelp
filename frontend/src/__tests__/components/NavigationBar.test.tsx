@@ -1,4 +1,4 @@
-import { screen, render, fireEvent, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { createBrowserHistory } from 'history';
 import { Router } from 'react-router-dom';
 import { NavigationBar } from 'src/components';

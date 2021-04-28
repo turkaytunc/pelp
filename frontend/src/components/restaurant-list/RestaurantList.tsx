@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './restaurant-list.scss';
 
-import { getRestaurants, validateUser } from 'src/util';
+import { getRestaurants } from 'src/util';
 import { ActionType } from 'src/constants';
 import { Store } from 'src/context/Store';
 
