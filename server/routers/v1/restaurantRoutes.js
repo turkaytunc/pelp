@@ -1,5 +1,4 @@
 import express from "express";
-import dotenv from "dotenv";
 import { restaurantController } from "../../controllers/index.js";
 import { authorization } from "../../middlewares/index.js";
 
@@ -11,13 +10,12 @@ const {
   deleteRestaurantById,
 } = restaurantController;
 
-const router = express.Router();
-dotenv.config();
+const restaurantRouter= express.Router();
 
-router.get("/", getAllRestaurants);
-router.get("/:id", getRestaurantById);
-router.post("/", authorization, createRestaurant);
-router.put("/:id", authorization, updateRestaurantById);
-router.delete("/:id", authorization, deleteRestaurantById);
+restaurantRouter.get("/", getAllRestaurants);
+restaurantRouter.get("/:id", getRestaurantById);
+restaurantRouter.post("/", authorization, createRestaurant);
+restaurantRouter.put("/:id", authorization, updateRestaurantById);
+restaurantRouter.delete("/:id", authorization, deleteRestaurantById);
 
-export default router;
+export default restaurantRouter;

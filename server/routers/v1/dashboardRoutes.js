@@ -1,13 +1,11 @@
 import express from "express";
-import dotenv from "dotenv";
 import { dashboardController } from "../../controllers/index.js";
 import { authorization } from "../../middlewares/index.js";
 
 const { getProfile } = dashboardController;
 
-const router = express.Router();
-dotenv.config();
+const dashboardRouter= express.Router();
 
-router.get("/", authorization, getProfile);
+dashboardRouter.get("/", authorization, getProfile);
 
-export default router;
+export default dashboardRouter;
