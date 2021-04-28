@@ -32,9 +32,9 @@ describe('<AddRestaurants/>', () => {
       render(<AddRestaurant />);
       const locationInput = await screen.findByTestId('res-location-input');
 
-      userEvent.type(locationInput, 'edirne');
+      userEvent.type(locationInput, 'ankara');
 
-      expect(locationInput).toHaveValue('edirne');
+      expect(locationInput).toHaveValue('ankara');
     });
   });
 
