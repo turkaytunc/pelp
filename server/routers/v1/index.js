@@ -1,4 +1,4 @@
-export { default as restaurantRoutes } from "./restaurantRoutes.js";
-export { default as reviewRoutes } from "./reviewRoutes.js";
-export { default as authRoutes } from "./authRoutes.js";
-export { default as dashboardRoutes } from "./dashboardRoutes.js";
+export { default as restaurantRoutes } from "./restaurantRouter.js";
+export { default as reviewRoutes } from "./reviewRouter.js";
+export { default as authRoutes } from "./authRouter.js";
+export { default as dashboardRoutes } from "./dashboardRouter.js";

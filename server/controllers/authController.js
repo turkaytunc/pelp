@@ -50,9 +50,9 @@ export const login = async (req, res, next) => {
 
     const isPasswordValid = await bcrypt.compare(password, user.rows[0].password);
     if (isPasswordValid) {
-      const { user_unique, name, email } = user.rows[0];
+      const { user_unique, name } = user.rows[0];
       const token = generateToken(user_unique);
-      return res.json({ user: { name, email }, token });
+      return res.json({ user: { name, email: user.rows[0].email }, token });
     }
 
     throw new HttpError("Wrong email or password!", 403);
