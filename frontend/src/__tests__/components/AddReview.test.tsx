@@ -41,10 +41,10 @@ describe('<AddReview />', () => {
       );
 
       fireEvent.change(await findByTestId('review-comment-input'), {
-        target: { value: 'This is a comment.' },
+        target: { value: 'This is a random comment.' },
       });
 
-      expect(await findByTestId('review-comment-input')).toHaveValue('This is a comment.');
+      expect(await findByTestId('review-comment-input')).toHaveValue('This is a random comment.');
     });
 
     it('should fire rating option change event', async () => {
@@ -99,13 +99,13 @@ describe('<AddReview />', () => {
           );
 
           fireEvent.change(await screen.findByTestId('review-username-input'), {
-            target: { value: 'Hilal' },
+            target: { value: 'Aysu' },
           });
           fireEvent.change(await screen.findByTestId('review-comment-input'), {
-            target: { value: 'This is a comment.' },
+            target: { value: 'This contains some string.' },
           });
           fireEvent.change(await screen.findByTestId('review-rating-input'), {
-            target: { value: '5' },
+            target: { value: '2' },
           });
           fireEvent.click(await screen.findByTestId('add-review-button'));
 
@@ -127,12 +127,12 @@ describe('<AddReview />', () => {
           );
 
           fireEvent.change(await findByTestId('review-username-input'), {
-            target: { value: 'Hilal' },
+            target: { value: 'Cansu' },
           });
           fireEvent.change(await findByTestId('review-comment-input'), {
-            target: { value: 'This is a comment.' },
+            target: { value: 'This is adsf comment.' },
           });
-          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '5' } });
+          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '1' } });
           fireEvent.submit(await findByTestId('review-form'));
 
           expect(await screen.findByText('Cannot get restaurant')).toBeTruthy();
@@ -148,12 +148,12 @@ describe('<AddReview />', () => {
           );
 
           fireEvent.change(await findByTestId('review-username-input'), {
-            target: { value: 'Hilal' },
+            target: { value: 'Özlem' },
           });
           fireEvent.change(await findByTestId('review-comment-input'), {
-            target: { value: 'This is a comment.' },
+            target: { value: 'This is özlem.' },
           });
-          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '5' } });
+          fireEvent.change(await findByTestId('review-rating-input'), { target: { value: '2' } });
           fireEvent.submit(await findByTestId('review-form'));
 
           expect(await screen.findByText('something went wrong')).toBeTruthy();
