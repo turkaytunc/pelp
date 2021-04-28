@@ -7,3 +7,8 @@
 Nodejs, react, postgres, typescript, travisCI, jest, docker => fullstack yelp clone
 
 [Take me to site](https://turkaytunc.github.io/pelp/)
+
+![warming](https://github.com/turkaytunc/pelp/blob/main/github-static/warming.png)
+![signin](https://github.com/turkaytunc/pelp/blob/main/github-static/signin.png)
+![rate](https://github.com/turkaytunc/pelp/blob/main/github-static/rate.png)
+![update](https://github.com/turkaytunc/pelp/blob/main/github-static/update.png)
